@@ -32,3 +32,10 @@ If you don't use extra resources in Lovelace yet, you can also load the new cust
      extra_module_url:
        - /local/lovelace/resources/custom-ui/custom-ui.js
    ```
+
+## Check the correct loading of Custom-ui
+In `/developer-tools/info`
+![info](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.07.png)
+
+In Inspector
+![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.51.png)
