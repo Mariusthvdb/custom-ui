@@ -45,7 +45,8 @@ In Inspector
 -6 Happy customizing!
 
 ## No more States, Lovelace it is
-Note that this adapted version still holds all options of the original custom-ui. Since that was designed for Homeassistant   States, and we now live Lovelace, many of these options are no longer supported. I havent yet streamlined the file to cut out these, as I am not sure whether Lovelace won't ever bring these back. Entity theming for one was a major feature now defunct.
+Note that this adapted version still holds all options of the original custom-ui. Since that was designed for Homeassistant   States, and we now live Lovelace, many of these options are no longer supported. I haven't yet streamlined the file to cut out these, as I am not sure whether Lovelace won't ever bring these back. Entity theming for one was a major feature now defunct.
+As are all other features specifically used in the state-cards. Like 'show_last_changed'. We all now how to do that easily in Lovelace.
 
 For a still valid explanation of the used JavaScript templating Custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md)
 
