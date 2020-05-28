@@ -34,7 +34,7 @@ If you don't use extra resources in Lovelace yet, you can also load the new cust
 
 
 ## Check the correct loading of Custom-ui
-Having finished the above process,you should check if everything went well, and the info screens reflect the new adapted file as is should.
+Having finished the above process, you should check if everything went well, and the info screens reflect the newly adapted file as it should.
 
 In `/developer-tools/info`
 ![info](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.07.png)
@@ -42,4 +42,12 @@ In `/developer-tools/info`
 In Inspector
 ![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.51.png)
 
--6 happy customizing
+-6 Happy customizing!
+
+## No more States, Lovelace it is
+Note that this adapted version still holds all options of the original custom-ui. Since that was designed for Homeassistant   States, and we now live Lovelace, many of these options are no longer supported. I havent yet streamlined the file to cut out these, as I am not sure whether Lovelace won't ever bring these back. Entity theming for one was a major feature now defunct.
+
+For a still valid explanation of the used JavaScript templating Custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md)
+
+
+   
