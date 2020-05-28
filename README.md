@@ -50,5 +50,6 @@ As are all other features specifically used in the state-cards. Like `show_last_
 
 For a still valid explanation of the used JavaScript templating Custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md)
 
-
-   
+## Learn core Homeassistant customization 
+It goes without saying that custom-ui is an extension of core HA functionality. As such you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject.
+Some examples can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml)
