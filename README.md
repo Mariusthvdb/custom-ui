@@ -8,7 +8,7 @@ This adapted version makes it compatible again with HA 110+.
 
 ## First
 
--0 Delete all existing references to custom-ui in your current config (or, if you don't trust it, comment them out, as I always do before major changes..) Also, you can delete all files. Again, for safety: after you have established all is functioning properly with the new setup).
+-0 Delete all existing references to custom-ui in your current config (or, if you don't trust it, comment them out, as I always do before major changes..) Also, you can delete all files. (Again, for safety: after you have established all is functioning properly with the new setup).
 
 Installing is super easy:
 
