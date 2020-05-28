@@ -1,0 +1,260 @@
+# Some examples for using custom-ui.
+# This is an excerpt of my own package, and can be used
+# directly if you copy it to your own homeassistant structure and activate packages. Of
+# course other methods work also, like pointing to a dedicated customize file, and
+# referencing that in your configuration.yaml
+
+# Note that the triple `=` which is used throughout the community and examples on the
+# original repo are not necessary. Secondly, always use a guard for unexpected states.
+# Of course this holds for Jinja templates in HA too...
+# The guard is used by setting the `else` clause, which in the examples below are on the
+# last lines, starting with 'return'. Dont need to use the word `else` itself, though it
+# will be valid if you do.
+
+# Lastly, remember to delimit the lines with a `;` .
+
+homeassistant:
+
+##########################################################################################
+# Domain
+# this is by far the most used option. Set and forget, and never have to set any Style
+# in a Lovelace card. Do remember that customizing an individual entity overrides domain
+# or global customizations.
+# If customizing an entity belonging to one these domains, you have to customize it
+# completely
+##########################################################################################
+  customize_domain:
+
+    automation:
+      templates: &state_color  # <-- define a yaml anchors here
+        icon_color: >
+          if (state == 'on') return 'gold';
+          return 'steelblue';
+
+    binary_sensor:
+      templates:
+        <<: *state_color  # <-- and use it on any other entity in this file
+
+    input_boolean:
+      templates:
+        <<: *state_color
+
+    switch:
+      templates:
+        icon: >
+          if (state == 'on') return 'mdi:toggle-switch';
+          return 'mdi:toggle-switch-off';
+        <<: *state_color
+
+##########################################################################################
+# Glob
+# second powerful option used in Homeassistant, profits enormously of custom-ui.
+##########################################################################################
+
+  customize_glob:
+
+    light.hue_ambiance_spot_*:
+      icon: mdi:spotlight-beam
+
+    device_tracker.*_bt:
+      templates:
+        icon: >
+          if (state == 'home') return 'mdi:bluetooth';
+          return 'mdi:bluetooth-off';
+        icon_color: >
+          if (state == 'home') return 'blue';
+          return 'grey';
+
+    device_tracker.*laptop*:
+      templates: &device_color
+        icon_color: >
+          if (state == 'home') return 'gold';
+          return 'steelblue';
+
+    device_tracker.ipad*:
+      templates:
+        <<: *device_color
+
+    device_tracker.googlehome_*:
+      templates:
+        icon_color: >
+          if (state == 'home') return 'green';
+          return 'red';
+
+    input_number.*_volume:
+      templates:
+        icon: >
+          if (state == '0.0') return 'mdi:volume-off';
+          if (state <= '0.3') return 'mdi:volume-low';
+          if (state <= '0.6') return 'mdi:volume-medium';
+          return 'mdi:volume-high';
+        icon_color: >
+          if (state == '0.0') return 'darkblue';
+          if (state <= '0.1') return 'mediumblue';
+          if (state <= '0.2') return 'blue';
+          if (state <= '0.3') return 'dodgerblue';
+          if (state <= '0.4') return 'lightblue';
+          if (state <= '0.5') return 'turquoise';
+          if (state <= '0.6') return 'green';
+          if (state <= '0.7') return 'darkgreen';
+          if (state <= '0.8') return 'orange';
+          if (state <= '0.9') return 'crimson';
+          return 'firebrick';
+
+    sensor.*_sensor*temperature:
+      templates:
+        icon_color: >
+          if (state < -20) return 'black';
+          if (state < -15) return 'navy';
+          if (state < -10) return 'darkblue';
+          if (state < -5) return 'mediumblue';
+          if (state < 0) return 'blue';
+          if (state < 5) return 'dodgerblue';
+          if (state < 10) return 'lightblue';
+          if (state < 15) return 'turquoise';
+          if (state < 20) return 'green';
+          if (state < 25) return 'darkgreen';
+          if (state < 30) return 'orange';
+          if (state < 35) return 'crimson';
+          return 'firebrick';
+
+    sensor.*_bewegingssensor:
+      templates: &battery_color
+        icon_color: >
+          if (state > 75) return 'green';
+          if (state > 50) return 'gold';
+          if (state > 25) return 'orange';
+          if (state > 10) return 'brown';
+          return 'red';
+
+    sensor.*_dimmer:
+      templates:
+        <<: *battery_color
+
+    sensor.*_afstandsbediening*:
+      templates:
+        <<: *battery_color
+
+    switch.sw_boiler_bijkeuken*:
+      templates:
+        icon: >
+          if (state == 'on') return 'mdi:water-boiler';
+          return 'mdi:water-boiler-off';
+        <<: *state_color # remember this one? defined in the Domain, also use here
+
+    switch.sw_freezer_bijkeuken*:
+      templates:
+        icon: >
+          if (state == 'on') return 'mdi:fridge';
+          return 'mdi:fridge-outline';
+        <<: *state_color
+
+    sensor.synology_exceeded_max_bad_sectors_*:
+      templates:
+        icon: >
+          if (state == 'True') return 'mdi:alert-circle';
+          return 'mdi:check-circle';
+        icon_color: >
+          if (state == 'True') return 'red';
+          return 'green';
+
+    sensor.synology_status_*:
+      templates:
+        icon_color: >
+          if (state == 'warning') return 'red';
+          return 'green';
+
+    sensor.synology_below_min_remaining_life_*:
+      templates:
+        icon: >
+          if (state == 'True') return 'mdi:alert-circle';
+          return 'mdi:check-circle';
+        icon_color: >
+          if (state == 'True') return 'red';
+          return 'green';
+
+    sensor.*_motion_sensor_sensitivity:
+      templates:
+        icon: >
+          return 'mdi:numeric-' + state + '-box-multiple-outline';
+        icon_color: >
+          if (state == '0') return 'grey';
+          if (state == '1') return 'blue';
+          if (state == '2') return 'green';
+          if (state == '3') return 'orange';
+          return 'red';
+
+# This is another fine example, and very powerful using entity_picture on state:
+    sensor.dark_sky*icon*:
+      templates:
+        entity_picture: >
+          return '/local/weather/icons/' + state + '.png';
+
+##########################################################################################
+# Entities
+# We all have some individually customized entities
+##########################################################################################
+  customize:
+
+    sensor.synology_status_volume_1:
+      templates:
+        icon_color: >
+          if (state == 'warning') return 'red';
+          return 'green';
+
+    device_tracker.tv_auditorium_samsung_8k:
+      templates: &green_color
+        icon_color: >
+          if (state == 'home') return 'green';
+          return 'steelblue';
+
+    device_tracker.tv_library_philips:
+      templates:
+        <<: *green_color
+
+    device_tracker.ziggo_cablemodem:
+      templates:
+        entity_picture: >
+          return '/local/devices/ziggo_' + entity.state + '.png'
+##########################################################################################
+
+    sensor.huidig_tarief:
+      templates:
+        icon: >
+          if (state == '1') return 'mdi:numeric-1-box-multiple-outline';
+          if (state == '2') return 'mdi:numeric-2-box-multiple-outline';
+          return 'mdi:fire';
+        icon_color: >
+          if (state == '1') return 'green';
+          return 'orange';
+
+##########################################################################################
+# Some extravaganza ;-)
+##########################################################################################
+
+    sensor.owm_wind_bearing:
+      friendly_name: Wind bearing
+      templates: &direction_icon
+        icon: >
+          var icons = ['mdi:arrow-down','mdi:arrow-bottom-left','mdi:arrow-left',
+                       'mdi:arrow-top-left','mdi:arrow-up','mdi:arrow-top-right',
+                       'mdi:arrow-right','mdi:arrow-bottom-right'];
+          var quadrant = Math.round(Number(state)/45);
+          if (quadrant < icons.length) return icons[quadrant];
+          return 'mdi:arrow-down';
+
+    input_select.sound_bite_player:
+      templates: &player_icon
+        icon: >
+          var player = {
+            'Hub':'mdi:tablet-dashboard',
+            'Woonkamer':'mdi:sofa',
+            'Hall':'mdi:transit-transfer',
+            'Master bedroom':'mdi:human-male-female',
+            'Hobbykamer':'mdi:xbox',
+            'Gym':'mdi:dumbbell',
+            'Office':'mdi:desktop-mac',
+            'Dorm M':'mdi:human-child',
+            'Dorm L':'mdi:human-child',
+            'TheBoss':'mdi:cellphone-iphone'};
+          return player[state] ? player[state] : 'mdi:radio-tower';
