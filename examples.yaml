@@ -17,7 +17,7 @@ homeassistant:
 
 ##########################################################################################
 # Domain
-# this is by far the most used option. Set and forget, and never have to set any Style
+# this is by far the most powerful option. Set and forget, and never have to set any Style
 # in a Lovelace card. Do remember that customizing an individual entity overrides domain
 # or global customizations.
 # If customizing an entity belonging to one these domains, you have to customize it
