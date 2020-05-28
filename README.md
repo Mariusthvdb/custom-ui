@@ -19,11 +19,6 @@ Installing is super easy:
      type: module
   ```
 
--4 refresh the Lovelace resources
-
--5 refresh Lovelace
-
--6 happy customizing
 
 ## Using Frontend
 If you don't use extra resources in Lovelace yet, you can also load the new custom-ui by changing you configuration.yaml as follows:
@@ -33,9 +28,18 @@ If you don't use extra resources in Lovelace yet, you can also load the new cust
        - /local/lovelace/resources/custom-ui/custom-ui.js
    ```
 
+-4 refresh the Lovelace resources
+
+-5 refresh Lovelace
+
+
 ## Check the correct loading of Custom-ui
+Having finished the above process,you should check if everything went well, and the info screens reflect the new adapted file as is should.
+
 In `/developer-tools/info`
 ![info](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.07.png)
 
 In Inspector
 ![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.51.png)
+
+-6 happy customizing
