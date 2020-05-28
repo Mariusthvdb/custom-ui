@@ -18,7 +18,9 @@ Installing is super easy:
    - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
      type: module
   ```
+-4 refresh the Lovelace resources
 
+-5 refresh Lovelace
 
 ## Using Frontend
 If you don't use extra resources in Lovelace yet, you can also load the new custom-ui by changing you configuration.yaml as follows:
@@ -28,9 +30,10 @@ If you don't use extra resources in Lovelace yet, you can also load the new cust
        - /local/lovelace/resources/custom-ui/custom-ui.js
    ```
 
--4 refresh the Lovelace resources
+-4 Restart Homeassistant
 
--5 refresh Lovelace
+-5 Refresh cache..
+You might have to refresh you cache a few times. In my personal experience especially Safari on the Mac, and the iPhone app can be a bit obnoxious....
 
 
 ## Check the correct loading of Custom-ui
@@ -42,7 +45,9 @@ In `/developer-tools/info`
 In Inspector
 ![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.51.png)
 
+
 -6 Happy customizing!
+
 
 ## No more States, Lovelace it is
 Note that this adapted version still holds all options of the original custom-ui. Since that was designed for Homeassistant   States, and we now live Lovelace, many of these options are no longer supported. I haven't yet streamlined the file to cut out these, as I am not sure whether Lovelace won't ever bring these back. Entity theming for one was a major feature now defunct.
