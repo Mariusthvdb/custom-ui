@@ -12,19 +12,19 @@ This adapted version makes it compatible again with HA 110+.
 
 Installing is super easy:
 
--1 Create a new folder under your resources folder. suggestion: custom-ui
+-1 Create a new folder under your resources folder. Suggestion: custom-ui.
 
--2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to the folder
+-2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to the folder.
 
 ## Using Resources
--3 Add the following to your resources.yaml (adapt to your personal file hierarchy)
+-3 Add the following to your resources.yaml (adapt to your personal file hierarchy):
    ```yaml
    - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
      type: module
   ```
--4 Reload the Lovelace resources
+-4 Reload the Lovelace resources.
 
--5 Refresh Lovelace
+-5 Refresh Lovelace. 
 
 ## Using Frontend
 If you don't use extra resources in Lovelace yet, you can also load the new custom-ui by changing you configuration.yaml as follows (you can use any folder you like, so why not use the same as the above):
@@ -34,14 +34,14 @@ If you don't use extra resources in Lovelace yet, you can also load the new cust
        - /local/lovelace/resources/custom-ui/custom-ui.js
    ```
 
--4 Restart Homeassistant
+-4 Restart Homeassistant.
 
 -5 Refresh cache..
 You might have to refresh you cache a few times. In my personal experience, especially Safari on the Mac and the iPhone app can be a bit obnoxious....
 
 
 ## Check the correct loading of Custom-ui
-Having finished the above process, you should check if everything went well, and the info screens reflect the newly adapted file as it should.
+Having finished the above procedure, you should check if everything went well, and the info screens reflect the newly adapted file as it should.
 
 In `/developer-tools/info`
 ![info](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.07.png)
