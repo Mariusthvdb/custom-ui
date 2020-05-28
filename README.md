@@ -8,7 +8,7 @@ Installing is super easy.
 3- add the following to your resources.yaml
    ```
    - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
-  type: module
+     type: module
   ```
 4- refresh the Lovelace resources
 5- refresh Lovelace
