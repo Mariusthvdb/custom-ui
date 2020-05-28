@@ -43,10 +43,12 @@ You might have to refresh you cache a few times. In my personal experience, espe
 ## Check the correct loading of Custom-ui
 Having finished the above procedure, you should check if everything went well, and the info screens reflect the newly adapted file as it should.
 
-In `/developer-tools/info`
+In `/developer-tools/info`:
+
 ![info](https://github.com/Mariusthvdb/custom-ui/blob/master/Developer-tools.png)
 
-In Inspector
+In Inspector:
+
 ![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Module-in-Inspector.png)
 
 
