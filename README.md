@@ -58,3 +58,7 @@ For a still valid explanation of the used JavaScript templating Custom-ui uses, 
 ## Learn core Homeassistant customization 
 It goes without saying that custom-ui is an extension of core HA functionality. As such you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject.
 Some examples can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml).
+
+## Just to be sure....
+Don't, let me repeat, Don't use the guidelines from the original repo (I wont privde a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating Custom-ui. All of that info now is obsolete. Follow 1 - 6 above and you're set.
+
