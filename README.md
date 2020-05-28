@@ -5,7 +5,8 @@ All credits go to Andrey.
 
 This adapted version makes it compatible again with HA 110+.
 
-Installing is super easy.
+Installing is super easy:
+
 -1 add a new folder under your resources folder. suggestion: custom-ui
 
 -2 copy the custom-ui.js to tht folder
