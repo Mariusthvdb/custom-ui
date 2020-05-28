@@ -9,18 +9,18 @@ This adapted version makes it compatible again with HA 110+.
 Installing is super easy:
 
 ## Using Resources
--1 add a new folder under your resources folder. suggestion: custom-ui
+-1 Create a new folder under your resources folder. suggestion: custom-ui
 
--2 copy the custom-ui.js file to the folder
+-2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to the folder
 
--3 add the following to your resources.yaml (adapt to your personal file hierarchy)
+-3 Add the following to your resources.yaml (adapt to your personal file hierarchy)
    ```yaml
    - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
      type: module
   ```
--4 refresh the Lovelace resources
+-4 Reload the Lovelace resources
 
--5 refresh Lovelace
+-5 Refresh Lovelace
 
 ## Using Frontend
 If you don't use extra resources in Lovelace yet, you can also load the new custom-ui by changing you configuration.yaml as follows:
