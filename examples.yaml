@@ -190,6 +190,8 @@ homeassistant:
         entity_picture: >
           return '/local/weather/icons/' + state + '.png';
 
+# since this doesn't have a guard, and 'unknown' could happen, I have an 'unknown.png' in
+# same folder.
 ##########################################################################################
 # Entities
 # We all have some individually customized entities
@@ -216,6 +218,10 @@ homeassistant:
       templates:
         entity_picture: >
           return '/local/devices/ziggo_' + entity.state + '.png'
+
+# since this doesn't have a guard, and 'unknown' could happen, I have an 'unknown.png' in
+# same folder.
+
 ##########################################################################################
 
     sensor.huidig_tarief:
