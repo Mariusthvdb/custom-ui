@@ -44,10 +44,10 @@ You might have to refresh you cache a few times. In my personal experience, espe
 Having finished the above procedure, you should check if everything went well, and the info screens reflect the newly adapted file as it should.
 
 In `/developer-tools/info`
-![info](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.07.png)
+![info](https://github.com/Mariusthvdb/custom-ui/blob/master/Developer-tools.png)
 
 In Inspector
-![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.51.png)
+![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Module-in-Inspector.png)
 
 
 -6 If you don't see the above: repeat either 5 until you do. Eventually it will showup (unless there's an error somewhere, which you will see in inspector most likely.
