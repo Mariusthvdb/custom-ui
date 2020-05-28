@@ -73,4 +73,5 @@ Don't, let me repeat, Don't use the guidelines from the original repo (I won't p
 
 ## Known error
 About e.push is not a function. It has been there ever since we used custom-ui in Lovelace. Or at least since a very long time. And has nothing to do with the change for Ha 110+. So never mind. Or preferably: help me edit the custom-ui.js to prevent it from happening if you feel like it. Most welcome!
+
 ![known error](https://github.com/Mariusthvdb/custom-ui/blob/master/e.push%20is%20not%20a%20function.png)
