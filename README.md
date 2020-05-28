@@ -6,6 +6,10 @@ All credits go to Andrey.
 
 This adapted version makes it compatible again with HA 110+.
 
+## First
+
+-0 Delete all existing references to custom-ui in your current config (or,if you don't trust it, comment them out, as I always do before major changes..)
+
 Installing is super easy:
 
 ## Using Resources
