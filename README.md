@@ -37,7 +37,6 @@ If you don't use extra resources in Lovelace yet, you can also load the new cust
 -4 Restart Homeassistant.
 
 -5 Refresh cache...
-
 You might have to refresh you cache a few times. In my personal experience, especially Safari on the Mac and the iPhone app can be a bit obnoxious....
 
 
