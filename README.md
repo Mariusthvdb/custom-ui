@@ -60,5 +60,5 @@ It goes without saying that custom-ui is an extension of core HA functionality. 
 Some examples can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml).
 
 ## Just to be sure....
-Don't, let me repeat, Don't use the guidelines from the original repo (I wont privde a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating Custom-ui. All of that info now is obsolete. Follow 1 - 6 above and you're set.
+Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating Custom-ui. All of that info now is obsolete. Follow 1 - 6 above and you're set.
 
