@@ -1,10 +1,13 @@
-# Custom-ui adapted
-From Homeassistant version 110.+, icon handling has changed causing the original Custom-ui by @andrey-git no longer to be functional. Original repo at https://github.com/andrey-git/home-assistant-custom-ui
+# Custom-ui adapted for Homeassistant 110.+
+
+## No more icon_color?
+Since Homeassistant saw version 110.+, icon handling has changed, causing the original custom-ui by @andrey-git to no longer be fully functional. The loss of icon_color was a major pain.
+Original repo at https://github.com/andrey-git/home-assistant-custom-ui
 
 I've been a longtime and heavy user, and this is the place to applaud Andrey for his amazing plugin. Homeassisant wouldn't be the same without the global customizing it enables us to do. Couldn't live without it!
 All credits go to Andrey.
 
-This adapted version makes it compatible again with HA 110+.
+This adapted version makes it compatible again with HA 110+. And allows us to use icon_color like before!
 
 ## First
 
