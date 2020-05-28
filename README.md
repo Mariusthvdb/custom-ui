@@ -12,11 +12,11 @@ This adapted version makes it compatible again with HA 110+.
 
 Installing is super easy:
 
-## Using Resources
 -1 Create a new folder under your resources folder. suggestion: custom-ui
 
 -2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to the folder
 
+## Using Resources
 -3 Add the following to your resources.yaml (adapt to your personal file hierarchy)
    ```yaml
    - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
@@ -27,7 +27,7 @@ Installing is super easy:
 -5 Refresh Lovelace
 
 ## Using Frontend
-If you don't use extra resources in Lovelace yet, you can also load the new custom-ui by changing you configuration.yaml as follows:
+If you don't use extra resources in Lovelace yet, you can also load the new custom-ui by changing you configuration.yaml as follows (you can use any folder you like, so why not use the same as the above):
    ```yaml
    frontend:
      extra_module_url:
@@ -50,7 +50,10 @@ In Inspector
 ![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Schermafbeelding%202020-05-28%20om%2012.31.51.png)
 
 
--6 Happy customizing!
+-6 If you don't see the above: repeat either 5 until you do. Eventually it will showup (unless there's an error somewhere, which you will see in inspector most likely.
+
+## Finally...drumroll
+-7 Happy customizing!
 
 
 ## No more States, Lovelace it is
