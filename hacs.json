@@ -1,0 +1,5 @@
+{
+  "name": "custom-ui",
+  "homeassistant": "0.110.0",
+  "render_readme": true
+}
