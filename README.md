@@ -8,7 +8,7 @@ This adapted version makes it compatible again with HA 110+.
 
 ## First
 
--0 Delete all existing references to custom-ui in your current config (or, if you don't trust it, comment them out, as I always do before major changes..) Also, you can delete all old custom_ui files. (Again, for safety: after you have established all is functioning properly with the new setup).
+-0 Delete all existing references to custom-ui in your current config (or, if you don't trust it, comment them out, as I always do before major changes..) Also, you can delete all old custom-ui files. (Again, for safety: after you have established all is functioning properly with the new setup).
 
 Installing is super easy:
 
@@ -62,7 +62,7 @@ In Inspector:
 Note that this adapted version still holds all options of the original custom-ui. Since that was designed for Homeassistant   States, and we now live Lovelace, many of these options are no longer supported. I haven't yet streamlined the file to cut out these, as I am not sure whether Lovelace won't ever bring these back. 'Per entity theming' for one was a major feature now defunct.
 As are all other features specifically used in the state-cards. Like `show_last_changed`. We all now how to do that easily in Lovelace.
 
-For a still valid explanation of the JavaScript templating Custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
+For a still valid explanation of the JavaScript templating custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
 
 ## Learn core Homeassistant customization 
 It goes without saying that custom-ui is an extension of core HA functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject.
@@ -70,7 +70,7 @@ It goes without saying that custom-ui is an extension of core HA functionality. 
 Some examples can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml).
 
 ## Just to be sure....
-Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating Custom-ui. All of that info now is obsolete. Follow 1 - 6 above and you're set.
+Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui. All of that info now is obsolete. Follow 1 - 6 above and you're set.
 
 ## Known error
 About `e.push is not a function`. It has been there ever since we used custom-ui in Lovelace. Or at least since a very long time. And has nothing to do with the change for Ha 110+ used in this repo. So never mind. Or preferably: help me edit the custom-ui.js to prevent it from happening if you feel like it. Most welcome!
