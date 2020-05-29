@@ -64,6 +64,9 @@ In Inspector:
 
 ![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Module-in-Inspector.png)
 
+In Resources:
+
+![listed](https://github.com/Mariusthvdb/custom-ui/blob/master/listed-resources.png)
 
 -6 If you don't see the above: repeat either 5 until you do. Eventually it will show up (unless there's an error somewhere, which you will see in inspector most likely).
 
