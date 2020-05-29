@@ -48,7 +48,7 @@ You might have to refresh your cache a few times. In my personal experience, esp
 - Click
 ![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/add.png)
 - Fill out the path in your configuration
-- Select `Module`
+- Select `JavaScript Module`
 - Create
 
 ![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/configuration-resources.png)
