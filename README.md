@@ -43,6 +43,15 @@ If you don't use extra custom resources in Lovelace yet, you can also load the n
 -5 Refresh cache...
 You might have to refresh your cache a few times. In my personal experience, especially Safari on the Mac and the iPhone app can be a bit obnoxious....
 
+## Or, use The Modern way
+- Click Configuration at `/config/dashboard`, click Lovelace Dashboards, click Resources.
+- Click
+![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/add.png)
+- Fill out the path in your configuration
+- Select `Module`
+- Create
+
+![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/configuration-resources.png)
 
 ## Check the correct loading of Custom-ui
 Having finished the above procedure, you should check if everything went well, and the info screens reflect the newly adapted file as it should. See below:
