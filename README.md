@@ -88,8 +88,12 @@ As are all other features specifically used in the state-cards. Like `show_last_
 For a still valid explanation of the JavaScript templating custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
 
 ## Learn core Homeassistant customization 
-It goes without saying that custom-ui is an extension of core Home Assistant functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject.
+It goes without saying that custom-ui is an extension of core Home Assistant functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject. 
+Important to note, is that Home Assistant [core Jinja templating](https://home-assistant.io/docs/configuration/templating/) is calculated in the back-end, server side, (the machine Home Assistant is running on). Javascript templating is calculated in the front-end, browser side, (the machine Home Assistant is displayed on). 
 
+Heavy templating might impact the performance of the system and will depend on processor power and memory available on either side of your devices.
+
+## Examples
 Some examples can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml).
 
 ## Just to be sure....
