@@ -23,21 +23,10 @@ All credits go to Andrey.
 
 -1 Create a new folder under your resources folder. Suggestion: custom-ui.
 
--2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to the folder.
-
-### Using Resources
--3 Add the following to your resources.yaml (adapt to your personal file hierarchy):
-
-   ```yaml
-   - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
-     type: module
-  ```
--4 Reload the Lovelace resources.
-
--5 Refresh Lovelace. 
+-2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to that folder.
 
 ### Using Frontend
-If you don't use extra custom resources in Lovelace yet, you can also load the new custom-ui by changing your configuration.yaml as follows (you can use any folder you like, so why not use the same as the above):
+This resembles the 'old' was most. You can load the new custom-ui by changing your configuration.yaml as follows (previously we used `/config/www/custom_ui` but, you can use any folder you like. So why not start using the 'resources' folder we use in Home Assistant nowadays):
 
    ```yaml
    frontend:
@@ -50,7 +39,18 @@ If you don't use extra custom resources in Lovelace yet, you can also load the n
 -5 Refresh cache...
 You might have to refresh your cache a few times. In my personal experience, especially Safari on the Mac and the iPhone app can be a bit obnoxious....
 
-### Or, use The Modern way
+### Using Resources
+-3 Add the following to your resources.yaml (adapt to your personal file hierarchy):
+
+   ```yaml
+   - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
+     type: module
+  ```
+-4 Reload the Lovelace resources.
+
+-5 Refresh Lovelace. 
+
+### Or, use The Modern way: UI
 - Click Configuration at `/config/dashboard`, click Lovelace Dashboards, click Resources.
 - Click
 ![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/add.png)
