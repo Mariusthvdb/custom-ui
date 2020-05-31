@@ -15,17 +15,17 @@ This adapted version makes it compatible again with HA 110+. And allows us to us
 I've been a longtime and heavy user of custom-ui, and this is the place to applaud Andrey for his amazing plugin. Home Assisant wouldn't be the same without the global customizing it enables us to do. Couldn't live without it!
 All credits go to Andrey.
 
-## First
+## Prepare
 
 -0 Delete all existing references to custom-ui in your current config (or, if you don't trust it, comment them out, as I always do before major changes..) Also, you can delete all old custom-ui files. (Again, for safety: after you have established all is functioning properly with the new setup).
 
-Installing is super easy:
+## Installing is super easy:
 
 -1 Create a new folder under your resources folder. Suggestion: custom-ui.
 
 -2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to the folder.
 
-## Using Resources
+### Using Resources
 -3 Add the following to your resources.yaml (adapt to your personal file hierarchy):
 
    ```yaml
@@ -36,7 +36,7 @@ Installing is super easy:
 
 -5 Refresh Lovelace. 
 
-## Using Frontend
+### Using Frontend
 If you don't use extra custom resources in Lovelace yet, you can also load the new custom-ui by changing your configuration.yaml as follows (you can use any folder you like, so why not use the same as the above):
 
    ```yaml
@@ -50,7 +50,7 @@ If you don't use extra custom resources in Lovelace yet, you can also load the n
 -5 Refresh cache...
 You might have to refresh your cache a few times. In my personal experience, especially Safari on the Mac and the iPhone app can be a bit obnoxious....
 
-## Or, use The Modern way
+### Or, use The Modern way
 - Click Configuration at `/config/dashboard`, click Lovelace Dashboards, click Resources.
 - Click
 ![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/add.png)
