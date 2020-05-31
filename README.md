@@ -7,7 +7,7 @@ The loss of icon_color would be a major pain, and reason enough to hold off upda
 
 Second to that, it was announced that the `extra_html_url` config option was soon to be [deprecated and removed](https://github.com/home-assistant/frontend/issues/6028). So things had to change.
 
-I rung [the alarmbell](https://github.com/home-assistant/frontend/issues/5892#issuecomment-630910390) on this, and the core Dev team (thanks Bram and Thomas) helped me transform the 'old' state-card-custom-ui.html import into a modern JS version. 
+I rung [the alarmbell](https://github.com/home-assistant/frontend/issues/5892) on this, and the core Dev team (thanks Bram and Thomas) helped me transform the 'old' state-card-custom-ui.html import into a modern JS version. 
 
 This adapted version makes it compatible again with HA 110+. And allows us to use icon_color like before! Globally.
 
