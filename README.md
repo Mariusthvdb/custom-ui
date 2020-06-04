@@ -92,7 +92,7 @@ For a still valid explanation of the JavaScript templating custom-ui uses, I bes
 ### More-info
 While you are there, you have found the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could alsos hide the templates we set in custom-ui. Unfortunately that is no longer functional in current Lovelace. So (for now) we are stuck with:
 
-![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
+![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png| width=100)
 
 ## Learn core Homeassistant customization 
 It goes without saying that custom-ui is an extension of core Home Assistant functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject. 
