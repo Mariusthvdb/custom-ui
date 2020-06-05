@@ -49,6 +49,7 @@ You might have to refresh your cache a few times. In my personal experience, esp
      type: module
   ```
 -4 Reload the Lovelace resources.
+Click the top right Lovelace menu triple dots and Reload resources, or call service `lovelace.reload_resources` in `/developer-tools/service/`.
 
 -5 Refresh Lovelace. 
 
