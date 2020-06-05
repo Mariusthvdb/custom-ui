@@ -91,7 +91,7 @@ As are all other features specifically used in the state-cards. Like `show_last_
 For a still valid explanation of the JavaScript templating custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
 
 ### More-info
-While you are there, you have found the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could alsos hide the templates we set in custom-ui. Unfortunately that is no longer functional in current Lovelace. So (for now) we are stuck with:
+While you are there, you may have found the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could alsos hide the templates we set in custom-ui. Unfortunately that is no longer functional in current Lovelace. So (for now) we are stuck with:
 
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
 
