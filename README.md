@@ -42,7 +42,7 @@ This resembles the 'old' was most. You can load the new custom-ui by changing yo
 You might have to refresh your cache a few times. In my personal experience, especially Safari on the Mac and the iPhone app can be a bit obnoxious....
 
 ### Using Resources
--3 Add the following to your resources.yaml (adapt to your personal file hierarchy):
+-3 Add the following to your [resources.yaml](https://www.home-assistant.io/lovelace/dashboards-and-views/#resources) (adapt to your personal file hierarchy):
 
    ```yaml
    - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
