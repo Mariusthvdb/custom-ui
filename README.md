@@ -63,6 +63,9 @@ Click the top right Lovelace menu triple dots and Reload resources, or call serv
 
 ![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/configuration-resources.png)
 
+### HACS
+As I dont use [HACS](https://hacs.xyz) myself, I won't go into the details of a HACS install, but if you do use HACS, this repo can be added to the custom repositories.
+
 ## Check the correct loading of Custom-ui
 Having finished the above procedure, you should check if everything went well, and the info screens reflect the newly adapted file as it should. See below:
 
