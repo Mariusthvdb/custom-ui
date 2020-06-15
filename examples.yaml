@@ -264,3 +264,23 @@ homeassistant:
             'Dorm L':'mdi:human-child',
             'TheBoss':'mdi:cellphone-iphone'};
           return player[state] ? player[state] : 'mdi:radio-tower';
+
+# Dont want to use a lot of 'if' statements, but calculate based on entity? That's fine, you can use any valid
+# CCS color value, and template away:
+
+    sensor.speedtest_upload:
+      icon: mdi:arrow-up
+      templates:
+        icon_color: >
+          var hue = Math.round(Number(state)/1000*240);
+          return 'hsl(' + hue + ',80%,50%)';
+          
+# or 
+    sensor.speedtest_download:
+      icon: mdi:arrow-down
+      templates:
+        icon_color: >
+          var r = Math.round(Number(state)/1000*240);
+          return 'rgb(' + r + ',200,0)';
+          
+# the above rgb() template is not very useful, but it is shown for illustrating purposes.
