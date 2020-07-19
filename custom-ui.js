@@ -1271,7 +1271,6 @@ console.info(
                     s()
                 },
                 useCustomizer() {
-                    window.customUI.lightOrShadow(document, "home-assistant").hass.states["customizer.customizer"],
                     window.addEventListener("hass-more-info", window.customUI.updateMoreInfo)
                 },
                 updateMoreInfo() {
