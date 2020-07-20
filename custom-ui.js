@@ -1288,6 +1288,7 @@ console.info(
                                         var o = t[n].getElementsByClassName("key")[0];
                                         (e.includes(o.innerText.replace("_", " ").trim()) || e.includes("all")) && (o.parentNode.style.display = "none")
                                     }
+                                    clearInterval(i)
                                 }
                             } catch (err) {}
                         }, 100)
