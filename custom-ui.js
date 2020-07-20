@@ -1271,11 +1271,20 @@ console.info(
                     s()
                 },
                 updateMoreInfo() {
+                    var minorVersion = window.customUI.lightOrShadow(document, "home-assistant").hass.connection.haVersion.split(".")[1];
                     s = 0,
                     i = setInterval(function () {
                             ++s >= 2 && clearInterval(i);
                             try {
-                                if ((t = document.getElementsByTagName("home-assistant")[0].shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("more-info-controls").shadowRoot.querySelector("paper-dialog-scrollable").querySelector("more-info-content").childNodes[0].shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")).length) {
+                                var t;
+                                if (minorVersion >= 113) {
+                                  // >= 113
+                                  t = document.getElementsByTagName("home-assistant")[0].shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-content").childNodes[0].shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                  } else {
+                                  // < 113
+                                  t = document.getElementsByTagName("home-assistant")[0].shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("more-info-controls").shadowRoot.querySelector("paper-dialog-scrollable").querySelector("more-info-content").childNodes[0].shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                }
+                                if (t.length) {
                                     var e;
                                     for (var n = 0; n < t.length; n++) {
                                         var o = t[n].getElementsByClassName("key")[0];
@@ -1290,8 +1299,8 @@ console.info(
                                     }
                                     clearInterval(i)
                                 }
-                            } catch (err) {}
-                        }, 100)
+                            } catch (err) {console.log(err)}
+                        }, 100)                      
                 },
                 updateConfigPanel() {
                     if (!window.location.pathname.startsWith("/config"))
