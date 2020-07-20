@@ -1,5 +1,5 @@
 console.info(
-`%c  CUSTOM-UI (JS)  \n%c  Version 20200719 adapted for HA110+  `,
+`%c  CUSTOM-UI (JS)  \n%c  Version 20200720 adapted for HA110+  `,
     'color: orange; font-weight: bold; background: black',
     'color: white; font-weight: bold; background: dimgray', );
 !function (t) {
@@ -1270,21 +1270,24 @@ console.info(
                         }),
                     s()
                 },
-                useCustomizer() {
-                    window.addEventListener("hass-more-info", window.customUI.updateMoreInfo)
-                },
                 updateMoreInfo() {
-                    e = window.customUI.lightOrShadow(document, "home-assistant").hass.states["customizer.customizer"].attributes.hide_attributes,
                     s = 0,
                     i = setInterval(function () {
                             ++s >= 2 && clearInterval(i);
                             try {
                                 if ((t = document.getElementsByTagName("home-assistant")[0].shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("more-info-controls").shadowRoot.querySelector("paper-dialog-scrollable").querySelector("more-info-content").childNodes[0].shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")).length) {
+                                    var e;
                                     for (var n = 0; n < t.length; n++) {
                                         var o = t[n].getElementsByClassName("key")[0];
-                                        (e.includes(o.innerText.replace(" ", "_")) || e.includes("all")) && o.parentNode.remove()
+                                        if (o.innerText == "hide attributes") {      
+                                          e = o.parentNode.getElementsByClassName("value")[0].innerText.split(",");
+                                          e.push("hide attributes");
+                                        }
                                     }
-                                    clearInterval(i)
+                                    for (var n = 0; n < t.length; n++) {
+                                        var o = t[n].getElementsByClassName("key")[0];
+                                        (e.includes(o.innerText.replace("_", " ").trim()) || e.includes("all")) && (o.parentNode.style.display = "none")
+                                    }
                                 }
                             } catch (err) {}
                         }, 100)
@@ -1486,9 +1489,9 @@ console.info(
                         return;
                     window.customUI.installClassHooks();
                     const t = window.customUI.lightOrShadow(document, "home-assistant");
-                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.useCustomizer(), window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20200719 adapted for HA 110.+"), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
+                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20200720 adapted for HA 110.+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
                             name: "CustomUI",
-                            version: "JS 20200719 adapted for HA 110.+",
+                            version: "JS 20200720 adapted for HA 110.+",
                             url: "https://github.com/Mariusthvdb/custom-ui"
                         })) : window.setTimeout(window.customUI.init, 1e3)
                 },
