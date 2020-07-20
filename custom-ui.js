@@ -1299,7 +1299,7 @@ console.info(
                                     }
                                     clearInterval(i)
                                 }
-                            } catch (err) {console.log(err)}
+                            } catch (err) {}
                         }, 100)                      
                 },
                 updateConfigPanel() {
