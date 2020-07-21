@@ -93,31 +93,22 @@ As are all other features specifically used in the state-cards. Like `show_last_
 
 For a still valid explanation of the JavaScript templating custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
 
-### More-info (Confirmed 0.112+)
-To hide attributes in the `more-info` popup, you need to add the `hide_attribute` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. Single attributes can be hidden by listing them under the corresponding entity (or global definition) or you can choose to hide all attributes by adding the `all` entry.  Here are some examples:
+### More-info
+ While you are there, you may have found the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could also hide the templates we set in custom-ui. However, current Lovelace has changed the effect of customizer,
+ which stopped customizer from working, resulting in:
 
-customize.yaml - Single Entity - Hide Editable
-```
-input_boolean.development:
-  hide_attributes:
-    - editable
-```
+![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
 
-customize.yaml - Single Entity - Hide ALL
-```
-input_boolean.development:
-  hide_attributes:
-    - all
-```
+@CAB426 has changed custom-ui.js, so it again allows to hide attributes in `more-info`, and even better, we can now do so using custom-ui.js only.
+Customizer companion is no longer needed. This is confirmed to work for HA 0.112+ and can look like:
 
-customize_glob.yaml - All Entities - Hide Templates & Icon Color
-```
- "*.*":
-  hide_attributes:
-    - templates
-    - icon_color
-```
+![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-in-more-info.png)
 
+#### Hide attributes
+To hide attributes in the `more-info` popup, you need to add the `hide_attribute` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
+Single attributes can be hidden by listing them under the corresponding entity (or global definition) or you can choose to hide all attributes by adding the new `all` entry.
+
+You can find some examples in the ![examples](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml)
 
 ## Learn core Homeassistant customization 
 It goes without saying that custom-ui is an extension of core Home Assistant functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject. 
