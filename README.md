@@ -108,7 +108,7 @@ Customizer companion is no longer needed. This is confirmed to work for HA 0.112
 To hide attributes in the `more-info` popup, you need to add the `hide_attribute` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
 Single attributes can be hidden by listing them under the corresponding entity (or global definition) or you can choose to hide all attributes by adding the new `all` entry.
 
-You can find some examples in the ![examples](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml)
+You can find some examples in the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml)
 
 ## Learn core Homeassistant customization 
 It goes without saying that custom-ui is an extension of core Home Assistant functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject. 
