@@ -1309,12 +1309,14 @@ console.info(
                     if (!t)
                         return void window.setTimeout(window.customUI.updateConfigPanel, 100);
                     const e = window.customUI.getElementHierarchy(t, ["ha-config-dashboard", "ha-config-navigation"]);
-                    e && (e.localize && !e.cuiPatch && (e.cuiPatch = !0, e._originalComputeLoaded = e._computeLoaded, e._originalComputeCaption = e._computeCaption, e._originalComputeDescription = e._computeDescription, e._computeLoaded = ((t, s) => "customui" === s || e._originalComputeLoaded(t, s)), e._computeCaption = ((t, s) => "customui" === t ? "Custom UI" : e._originalComputeCaption(t, s)), e._computeDescription = ((t, s) => "customui" === t ? "SetUI tweaks" : e._originalComputeDescription(t, s))), e.pages.some(t => "customui" === t || "customui" === t.domain) || e.push("pages", e.localize ? "customui" : {
-                            domain: "customui",
-                            caption: "Custom UI",
-                            description: "Set UI tweaks.",
-                            loaded: !0
-                        }));
+                    try {
+                        e && (e.localize && !e.cuiPatch && (e.cuiPatch = !0, e._originalComputeLoaded = e._computeLoaded, e._originalComputeCaption = e._computeCaption, e._originalComputeDescription = e._computeDescription, e._computeLoaded = ((t, s) => "customui" === s || e._originalComputeLoaded(t, s)), e._computeCaption = ((t, s) => "customui" === t ? "Custom UI" : e._originalComputeCaption(t, s)), e._computeDescription = ((t, s) => "customui" === t ? "SetUI tweaks" : e._originalComputeDescription(t, s))), e.pages.some(t => "customui" === t || "customui" === t.domain) || e.push("pages", e.localize ? "customui" : {
+                                domain: "customui",
+                                caption: "Custom UI",
+                                description: "Set UI tweaks.",
+                                loaded: !0
+                            }));
+                    } catch (err) {}
                     const s = () => {
                         const e = document.createElement("ha-config-custom-ui");
                         return e.isWide = t.isWide,
