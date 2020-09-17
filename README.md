@@ -121,6 +121,7 @@ Some examples, including the newly added option for `hide_attributes` can be fou
 Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui. All of that info now is obsolete. Follow 1 - 6 above and you're set.
 
 ## Known error
-About `e.push is not a function`. It has been there ever since we used custom-ui in Lovelace. Or at least since a very long time. And has nothing to do with the change for Home Assistant 110+ used in this repo. So never mind. Or preferably: help me edit the custom-ui.js to prevent it from happening if you feel like it. Most welcome!
+About `e.push is not a function`. It has been there ever since we used custom-ui in Lovelace. Or at least since a very long time. And has nothing to do with the change for Home Assistant 110+ used in this repo. So never mind. <strike>Or preferably: help me edit the custom-ui.js to prevent it from happening if you feel like it. Most welcome!</strike>
+Has been fixed as per version 20200917.
 
 ![known error](https://github.com/Mariusthvdb/custom-ui/blob/master/e.push%20is%20not%20a%20function.png)
