@@ -1277,12 +1277,21 @@ console.info(
                             ++s >= 2 && clearInterval(i);
                             try {
                                 var t;
-                                if (minorVersion >= 113) {
-                                  // >= 113
-                                  t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-default").shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
-                                  } else {
-                                  // < 113
-                                  t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("more-info-controls").shadowRoot.querySelector("paper-dialog-scrollable").querySelector("more-info-default").shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                if (minorVersion >= 115) {
+                                  var moreInfoNodeName;
+                                  var contentChild;
+                                  contentChild = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].childNodes;
+                                  for(var c=0; c< contentChild.length;c++){
+                                    var nodeItem = contentChild.item(c);
+                                    if(nodeItem.nodeName.toLowerCase().startsWith("more-info-")){
+                                      moreInfoNodeName = nodeItem.nodeName.toLowerCase()
+                                    }
+                                  }
+                                  t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector(moreInfoNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                } else if (minorVersion >= 113) {
+                                  t = document.getElementsByTagName("home-assistant")[0].shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-content").childNodes[0].shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                } else {
+                                  t = document.getElementsByTagName("home-assistant")[0].shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("more-info-controls").shadowRoot.querySelector("paper-dialog-scrollable").querySelector("more-info-content").childNodes[0].shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
                                 }
                                 if (t.length) {
                                     var e;
@@ -1303,7 +1312,7 @@ console.info(
                         }, 100)                      
                 },
                 updateConfigPanel() {
-                    if (!window.location.pathname.startsWith("/config/info"))
+                    if (!window.location.pathname.startsWith("/config"))
                         return;
                     const t = window.customUI.getElementHierarchy(document, ["home-assistant", "home-assistant-main", "partial-panel-resolver", "ha-panel-config"]);
                     if (!t)
