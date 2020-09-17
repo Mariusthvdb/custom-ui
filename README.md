@@ -108,8 +108,6 @@ Customizer companion is no longer needed. This is confirmed to work for HA 0.112
 To hide attributes in the `more-info` popup, you need to add the `hide_attribute` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
 Single attributes can be hidden by listing them under the corresponding entity (or global definition) or you can choose to hide all attributes by adding the new `all` entry.
 
-You can find some examples in the ![examples](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml)
-
 ## Learn core Homeassistant customization 
 It goes without saying that custom-ui is an extension of core Home Assistant functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject. 
 Important to note, is that Home Assistant [core Jinja templating](https://home-assistant.io/docs/configuration/templating/) is calculated in the back-end, server side, (the device Home Assistant is running on). Javascript templating is calculated in the front-end, browser side, (the device Home Assistant is displayed on). 
@@ -117,12 +115,13 @@ Important to note, is that Home Assistant [core Jinja templating](https://home-a
 Heavy templating might impact the performance of the system and will depend on processor power and memory available on either side of your devices.
 
 ## Examples
-Some examples can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml).
+Some examples, including the newly added option for `hide_attributes` can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml).
 
 ## Just to be sure....
 Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui. All of that info now is obsolete. Follow 1 - 6 above and you're set.
 
 ## Known error
-About `e.push is not a function`. It has been there ever since we used custom-ui in Lovelace. Or at least since a very long time. And has nothing to do with the change for Home Assistant 110+ used in this repo. So never mind. Or preferably: help me edit the custom-ui.js to prevent it from happening if you feel like it. Most welcome!
+About `e.push is not a function`. It has been there ever since we used custom-ui in Lovelace. Or at least since a very long time. And has nothing to do with the change for Home Assistant 110+ used in this repo. So never mind. <strike>Or preferably: help me edit the custom-ui.js to prevent it from happening if you feel like it. Most welcome!</strike>
+Has been fixed as per version 20200917.
 
 ![known error](https://github.com/Mariusthvdb/custom-ui/blob/master/e.push%20is%20not%20a%20function.png)

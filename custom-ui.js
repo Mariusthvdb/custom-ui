@@ -1,5 +1,5 @@
 console.info(
-`%c  CUSTOM-UI (JS)  \n%c  Version 20200720 adapted for HA110+  `,
+`%c  CUSTOM-UI (JS)  \n%c  Version 20200917 adapted for HA110+  `,
     'color: orange; font-weight: bold; background: black',
     'color: white; font-weight: bold; background: dimgray', );
 !function (t) {
@@ -1309,12 +1309,14 @@ console.info(
                     if (!t)
                         return void window.setTimeout(window.customUI.updateConfigPanel, 100);
                     const e = window.customUI.getElementHierarchy(t, ["ha-config-dashboard", "ha-config-navigation"]);
-                    e && (e.localize && !e.cuiPatch && (e.cuiPatch = !0, e._originalComputeLoaded = e._computeLoaded, e._originalComputeCaption = e._computeCaption, e._originalComputeDescription = e._computeDescription, e._computeLoaded = ((t, s) => "customui" === s || e._originalComputeLoaded(t, s)), e._computeCaption = ((t, s) => "customui" === t ? "Custom UI" : e._originalComputeCaption(t, s)), e._computeDescription = ((t, s) => "customui" === t ? "SetUI tweaks" : e._originalComputeDescription(t, s))), e.pages.some(t => "customui" === t || "customui" === t.domain) || e.push("pages", e.localize ? "customui" : {
-                            domain: "customui",
-                            caption: "Custom UI",
-                            description: "Set UI tweaks.",
-                            loaded: !0
-                        }));
+                    try {
+                        e && (e.localize && !e.cuiPatch && (e.cuiPatch = !0, e._originalComputeLoaded = e._computeLoaded, e._originalComputeCaption = e._computeCaption, e._originalComputeDescription = e._computeDescription, e._computeLoaded = ((t, s) => "customui" === s || e._originalComputeLoaded(t, s)), e._computeCaption = ((t, s) => "customui" === t ? "Custom UI" : e._originalComputeCaption(t, s)), e._computeDescription = ((t, s) => "customui" === t ? "SetUI tweaks" : e._originalComputeDescription(t, s))), e.pages.some(t => "customui" === t || "customui" === t.domain) || e.push("pages", e.localize ? "customui" : {
+                                domain: "customui",
+                                caption: "Custom UI",
+                                description: "Set UI tweaks.",
+                                loaded: !0
+                            }));
+                    } catch (err) {}
                     const s = () => {
                         const e = document.createElement("ha-config-custom-ui");
                         return e.isWide = t.isWide,
@@ -1499,9 +1501,9 @@ console.info(
                         return;
                     window.customUI.installClassHooks();
                     const t = window.customUI.lightOrShadow(document, "home-assistant");
-                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20200720 adapted for HA 110.+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
+                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20200917 adapted for HA 110.+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
                             name: "CustomUI",
-                            version: "JS 20200720 adapted for HA 110.+",
+                            version: "JS 20200917 adapted for HA 110.+",
                             url: "https://github.com/Mariusthvdb/custom-ui"
                         })) : window.setTimeout(window.customUI.init, 1e3)
                 },

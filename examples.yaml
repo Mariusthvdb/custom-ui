@@ -52,6 +52,11 @@ homeassistant:
 ##########################################################################################
 
   customize_glob:
+# All Entities - Hide Templates & Icon Color
+    "*.*":
+      hide_attributes:
+        - templates
+        - icon_color
 
     light.hue_ambiance_spot_*:
       icon: mdi:spotlight-beam
@@ -198,7 +203,16 @@ homeassistant:
 ##########################################################################################
   customize:
 
-    sensor.synology_status_volume_1:
+# Single Entity - Hide Editable
+    input_boolean.development:
+      hide_attributes:
+        - editable
+# or simply hide all attributes
+    input_boolean.development:
+      hide_attributes:
+        - all
+
+sensor.synology_status_volume_1:
       templates:
         icon_color: >
           if (state == 'warning') return 'red';
