@@ -1279,10 +1279,10 @@ console.info(
                                 var t;
                                 if (minorVersion >= 113) {
                                   // >= 113
-                                  t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-content").childNodes[0].shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                  t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-default").shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
                                   } else {
                                   // < 113
-                                  t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("more-info-controls").shadowRoot.querySelector("paper-dialog-scrollable").querySelector("more-info-content").childNodes[0].shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                  t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("more-info-controls").shadowRoot.querySelector("paper-dialog-scrollable").querySelector("more-info-default").shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
                                 }
                                 if (t.length) {
                                     var e;
