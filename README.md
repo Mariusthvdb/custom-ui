@@ -69,9 +69,9 @@ As I don't use [HACS](https://hacs.xyz) myself, I won't go into the details of a
 ## Check the correct loading of Custom-ui
 Having finished the above procedure, you should check if everything went well, and the info screens reflect the newly adapted file as it should. See below:
 
-In `/developer-tools/info`:
+In `/config/info`:
 
-![info](https://github.com/Mariusthvdb/custom-ui/blob/master/Developer-tools.png)
+![info](https://github.com/Mariusthvdb/custom-ui/blob/master/info.png)
 
 In Inspector:
 
