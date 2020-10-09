@@ -45,7 +45,7 @@ You might have to refresh your cache a few times. In my personal experience, esp
 -3 Add the following to your [resources.yaml](https://www.home-assistant.io/lovelace/dashboards-and-views/#resources) (adapt to your personal file hierarchy):
 
    ```yaml
-   - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200528
+   - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200918 #this v-number should change on each update you do
      type: module
   ```
 -4 Reload the Lovelace resources.
