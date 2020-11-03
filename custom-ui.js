@@ -1,5 +1,5 @@
 console.info(
-`%c  CUSTOM-UI (JS)  \n%c  Version 20201102 adapted for HA110+  `,
+`%c  CUSTOM-UI (JS)  \n%c  Version 20201103 adapted for HA110+  `,
     'color: orange; font-weight: bold; background: black',
     'color: white; font-weight: bold; background: dimgray', );
 !function (t) {
@@ -1299,14 +1299,14 @@ console.info(
                                     var e;
                                     for (var n = 0; n < t.length; n++) {
                                         var o = t[n].getElementsByClassName("key")[0];
-                                        if (o.innerText.toLowerCase().trim() == "hide attributes") {      
+                                        if (o.innerText.toLowerCase().trim() == "hide attributes") {
                                           e = o.parentNode.getElementsByClassName("value")[0].innerText.split(",").map(function(item) { return item.replace("_", " ").trim(); });
                                           e.push("hide attributes");
                                         }
                                     }
                                     for (var n = 0; n < t.length; n++) {
                                         var o = t[n].getElementsByClassName("key")[0];
-                                        (e.includes(o.innerText.trim()) || e.includes("all")) && (o.parentNode.style.display = "none")
+                                        (e.includes(o.innerText.toLowerCase().trim()) || e.includes("all")) && (o.parentNode.style.display = "none")
                                     }
                                     clearInterval(i)
                                 }
@@ -1512,9 +1512,9 @@ console.info(
                         return;
                     window.customUI.installClassHooks();
                     const t = window.customUI.lightOrShadow(document, "home-assistant");
-                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20201102 adapted for HA 110.+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
+                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20201103 adapted for HA 110.+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
                             name: "CustomUI",
-                            version: "JS 20201102 adapted for HA 110.+",
+                            version: "JS 20201103 adapted for HA 110.+",
                             url: "https://github.com/Mariusthvdb/custom-ui"
                         })) : window.setTimeout(window.customUI.init, 1e3)
                 },
