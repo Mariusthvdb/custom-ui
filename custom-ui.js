@@ -1299,7 +1299,7 @@ console.info(
                                     var e;
                                     for (var n = 0; n < t.length; n++) {
                                         var o = t[n].getElementsByClassName("key")[0];
-                                        if (o.innerText.toLowerCase() == "hide attributes") {      
+                                        if (o.innerText.toLowerCase().trim() == "hide attributes") {      
                                           e = o.parentNode.getElementsByClassName("value")[0].innerText.split(",").map(function(item) { return item.replace("_", " ").trim(); });
                                           e.push("hide attributes");
                                         }
