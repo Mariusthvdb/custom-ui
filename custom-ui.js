@@ -1,7 +1,7 @@
 console.info(
 `%c  CUSTOM-UI (JS)  \n%c  Version 20201103 adapted for HA110+  `,
-    'color: orange; font-weight: bold; background: black',
-    'color: white; font-weight: bold; background: dimgray', );
+    'color: gold; font-weight: bold; background: black',
+    'color: white; font-weight: bold; background: steelblue', );
 !function (t) {
     var e = {};
     function s(i) {
