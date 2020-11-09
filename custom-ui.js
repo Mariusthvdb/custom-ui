@@ -1287,7 +1287,7 @@ console.info(
                                       moreInfoNodeName = nodeItem.nodeName.toLowerCase()
                                     }
                                   }
-                                  if (moreInfoNodeName = "more-info-group") {
+                                  if (moreInfoNodeName == "more-info-group") {
                                     t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.querySelector("more-info-default").shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
                                   } else {
                                     t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector(moreInfoNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
