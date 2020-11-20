@@ -1,5 +1,5 @@
 console.info(
-`%c  CUSTOM-UI (JS)  \n%c  Version 20201111 adapted for HA110+  `,
+`%c  CUSTOM-UI (JS)  \n%c  Version 20201120 adapted for HA110+  `,
     'color: gold; font-weight: bold; background: black',
     'color: white; font-weight: bold; background: steelblue', );
 !function (t) {
@@ -1277,7 +1277,31 @@ console.info(
                             ++s >= 2 && clearInterval(i);
                             try {
                                 var t;
-                                if (minorVersion >= 115) {
+                                if (minorVersion >= 118) {
+                                  var moreInfoNodeName;
+                                  var contentChild;
+                                  contentChild = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-content").childNodes;
+                                  for(var c=0; c< contentChild.length;c++){
+                                    var nodeItem = contentChild.item(c);
+                                    if(nodeItem.nodeName.toLowerCase().startsWith("more-info-")){
+                                      moreInfoNodeName = nodeItem.nodeName.toLowerCase()
+                                    }
+                                  }
+                                  if (moreInfoNodeName == "more-info-group") {
+                                    var moreInfoNestedNodeName;
+                                    var contentChildNested;
+                                    contentChildNested = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.childNodes;
+                                    for(var c=0; c< contentChildNested.length;c++){
+                                      var nodeItemNested = contentChildNested.item(c);
+                                      if(nodeItemNested.nodeName.toLowerCase().startsWith("more-info-")){
+                                        moreInfoNestedNodeName = nodeItemNested.nodeName.toLowerCase()
+                                      }
+                                    }
+                                    t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.querySelector(moreInfoNestedNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                  } else {
+                                    t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector(moreInfoNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry")
+                                  }
+                                } else if (minorVersion >= 115) {
                                   var moreInfoNodeName;
                                   var contentChild;
                                   contentChild = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].childNodes;
@@ -1525,9 +1549,9 @@ console.info(
                         return;
                     window.customUI.installClassHooks();
                     const t = window.customUI.lightOrShadow(document, "home-assistant");
-                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20201111 adapted for HA 110.+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
+                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20201120 adapted for HA 110.+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
                             name: "CustomUI",
-                            version: "JS 20201111 adapted for HA 110.+",
+                            version: "JS 20201120 adapted for HA 110.+",
                             url: "https://github.com/Mariusthvdb/custom-ui"
                         })) : window.setTimeout(window.customUI.init, 1e3)
                 },
