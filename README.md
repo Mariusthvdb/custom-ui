@@ -100,7 +100,9 @@ For a still valid explanation of the JavaScript templating custom-ui uses, I bes
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
 
 @CAB426 has changed custom-ui.js, so it again allows to hide attributes in `more-info`, and even better, we can now do so using custom-ui.js only.
-Customizer companion is no longer needed. This is confirmed to work for HA 0.112+ and can look like:
+Customizer companion is no longer needed. Please delete `/custom_components/customize/`, and all contents and references to it in your config.
+
+This is confirmed to work for HA 0.112+ and can look like:
 
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-in-more-info.png)
 
@@ -118,7 +120,7 @@ Heavy templating might impact the performance of the system and will depend on p
 Some examples, including the newly added option for `hide_attributes` can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml).
 
 ## Just to be sure....
-Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui. All of that info now is obsolete. Follow 1 - 6 above and you're set.
+Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui or using Customizer. All of that info now is obsolete. Follow 1 - 6 above and you're set.
 
 ## Known error
 About `e.push is not a function`. It has been there ever since we used custom-ui in Lovelace. Or at least since a very long time. And has nothing to do with the change for Home Assistant 110+ used in this repo. So never mind. <strike>Or preferably: help me edit the custom-ui.js to prevent it from happening if you feel like it. Most welcome!</strike>
