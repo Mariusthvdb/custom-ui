@@ -100,7 +100,7 @@ For a still valid explanation of the JavaScript templating custom-ui uses, I bes
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
 
 @CAB426 has changed custom-ui.js, so it again allows to hide attributes in `more-info`, and even better, we can now do so using custom-ui.js only.
-Customizer companion is no longer needed. Please delete `/custom_components/customize/`, and all contents and references to it in your config.
+Customizer companion is no longer needed. Please delete `/custom_components/customizer/`, and all contents and references to it in your config.
 
 This is confirmed to work for HA 0.112+ and can look like:
 
