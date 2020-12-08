@@ -107,7 +107,7 @@ This is confirmed to work for HA 0.112+ and can look like:
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-in-more-info.png)
 
 #### Hide attributes
-To hide attributes in the `more-info` popup, you need to add the `hide_attribute` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
+To hide attributes in the `more-info` popup, you need to add the `hide_attributes` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
 Single attributes can be hidden by listing them under the corresponding entity (or global definition) or you can choose to hide all attributes by adding the new `all` entry.
 
 ## Learn core Homeassistant customization 
