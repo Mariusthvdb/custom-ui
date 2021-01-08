@@ -26,7 +26,7 @@ homeassistant:
   customize_domain:
 
     automation:
-      templates: &state_color  # <-- define a yaml anchors here
+      templates: &state_color  # <-- define a yaml anchor here
         icon_color: >
           if (state == 'on') return 'gold';
           return 'steelblue';
@@ -36,8 +36,7 @@ homeassistant:
         <<: *state_color  # <-- and use it on any other entity in this file
 
     input_boolean:
-      templates:
-        <<: *state_color
+      templates: *state_color # <-- or even shorter like this
 
     switch:
       templates:
@@ -57,6 +56,7 @@ homeassistant:
       hide_attributes:
         - templates
         - icon_color
+        - all # <-- this hides, well, all customizations ;-)
 
     light.hue_ambiance_spot_*:
       icon: mdi:spotlight-beam
@@ -225,8 +225,7 @@ sensor.synology_status_volume_1:
           return 'steelblue';
 
     device_tracker.tv_library_philips:
-      templates:
-        <<: *green_color
+      templates: *green_color
 
     device_tracker.ziggo_cablemodem:
       templates:
@@ -298,3 +297,16 @@ sensor.synology_status_volume_1:
           return 'rgb(' + r + ',200,0)';
           
 # the above rgb() template is not very useful, but it is shown for illustrating purposes.
+
+# customize based on the state of another entity:
+    input_boolean.flash_color:
+      templates:
+        icon: >
+          if (state == 'on') return 'mdi:alarm-light';
+          return 'mdi:alarm-light-outline';
+        icon_color: >
+          if (state == 'on') return entities['input_select.select_flash_color'].state.toLowerCase();
+          return 'steelblue';
+   
+ # Note the reference to the other entity using `entities[].state` is different from the JS templates used in eg
+ # custom button-card, where a syntax with `states[].state` is used
