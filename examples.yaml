@@ -271,8 +271,6 @@ sensor.synology_status_volume_1:
 # since this doesn't have a guard, and 'unknown' could happen, I have an 'unknown.png' in
 # same folder.
 
-##########################################################################################
-
     sensor.huidig_tarief:
       templates:
         icon: >
@@ -348,6 +346,7 @@ sensor.synology_status_volume_1:
  # custom button-card, where a syntax with `states[].state` is used
 
 ##########################################################################################
+# Single line notatipon
 # Though above templates all use my preferred syntax of the multiline notation, they can 
 # also be written on single lines, as discussed in issue 29
 # https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
