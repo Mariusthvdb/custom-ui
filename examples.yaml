@@ -1,3 +1,38 @@
+# Templates
+
+The `templates` attributes allow you to inject your own expressions and code using JavaScript code or template literals in order to override entity attributes and state. 
+Within the code / template literals, you have full access to the entity's state object, which allows you to access other properties such as last_changed, 
+attributes.friendly_name, etc. The full set of objects available is shown below.
+
+In order for a template to return "nothing", return `null` from your template. Note that `null` can only be returned using code format, 
+as template literal format always returns a string.
+
+**Note that those are JavaScript templates evaluated in your browser, not Jinja2 templates which are evaluated server-side and use a different syntax.**
+
+### Available variables
+#### Global variables
+Those variables allow one entity to set state / attribute based on another entity or some other "external" thing. Using those hurts UI performance, 
+so use them only if you indeed want an entity to depend on something external.
+
+`hass` - the hass object
+
+`entities` - a map object from `entity_id` to state objects.
+
+#### Local Variables
+`entity` - the state object for the current entity.
+ Note that if you are using device or context aware attributes then the object you get is already modified.
+
+`attributes` attributes map of the current entity. Shortcut for `entity.attributes`.
+
+`attribute` the original (non-template) value of the attribute being calculated by a template.
+
+`state` the original (non-template) state of the entity.
+
+### Formats
+You can provide the template in two different formats.
+*   If the template contains the word `return` it will be treated as raw JavaScript code.
+*   Otherwise it will be treated as JavaScript template literal that returns a string.
+
 # Some examples for using custom-ui.
 # This is an excerpt of my own package, and can be used
 # directly if you copy it to your own homeassistant structure and activate packages. Of
@@ -23,7 +58,8 @@ homeassistant:
 # If customizing an entity belonging to one these domains, you have to customize it
 # completely
 ##########################################################################################
-  customize_domain:
+
+customize_domain:
 
     automation:
       templates: &state_color  # <-- define a yaml anchor here
@@ -310,3 +346,27 @@ sensor.synology_status_volume_1:
    
  # Note the reference to the other entity using `entities[].state` is different from the JS templates used in eg
  # custom button-card, where a syntax with `states[].state` is used
+
+##########################################################################################
+# Though above templates all use my preferred syntax of the multiline notation, they can 
+# also be written on single lines, as discussed in issue 29
+# https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
+##########################################################################################
+  customize_domain:
+    device_tracker:
+      templates:
+        icon_color: if (state == 'home') return 'green';return 'purple';
+
+  customize:
+    binary_sensor.updater:
+      templates:
+        icon_color: if (state == 'on') return 'red';return 'green';
+
+    device_tracker.hall:
+      templates:
+        icon_color: if (state == 'home') return 'green';return 'orange';
+        icon: if (state == 'home') return 'mdi:speaker-wireless';return 'mdi:speaker-off';
+
+    person.marius:
+      templates:
+        entity_picture: return '/local/images/family/marius_bmj_' + state + '.png';
