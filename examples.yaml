@@ -285,13 +285,13 @@ sensor.synology_status_volume_1:
 # Customize using attributes of States
 ##########################################################################################
 
-# using an attribute 
+# using an attribute (of the local entity)
     sensor.smart_meter:
       templates:
         icon_color: >
           if (attributes.power > 3000) return 'red'; else return green;
 
-# using an attribute of another entity
+# using an attribute of another (global) entity
     sensor.power_consumption:
       templates:
         icon_color: >
