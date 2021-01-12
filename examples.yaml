@@ -380,6 +380,10 @@ customize_domain:
           if (entities['sensor.ha_available_version']) return entities['sensor.ha_available_version'].state;
           return 'starting up';
  
+ # or
+       templates:
+        unit_of_measurement: ${entities['sensor.ha_latest_version'].state}
+ 
  # Note the reference to the other entity using `entities[].state` is different from the JS templates used in eg
  # custom button-card, where a syntax with `states[].state` is used
 
