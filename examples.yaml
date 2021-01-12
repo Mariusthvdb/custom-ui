@@ -248,7 +248,7 @@ customize_domain:
       hide_attributes:
         - all
 
-sensor.synology_status_volume_1:
+    sensor.synology_status_volume_1:
       templates:
         icon_color: >
           if (state == 'warning') return 'red';
