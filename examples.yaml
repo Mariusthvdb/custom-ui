@@ -369,7 +369,17 @@ sensor.synology_status_volume_1:
         icon_color: >
           if (state == 'on') return entities['input_select.select_flash_color'].state.toLowerCase();
           return 'steelblue';
-   
+ 
+##########################################################################################
+# Even template the unit_of_measurement (with a guard for the startup sequence)
+##########################################################################################
+
+     binary_sensor.ha_update_available:
+      templates:
+        unit_of_measurement: >
+          if (entities['sensor.ha_available_version']) return entities['sensor.ha_available_version'].state;
+          return 'starting up';
+ 
  # Note the reference to the other entity using `entities[].state` is different from the JS templates used in eg
  # custom button-card, where a syntax with `states[].state` is used
 
@@ -379,6 +389,7 @@ sensor.synology_status_volume_1:
 # also be written on single lines, as discussed in issue 29
 # https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
 ##########################################################################################
+  
   customize_domain:
     device_tracker:
       templates:
