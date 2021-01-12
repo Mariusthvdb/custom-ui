@@ -28,7 +28,7 @@ All credits go to Andrey.
 -2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to that folder.
 
 ### Using Frontend
-This resembles the 'old' way most. You can load the new custom-ui by adding it via [extra_module_url:](https://www.home-assistant.io/integrations/frontend/#extra_module_url) in the [`frontend:`](https://www.home-assistant.io/integrations/frontend/) section in your configuration.yaml as follows (previously we used `/config/www/custom_ui` but, you can use any folder you like. So why not start using the 'resources' folder we use in Home Assistant nowadays):
+-3 This resembles the 'old' way most. You can load the new custom-ui by adding it via [extra_module_url:](https://www.home-assistant.io/integrations/frontend/#extra_module_url) in the [`frontend:`](https://www.home-assistant.io/integrations/frontend/) section in your configuration.yaml as follows (previously we used `/config/www/custom_ui` but, you can use any folder you like. So why not start using the 'resources' folder we use in Home Assistant nowadays):
 
    ```yaml
    frontend:
@@ -81,7 +81,7 @@ In Resources:
 
 ![listed](https://github.com/Mariusthvdb/custom-ui/blob/master/listed-resources.png)
 
--6 If you don't see the above: repeat either 5 until you do. Eventually it will show up (unless there's an error somewhere, which you will see in inspector most likely).
+-6 If you don't see the above: repeat 5 until you do. Eventually it will show up (unless there's an error somewhere, which you will see in inspector most likely).
 
 ## Finally...drumroll
 -7 Happy customizing!
