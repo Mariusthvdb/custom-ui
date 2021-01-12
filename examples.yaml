@@ -328,6 +328,18 @@ sensor.synology_status_volume_1:
             'TheBoss':'mdi:cellphone-iphone'};
           return player[state] ? player[state] : 'mdi:radio-tower';
 
+# test if a string contains another string, or test for 2 strings, and select an entity_picture
+# https://community.home-assistant.io/t/add-service-integration-reload/231940/52?u=mariusthvdb
+
+    input_select.select_integration:
+      templates:
+        entity_picture: >
+          var path = '/local/images/integrations/';
+          return state.includes('Luftdaten')
+                 ? path + 'luftdaten.png'
+                 : state.includes('Philips') ? path + 'hue.png'
+                 : path + state.toLowerCase() + '.png';
+
 # Dont want to use a lot of 'if' statements, but calculate based on entity? That's fine, you can use any valid
 # CCS color value, and template away:
 
@@ -362,7 +374,7 @@ sensor.synology_status_volume_1:
  # custom button-card, where a syntax with `states[].state` is used
 
 ##########################################################################################
-# Single line notatipon
+# Single line notation
 # Though above templates all use my preferred syntax of the multiline notation, they can 
 # also be written on single lines, as discussed in issue 29
 # https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
