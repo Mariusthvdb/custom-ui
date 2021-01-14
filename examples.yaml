@@ -47,7 +47,7 @@ You can provide the template in two different formats.
 # will be valid if you do.
 
 # Lastly, remember to delimit the lines with a `;` .
-
+```yaml
 homeassistant:
 
 ##########################################################################################
@@ -418,14 +418,15 @@ sensor.*_sensor_light_level_raw:
  
  # Note the reference to the other entity using `entities[].state` is different from the JS templates used in eg
  # custom button-card, where a syntax with `states[].state` is used
-
+```
 ##########################################################################################
 # Single line notation
 # Though above templates all use my preferred syntax of the multiline notation, they can 
 # also be written on single lines, as discussed in issue 29
 # https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
 ##########################################################################################
-  
+```yaml
+homeassitant:  
   customize_domain:
     device_tracker:
       templates:
@@ -444,3 +445,4 @@ sensor.*_sensor_light_level_raw:
     person.marius:
       templates:
         entity_picture: return '/local/images/family/marius_bmj_' + state + '.png';
+```
