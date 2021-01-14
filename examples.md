@@ -295,13 +295,15 @@ homeassistant:
     sensor.smart_meter:
       templates:
         icon_color: >
-          if (attributes.power > 3000) return 'red'; else return green;
+          if (attributes.power > 3000) return 'red';
+          return green;
 
 # using an attribute of another (global) entity
     sensor.power_consumption:
       templates:
         icon_color: >
-          if (entities['sensor.smart_meter'].attributes.power > 3000) return 'red'; else return green;
+          if (entities['sensor.smart_meter'].attributes.power > 3000) return 'red';
+          return green;
 
 ##########################################################################################
 # Some extravaganza ;-)
