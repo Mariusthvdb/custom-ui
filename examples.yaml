@@ -313,8 +313,10 @@ customize_domain:
           return 'mdi:arrow-down';
 
 # below is somewhat over the top, but it prevents one from creating template sensors for 
-# each and every light_level sensor * note the replace trick, necessary to replace all
-# occurences of an '_'. built-in function replaceAll() seems not to work just yet in all
+# each and every light_level sensor 
+# it first creates the function to capitalize the first letter.
+# also note the replace trick, necessary to replace all
+# occurences of an '_'. The new function replaceAll() seems not to work just yet in all
 # browsers
 # btw, this is a glob customizatiopn so should go under `customize_glob:`
 
