@@ -431,7 +431,7 @@ also be written on single lines, as discussed in issue 29
 https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
 
 ```yaml
-homeassitant:
+homeassistant:
   customize_domain:
     device_tracker:
       templates:
