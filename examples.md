@@ -1,3 +1,19 @@
+# Some examples using custom-ui.
+
+This is an excerpt of my own package, and can be used
+directly if you copy it to your own homeassistant structure and activate packages. Of
+course other methods work also, like pointing to a dedicated customize file, and
+referencing that in your configuration.yaml
+
+Note that the triple `===` which is used throughout the community and examples on the
+original repo are not necessary. `==` suffices. Secondly, always use a guard for unexpected states.
+Of course this holds for Jinja templates in HA too...
+The guard is used by setting the `else` clause, which in the examples below are on the
+last lines, starting with 'return'. Dont need to use the word `else` itself, though it
+will be valid if you do.
+
+Lastly, remember to delimit the lines with a `;` .
+
 # Templates
 
 The `templates` attributes allow you to inject your own expressions and code using JavaScript code or template literals in order to override entity attributes and state.
@@ -33,20 +49,6 @@ You can provide the template in two different formats.
 *   If the template contains the word `return` it will be treated as raw JavaScript code.
 *   Otherwise it will be treated as JavaScript template literal that returns a string.
 
-# Some examples for using custom-ui.
-# This is an excerpt of my own package, and can be used
-# directly if you copy it to your own homeassistant structure and activate packages. Of
-# course other methods work also, like pointing to a dedicated customize file, and
-# referencing that in your configuration.yaml
-
-# Note that the triple `===` which is used throughout the community and examples on the
-# original repo are not necessary. `==` suffices. Secondly, always use a guard for unexpected states.
-# Of course this holds for Jinja templates in HA too...
-# The guard is used by setting the `else` clause, which in the examples below are on the
-# last lines, starting with 'return'. Dont need to use the word `else` itself, though it
-# will be valid if you do.
-
-# Lastly, remember to delimit the lines with a `;` .
 ```yaml
 homeassistant:
 ##########################################################################################
