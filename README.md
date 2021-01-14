@@ -117,7 +117,7 @@ Important to note, is that Home Assistant [core Jinja templating](https://home-a
 Heavy templating might impact the performance of the system and will depend on processor power and memory available on either side of your devices.
 
 ## Examples
-Some examples, including the newly added option for `hide_attributes` can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.yaml).
+Some examples, including the newly added option for `hide_attributes` can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/examples.md).
 
 ## Just to be sure....
 Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui or using Customizer. All of that info now is obsolete. Follow 1 - 6 above and you're set.
