@@ -312,6 +312,32 @@ customize_domain:
           if (quadrant < icons.length) return icons[quadrant];
           return 'mdi:arrow-down';
 
+# below is somewhat over the top, but it prevents one from creating template sensors for 
+# each and every light_level sensor * note the replace trick, necessary to replace all
+# occurences of an '_'. built-in function replaceAll() seems not to work just yet in all
+# browsers
+# btw, this is a glob customizatiopn so should go under `customize_glob:`
+
+sensor.*_sensor_light_level_raw:
+      templates:
+        friendly_name: >
+          function capitalizeFirstLetter(string) {
+              return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+              }
+          var id = entity.entity_id.split('.')[1].split('_sensor_light_level_raw')[0].replace(/_/g,' ');
+          var id = capitalizeFirstLetter(id);
+          if (state < 1) return id + ': dark';
+          if (state < 3000 ) return id + ': bright moonlight';
+          if (state < 10000) return id + ': night light';
+          if (state < 17000) return id + ': dimmed light';
+          if (state < 22000) return id + ': `cosy` living room';
+          if (state < 25500 ) return id + ': `normal` non-task light';
+          if (state < 28500) return id + ': working / reading';
+          if (state < 33000) return id + ': inside daylight';
+          if (state < 40000) return id + ': maximum to avoid glare';
+          if (state < 51000) return id + ': clear daylight';
+          return id + ': direct sunlight';
+
     input_select.sound_bite_player:
       templates: &player_icon
         icon: >
