@@ -14,7 +14,19 @@ will be valid if you do.
 
 Lastly, remember to delimit the lines with a `;` .
 
+WHy use custom-ui? 2 huge reasons:
+
+# Icon color
+
+Setting a color for an icon is not possible in core HA. There is no attribute icon_color out of the box.
+
+Personally, I can't live without the icon_color attribute. Fully aware of the modern days custom card-mod, with which you can set a style on any card and entity, this still doesn't come close to the ease of custom-ui. Keeping as many styling issues out of the Lovelace cards makes for much better readable configs (imho) and, last but not least: using custom-ui we can set colors and color templates globally. Declare once, use everywhere. 
+
+The color in the JS custom-ui syntax can take any CSS color value. For example: #FFACAC, red, rgba(10, 20, 30, 0.5) etc.
+Note that the color will be applied as-is and it won't be affected by the brightness attribute
+
 # Templates
+Core HA customizing is straightforward and can't use templates based on states or attributes. Thats where custom-ui enters.
 
 The `templates` attributes allow you to inject your own expressions and code using JavaScript code or template literals in order to override entity attributes and state.
 Within the code / template literals, you have full access to the entity's state object, which allows you to access other properties such as last_changed,
@@ -23,7 +35,10 @@ attributes.friendly_name, etc.
 In order for a template to return "nothing", return `null` from your template. Note that `null` can only be returned using code format,
 as template literal format always returns a string.
 
-**Note that those are JavaScript templates evaluated in your browser, not Jinja2 templates which are evaluated server-side and use a different syntax.**
+
+If you diont need the 2 above, don't use custom-ui. Since you came here looking for examples, I take it you do, so read on ;-)
+
+**Note that all JavaScript templates are evaluated in your browser, unlike Jinja2 templates, which are evaluated server-side and use a different syntax.**
 
 ### Available variables
 #### Global variables
