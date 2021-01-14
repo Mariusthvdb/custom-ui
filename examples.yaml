@@ -315,10 +315,11 @@ customize_domain:
 # below is somewhat over the top, but it prevents one from creating template sensors for 
 # each and every light_level sensor 
 # it first creates the function to capitalize the first letter.
-# also note the replace trick, necessary to replace all
+# also note the replace technique `/_/g`, necessary to replace all
 # occurences of an '_'. The new function replaceAll() seems not to work just yet in all
-# browsers
-# btw, this is a glob customizatiopn so should go under `customize_glob:`
+# browsers. Lastly, note the 'escaped quotes', using `\'string\'`, necessary to have a quotes string
+# in the returned value.
+# btw, this is a glob customization so should go under `customize_glob:`
 
 sensor.*_sensor_light_level_raw:
       templates:
@@ -332,8 +333,8 @@ sensor.*_sensor_light_level_raw:
           if (state < 3000 ) return id + ': bright moonlight';
           if (state < 10000) return id + ': night light';
           if (state < 17000) return id + ': dimmed light';
-          if (state < 22000) return id + ': `cosy` living room';
-          if (state < 25500 ) return id + ': `normal` non-task light';
+          if (state < 22000) return id + ': \'cosy\' living room';
+          if (state < 25500 ) return id + ': \'normal\' non-task light';
           if (state < 28500) return id + ': working / reading';
           if (state < 33000) return id + ': inside daylight';
           if (state < 40000) return id + ': maximum to avoid glare';
