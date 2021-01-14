@@ -14,7 +14,7 @@ will be valid if you do.
 
 Lastly, remember to delimit the lines with a `;` .
 
-WHy use custom-ui? 2 huge reasons:
+Why use custom-ui? 2 huge reasons:
 
 # Icon color
 
