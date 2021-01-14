@@ -50,7 +50,6 @@ You can provide the template in two different formats.
 *   Otherwise it will be treated as JavaScript template literal that returns a string.
 
 ```yaml
-homeassistant:
 ##########################################################################################
 # Domain
 # this is by far the most powerful option. Set and forget, and never have to set any Style
@@ -59,36 +58,45 @@ homeassistant:
 # If customizing an entity belonging to one these domains, you have to customize it
 # completely
 ##########################################################################################
-customize_domain:
+homeassistant:
+  customize_domain:
+
     automation:
       templates: &state_color  # <-- define a yaml anchor here
         icon_color: >
           if (state == 'on') return 'gold';
           return 'steelblue';
+
     binary_sensor:
       templates:
         <<: *state_color  # <-- and use it on any other entity in this file
+  
     input_boolean:
       templates: *state_color # <-- or even shorter like this
+  
     switch:
       templates:
         icon: >
           if (state == 'on') return 'mdi:toggle-switch';
           return 'mdi:toggle-switch-off';
         <<: *state_color
+
 ##########################################################################################
 # Glob
 # second powerful option used in Homeassistant, profits enormously of custom-ui.
 ##########################################################################################
+
   customize_glob:
-# All Entities - Hide Templates & Icon Color
+    # All Entities - Hide Templates & Icon Color
     "*.*":
       hide_attributes:
         - templates
         - icon_color
         - all # <-- this hides, well, all customizations ;-)
+    
     light.hue_ambiance_spot_*:
       icon: mdi:spotlight-beam
+    
     device_tracker.*_bt:
       templates:
         icon: >
@@ -97,19 +105,23 @@ customize_domain:
         icon_color: >
           if (state == 'home') return 'blue';
           return 'grey';
+    
     device_tracker.*laptop*:
       templates: &device_color
         icon_color: >
           if (state == 'home') return 'gold';
           return 'steelblue';
+    
     device_tracker.ipad*:
       templates:
         <<: *device_color
+    
     device_tracker.googlehome_*:
       templates:
         icon_color: >
           if (state == 'home') return 'green';
           return 'red';
+    
     input_number.*_volume:
       templates:
         icon: >
@@ -129,6 +141,7 @@ customize_domain:
           if (state <= '0.8') return 'orange';
           if (state <= '0.9') return 'crimson';
           return 'firebrick';
+    
     sensor.*_sensor*temperature:
       templates:
         icon_color: >
@@ -145,6 +158,7 @@ customize_domain:
           if (state < 30) return 'orange';
           if (state < 35) return 'crimson';
           return 'firebrick';
+    
     sensor.*_bewegingssensor:
       templates: &battery_color
         icon_color: >
@@ -153,12 +167,15 @@ customize_domain:
           if (state > 25) return 'orange';
           if (state > 10) return 'brown';
           return 'red';
+    
     sensor.*_dimmer:
       templates:
         <<: *battery_color
+    
     sensor.*_afstandsbediening*:
       templates:
         <<: *battery_color
+    
     switch.sw_boiler_bijkeuken*:
       templates:
         icon: >
@@ -168,12 +185,14 @@ customize_domain:
                          # Yaml anchors are defined per text file. Within that file you
                          # can re-use them anywhere.
                          # You can NOT use anchors from another file.
+    
     switch.sw_freezer_bijkeuken*:
       templates:
         icon: >
           if (state == 'on') return 'mdi:fridge';
           return 'mdi:fridge-outline';
         <<: *state_color
+    
     sensor.synology_exceeded_max_bad_sectors_*:
       templates:
         icon: >
@@ -182,11 +201,13 @@ customize_domain:
         icon_color: >
           if (state == 'True') return 'red';
           return 'green';
+    
     sensor.synology_status_*:
       templates:
         icon_color: >
           if (state == 'warning') return 'red';
           return 'green';
+    
     sensor.synology_below_min_remaining_life_*:
       templates:
         icon: >
@@ -195,6 +216,7 @@ customize_domain:
         icon_color: >
           if (state == 'True') return 'red';
           return 'green';
+    
     sensor.*_motion_sensor_sensitivity:
       templates:
         icon: >
@@ -205,13 +227,16 @@ customize_domain:
           if (state == '2') return 'green';
           if (state == '3') return 'orange';
           return 'red';
+
 # This is another fine example, and very powerful using entity_picture on state:
     sensor.dark_sky*icon*:
       templates:
         entity_picture: >
           return '/local/weather/icons/' + state + '.png';
+
 # since this doesn't have a guard, and 'unknown' could happen, I have an 'unknown.png' in
 # same folder.
+
 ##########################################################################################
 # Entities
 # We all have some individually customized entities
@@ -221,28 +246,35 @@ customize_domain:
     input_boolean.development:
       hide_attributes:
         - editable
+
 # or simply hide all attributes
     input_boolean.development:
       hide_attributes:
         - all
+
     sensor.synology_status_volume_1:
       templates:
         icon_color: >
           if (state == 'warning') return 'red';
           return 'green';
+    
     device_tracker.tv_auditorium_samsung_8k:
       templates: &green_color
         icon_color: >
           if (state == 'home') return 'green';
           return 'steelblue';
+    
     device_tracker.tv_library_philips:
       templates: *green_color
+    
     device_tracker.ziggo_cablemodem:
       templates:
         entity_picture: >
           return '/local/devices/ziggo_' + entity.state + '.png'
+
 # since this doesn't have a guard, and 'unknown' could happen, I have an 'unknown.png' in
 # same folder.
+    
     sensor.huidig_tarief:
       templates:
         icon: >
@@ -252,6 +284,7 @@ customize_domain:
         icon_color: >
           if (state == '1') return 'green';
           return 'orange';
+
 ##########################################################################################
 # Customize using attributes of States
 ##########################################################################################
@@ -260,14 +293,17 @@ customize_domain:
       templates:
         icon_color: >
           if (attributes.power > 3000) return 'red'; else return green;
+
 # using an attribute of another (global) entity
     sensor.power_consumption:
       templates:
         icon_color: >
           if (entities['sensor.smart_meter'].attributes.power > 3000) return 'red'; else return green;
+
 ##########################################################################################
 # Some extravaganza ;-)
 ##########################################################################################
+
     sensor.owm_wind_bearing:
       friendly_name: Wind bearing
       templates: &direction_icon
@@ -278,6 +314,7 @@ customize_domain:
           var quadrant = Math.round(Number(state)/45);
           if (quadrant < icons.length) return icons[quadrant];
           return 'mdi:arrow-down';
+
 # below is somewhat over the top, but it prevents one from creating template sensors for
 # each and every light_level sensor
 # it first creates the function to capitalize the first letter.
@@ -287,7 +324,7 @@ customize_domain:
 # in the returned value.
 # btw, this is a glob customization so should go under `customize_glob:`
 
-sensor.*_sensor_light_level_raw:
+    sensor.*_sensor_light_level_raw:
       templates:
         friendly_name: >
           function capitalizeFirstLetter(string) {
@@ -306,6 +343,7 @@ sensor.*_sensor_light_level_raw:
           if (state < 40000) return id + ': maximum to avoid glare';
           if (state < 51000) return id + ': clear daylight';
           return id + ': direct sunlight';
+    
     input_select.sound_bite_player:
       templates: &player_icon
         icon: >
@@ -321,6 +359,7 @@ sensor.*_sensor_light_level_raw:
             'Dorm L':'mdi:human-child',
             'TheBoss':'mdi:cellphone-iphone'};
           return player[state] ? player[state] : 'mdi:radio-tower';
+
 # test if a string contains another string, or test for 2 strings, and select an entity_picture
 # https://community.home-assistant.io/t/add-service-integration-reload/231940/52?u=mariusthvdb
 
@@ -379,12 +418,12 @@ sensor.*_sensor_light_level_raw:
  # Note the reference to the other entity using `entities[].state` is different from the JS templates used in eg
  # custom button-card, where a syntax with `states[].state` is used
 ```
-##########################################################################################
+
 # Single line notation
-# Though above templates all use my preferred syntax of the multiline notation, they can
-# also be written on single lines, as discussed in issue 29
-# https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
-##########################################################################################
+Though above templates all use my preferred syntax of the multiline notation, they can
+also be written on single lines, as discussed in issue 29
+https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
+
 ```yaml
 homeassitant:
   customize_domain:
