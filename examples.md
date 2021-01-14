@@ -58,6 +58,7 @@ You can provide the template in two different formats.
 # If customizing an entity belonging to one these domains, you have to customize it
 # completely
 ##########################################################################################
+
 homeassistant:
   customize_domain:
 
@@ -123,7 +124,7 @@ homeassistant:
           return 'red';
     
     input_number.*_volume:
-      templates:
+      templates: # state is a string
         icon: >
           if (state == '0.0') return 'mdi:volume-off';
           if (state <= '0.3') return 'mdi:volume-low';
@@ -143,7 +144,7 @@ homeassistant:
           return 'firebrick';
     
     sensor.*_sensor*temperature:
-      templates:
+      templates: # state is a number
         icon_color: >
           if (state < -20) return 'black';
           if (state < -15) return 'navy';
@@ -241,6 +242,7 @@ homeassistant:
 # Entities
 # We all have some individually customized entities
 ##########################################################################################
+
   customize:
 # Single Entity - Hide Editable
     input_boolean.development:
@@ -288,6 +290,7 @@ homeassistant:
 ##########################################################################################
 # Customize using attributes of States
 ##########################################################################################
+
 # using an attribute (of the local entity)
     sensor.smart_meter:
       templates:
@@ -371,6 +374,7 @@ homeassistant:
                  ? path + 'luftdaten.png'
                  : state.includes('Philips') ? path + 'hue.png'
                  : path + state.toLowerCase() + '.png';
+
 # Dont want to use a lot of 'if' statements, but calculate based on entity? That's fine, you can use any valid
 # CCS color value, and template away:
 
