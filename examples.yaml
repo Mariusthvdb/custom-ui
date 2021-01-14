@@ -181,7 +181,10 @@ customize_domain:
         icon: >
           if (state == 'on') return 'mdi:water-boiler';
           return 'mdi:water-boiler-off';
-        <<: *state_color # remember this one? defined in the Domain, also use here
+        <<: *state_color # remember this one? defined in the Domain above, also use here.
+                         # Yaml anchors are defined per text file. Within that file you
+                         # can re-use them anywhere. 
+                         # You can NOT use anchors from another file.
 
     switch.sw_freezer_bijkeuken*:
       templates:
