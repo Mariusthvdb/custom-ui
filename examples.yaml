@@ -2,7 +2,7 @@
 
 The `templates` attributes allow you to inject your own expressions and code using JavaScript code or template literals in order to override entity attributes and state. 
 Within the code / template literals, you have full access to the entity's state object, which allows you to access other properties such as last_changed, 
-attributes.friendly_name, etc. The full set of objects available is shown below.
+attributes.friendly_name, etc.
 
 In order for a template to return "nothing", return `null` from your template. Note that `null` can only be returned using code format, 
 as template literal format always returns a string.
