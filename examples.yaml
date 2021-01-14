@@ -317,7 +317,7 @@ customize_domain:
 # it first creates the function to capitalize the first letter.
 # also note the replace technique `/_/g`, necessary to replace all
 # occurences of an '_'. The new function replaceAll() seems not to work just yet in all
-# browsers. Lastly, note the 'escaped quotes', using `\'string\'`, necessary to have a quotes string
+# browsers. Lastly, note the 'escaped quotes', using `\'string\'`, necessary to have a quoted string
 # in the returned value.
 # btw, this is a glob customization so should go under `customize_glob:`
 
