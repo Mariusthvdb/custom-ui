@@ -89,6 +89,7 @@ homeassistant:
 
   customize_glob:
     # All Entities - Hide Templates & Icon Color
+    # Note that yaml keys can't start with an asterisk. Use quotes in that case:
     "*.*":
       hide_attributes:
         - templates
