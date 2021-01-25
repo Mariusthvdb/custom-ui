@@ -2,6 +2,9 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
+## Why use Custom-ui?
+We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are Templates and support for the icon_color attribute. We can use these features globally in our Home Assistant configuration and thus create extremely powerful though very compact customizations.
+
 ## No more icon_color?
 Since Home Assistant saw version 110.+, [icon handling in state-badge](https://github.com/home-assistant/frontend/issues/5892#issuecomment-630872617) has changed, causing the [original custom-ui](https://github.com/andrey-git/home-assistant-custom-ui) by @andrey-git to no longer be fully functional. 
 
@@ -88,7 +91,7 @@ In Resources:
 
 
 ## No more States, Lovelace it is
-Note that this adapted version still holds all options of the original custom-ui. Since that was designed for Home Assistant   States, and we now live Lovelace, many of these options are no longer supported or used. I haven't yet streamlined the file to cut out these, as I am not sure whether Lovelace won't ever bring these back. 'Per entity theming' for one was a major feature now defunct.
+Note that this adapted version still holds all options of the original custom-ui. Since that was designed for Home Assistant States, and we now live Lovelace, many of these options are no longer supported or used. I haven't yet streamlined the add-on to cut out these, as I am not sure whether Lovelace won't ever bring these back. 'Per entity theming' for one was a major feature now defunct.
 As are all other features specifically used in the state-cards. Like `show_last_changed`. We all know how to do that easily in Lovelace now. (Note some 'old' functionality can still be seen in the 'more-info' popups.)
 
 For a still valid explanation of the JavaScript templating custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
