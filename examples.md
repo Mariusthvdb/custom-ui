@@ -138,9 +138,11 @@ homeassistant:
     device_tracker.googlehome_*:
       templates:
         icon_color: >
-          if (state == 'home') return 'rgb(0,128,0)'; # 'green'
-          return 'rgb(255,0,0)'; # 'red'
-    
+          if (state == 'home') return 'rgb(0,128,0)';
+          return 'rgb(255,0,0)';
+
+# as stated in the readme, any valid Css color code is allowed, abiove is identical to using the color names 'green' and 'red'
+
     input_number.*_volume:
       templates: # state is a string
         icon: >
