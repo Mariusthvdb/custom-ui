@@ -141,7 +141,8 @@ homeassistant:
           if (state == 'home') return 'rgb(0,128,0)';
           return 'rgb(255,0,0)';
 
-# as stated in the readme, any valid Css color code is allowed, abiove is identical to using the color names 'green' and 'red'
+# as stated in the readme, any valid Css color code is allowed.
+# above 'rgb(1,2,3)' is identical to using the color names 'green' and 'red'
 
     input_number.*_volume:
       templates: # state is a string
