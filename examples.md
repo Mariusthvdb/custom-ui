@@ -138,8 +138,8 @@ homeassistant:
     device_tracker.googlehome_*:
       templates:
         icon_color: >
-          if (state == 'home') return 'rgb(0,128,0)'; # 'green';
-          return 'rgb(255,0,0)': # 'red';
+          if (state == 'home') return 'rgb(0,128,0)'; # 'green'
+          return 'rgb(255,0,0)'; # 'red'
     
     input_number.*_volume:
       templates: # state is a string
