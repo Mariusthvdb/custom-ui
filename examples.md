@@ -38,7 +38,7 @@ In order for a template to return "nothing", return `null` from your template. N
 as template literal format always returns a string.
 
 
-If you diont need the 2 above, don't use custom-ui. Since you came here looking for examples, I take it you do, so read on ;-)
+If you dont need the 2 above, don't use custom-ui. Since you came here looking for examples, I take it you do, so read on ;-)
 
 **Note that all JavaScript templates are evaluated in your browser, unlike Jinja2 templates, which are evaluated server-side and use a different syntax.**
 
