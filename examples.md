@@ -85,6 +85,13 @@ homeassistant:
           if (state == 'on') return 'gold';
           return 'steelblue';
 
+# or use a theme variable:
+
+      templates: &state_color
+        icon_color: >
+          if (state == 'on') return 'var(--primary-color)';
+          return 'steelblue';
+
     binary_sensor:
       templates:
         <<: *state_color  # <-- and use it on any other entity in this file
