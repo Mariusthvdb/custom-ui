@@ -1068,55 +1068,6 @@ console.info(
             device: void 0,
             templates: void 0,
             state: void 0,
-            _stateDisplay: void 0,
-            control_element: {
-                type: "string"
-            },
-            state_card_mode: {
-                type: "array",
-                options: {
-                    light: ot.concat("badges"),
-                    cover: ot.concat("badges"),
-                    climate: ot.concat("badges"),
-                    "*": ["badges"]
-                }
-            },
-            state_card_custom_ui_secondary: {
-                type: "string"
-            },
-            badges_list: {
-                type: "json"
-            },
-            show_last_changed: {
-                type: "boolean"
-            },
-            hide_control: {
-                type: "boolean"
-            },
-            extra_data_template: {
-                type: "string"
-            },
-            extra_badge: {
-                type: "json"
-            },
-            stretch_slider: {
-                type: "boolean"
-            },
-            slider_theme: {
-                type: "json"
-            },
-            theme: {
-                type: "string"
-            },
-            confirm_controls: {
-                type: "boolean"
-            },
-            confirm_controls_show_lock: {
-                type: "boolean"
-            },
-            hide_in_default_view: {
-                type: "boolean"
-            },
             icon_color: {
                 type: "string"
             }
