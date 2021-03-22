@@ -1,5 +1,5 @@
 console.info(
-`%c  CUSTOM-UI (JS)  \n%c  Version 20201218 adapted for HA 2020.X.X +  `,
+`%c  CUSTOM-UI (JS)  \n%c  Version 20210322 adapted for HA 2020.X.X +  `,
     'color: gold; font-weight: bold; background: black',
     'color: white; font-weight: bold; background: steelblue' );
 !function (t) {
@@ -998,9 +998,10 @@ console.info(
             });
             const nt = {
                 DOMAIN_DEVICE_CLASS: {
-                    binary_sensor: ["battery", "cold", "connectivity", "door", "garage_door", "gas", "heat", "light", "lock", "moisture", "motion", "moving", "occupancy", "opening", "plug", "power", "presence", "problem", "safety", "smoke", "sound", "vibration", "window"],
-                    cover: ["awning", "blind", "curtain", "damper", "door", "garage", "shade", "shutter", "window"],
-                    sensor: ["battery", "humidity", "illuminance", "temperature", "pressure", "power", "signal_strength"],
+                    binary_sensor: ["battery",  "battery_charging", "cold", "connectivity", "door", "garage_door", "gas", "heat", "light", "lock", "moisture", "motion", "moving", "occupancy", "opening", "plug", "power", "presence", "problem", "safety", "smoke", "sound", "vibration", "window"],
+                    cover: ["awning", "blind", "curtain", "damper", "door", "garage", "gate", "shade", "shutter", "window"],
+                    media_player: ["speaker", "tv"],
+                    sensor: ["battery", "current", "energy", "humidity", "illuminance", "power", "power_factor", "pressure", "signal_strength", "temperature", "timestamp", "voltage"],
                     switch : ["switch", "outlet"]
             },
             UNKNOWN_TYPE: "json",
@@ -1041,21 +1042,11 @@ console.info(
             },
             supported_features: void 0,
             attribution: void 0,
-            custom_ui_more_info: {
-                type: "string"
-            },
-            custom_ui_state_card: {
-                type: "string"
-            },
             device_class: {
                 type: "array",
                 options: nt.DOMAIN_DEVICE_CLASS,
                 description: "Device class",
-                domains: ["binary_sensor", "cover", "sensor", "switch"]
-            },
-            hidden: {
-                type: "boolean",
-                description: "Hide from UI"
+                domains: ["binary_sensor", "cover", "media_player", "sensor", "switch"]
             },
             assumed_state: {
                 type: "boolean",
@@ -1550,9 +1541,9 @@ console.info(
                         return;
                     window.customUI.installClassHooks();
                     const t = window.customUI.lightOrShadow(document, "home-assistant");
-                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20201218 adapted for HA 2020.X.X+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
+                    t.hass && t.hass.states ? (window.customUI.initDone = !0, window.customUI.runHooks(), window.addEventListener("location-changed", window.setTimeout.bind(null, window.customUI.runHooks, 100)), console.log("Loaded CustomUI JS 20210322 adapted for HA 2020.X.X+"), window.addEventListener("hass-more-info", window.customUI.updateMoreInfo), window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []), window.CUSTOM_UI_LIST.push({
                             name: "CustomUI",
-                            version: "JS 20201218 adapted for HA 2020.X.X +",
+                            version: "JS 20210322 adapted for HA 2020.X.X +",
                             url: "https://github.com/Mariusthvdb/custom-ui"
                         })) : window.setTimeout(window.customUI.init, 1e3)
                 },
