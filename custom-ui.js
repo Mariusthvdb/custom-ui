@@ -82,7 +82,8 @@ console.info(
 //       if (s) return e;
 //       return n = (n = window.customUI.maybeApplyTemplateAttributes(t.hass, t.hass.states, n, n.attributes)) !== e && i ? null : n;
 //     },
-
+      
+//  New for HA 2021.6: the logic only gets triggered when the ha attributes panel is expanded, but not when it gets closed.
     updateMoreInfo(ev) {
       if (!ev.detail.expanded)
           return;
