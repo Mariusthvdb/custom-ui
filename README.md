@@ -1,9 +1,3 @@
-# WARNING HA 2021.6 partially breaks Custom-ui
-HA 2021.6 changed the way it displays the more-info, in particular the attributes on the more-info panel. Attributes now reside under a fold-down, and current custom-ui is not capable of hiding attributes in that fold-down.
-We are currently testing [new code](https://github.com/Mariusthvdb/custom-ui/releases/tag/2021.5.27) to mitigate those changes but this is not functional at the moment. Please assist if you can. Thanks if you would!
-
-Meanwhile, current custom-ui will remain, for not everyone has updated to 2021.6 (beta) yet.
-
 # Custom-ui adapted for Home Assistant 110.+
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
