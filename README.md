@@ -1,4 +1,4 @@
-# Custom-ui adapted for Home Assistant 110.+
+# Custom-ui adapted for Home Assistant 110.+ / 2021.6
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
@@ -108,6 +108,8 @@ Customizer companion is no longer needed. Please delete `/custom_components/cust
 This is confirmed to work for HA 0.112+ and can look like:
 
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-in-more-info.png)
+
+Ha 2021.6 changed Frontend representation of more-info attributes once again, and custom-ui updated to follow that. Thank you @spacegaier and Bram for helping out!
 
 #### Hide attributes
 To hide attributes in the `more-info` popup, you need to add the `hide_attributes` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
