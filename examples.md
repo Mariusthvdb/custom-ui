@@ -443,8 +443,6 @@ homeassistant:
           if (state <= Number(entities['input_number.battery_alert_level'].state)) return 'red';
           return 'green';
 
-# should also work without the 'Number()'
-
 ##########################################################################################
 # Even template the unit_of_measurement (with a guard for the startup sequence)
 ##########################################################################################
