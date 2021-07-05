@@ -91,14 +91,13 @@ In Resources:
 
 
 ## No more States, Lovelace it is
-Note that this adapted version still holds all options of the original custom-ui. Since that was designed for Home Assistant States, and we now live Lovelace, many of these options are no longer supported or used. I haven't yet streamlined the add-on to cut out these, as I am not sure whether Lovelace won't ever bring these back. 'Per entity theming' for one was a major feature now defunct.
-As are all other features specifically used in the state-cards. Like `show_last_changed`. We all know how to do that easily in Lovelace now. (Note some 'old' functionality can still be seen in the 'more-info' popups.)
+Note that this adapted version doesn't hold all options of the original custom-ui. Since that was designed for Home Assistant States, and we now live Lovelace, many of these options are no longer supported or used. These are now 'carved out. 'Per entity theming' for one was a major feature now defunct.
+As are all other features specifically used in the state-cards. Like `show_last_changed`. We all know how to do that easily in Lovelace now.
 
 For a still valid explanation of the JavaScript templating custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
 
 ### More-info
- While you are there, you may have found the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could also hide the templates we set in custom-ui. However, current Lovelace has changed the effect of customizer,
- which stopped customizer from working, resulting in:
+ While you are there, you may have found the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could also hide the templates we set in custom-ui. However, current Lovelace has changed the effect of customizer, which stopped customizer from working, resulting in:
 
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
 
@@ -126,3 +125,13 @@ Some examples, including the newly added option for `hide_attributes` can be fou
 
 ## Just to be sure....
 Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui or using Customizer. All of that info now is obsolete. Follow 1 - 6 above and you're set.
+
+## Caveats
+As always, there are caveats. I've stressed before, custom-ui was designed for HA States. Current HA is in very active development, and the Lovelace Frontend team constantly updates. Meaning this custom-ui can suddenly break completely. Nothing I can do about that, other than warn you here. And ofcourse, try to fix it in custom-ui. But, no promises made.
+
+Also, custom-ui can not customize everything. Entities created in python scripts (you need to set the customization in the script itself) and entities created by several add-ons wont be touched by custom-ui. Eg Home Assistant Google Drive Backup, and Argon One active cooling. You can work around that, by creating template sensors for those entities, which you can again customize in HA ;-)
+
+## Not all Lovelace cards are equal
+Lastly, not all core HA cards use the same icon handling. Because of that custom-ui doesn't work with (Entity card)[https://www.home-assistant.io/lovelace/entity/] and [Picture-glance card](https://www.home-assistant.io/lovelace/picture-glance/).
+
+[Card-mod](https://github.com/thomasloven/lovelace-card-mod), which is an amazing plugin for Lovelace with many features, to the rescue. 
