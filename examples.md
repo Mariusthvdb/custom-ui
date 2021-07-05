@@ -435,6 +435,16 @@ homeassistant:
           if (state == 'on') return entities['input_select.select_flash_color'].state.toLowerCase();
           return 'steelblue';
 
+    sensor.*_battery:
+      templates:
+        icon_color: >
+          if (['unavailable', 'unknown'].includes(state)) return 'brown';
+          if (state <= Number(entities['input_number.battery_warning_level'].state)) return 'orange';
+          if (state <= Number(entities['input_number.battery_alert_level'].state)) return 'red';
+          return 'green';
+
+# should also work without the 'Number()'
+
 ##########################################################################################
 # Even template the unit_of_measurement (with a guard for the startup sequence)
 ##########################################################################################
