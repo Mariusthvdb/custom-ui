@@ -64,7 +64,7 @@ Don't, let me repeat, Don't use the guidelines from the original repo (I won't p
 ## Caveats
 As always, there are caveats. I've stressed before, custom-ui was designed for HA States. Current HA is in very active development, and the Lovelace Frontend team constantly updates. Meaning this custom-ui can suddenly break completely. Nothing I can do about that, other than warn you here. And ofcourse, try to fix it in custom-ui. But, no promises made.
 
-Also, custom-ui can not customize everything. Entities created in python scripts (you need to set the customization in the script itself) and entities created by several add-ons wont be touched by custom-ui. Eg Home Assistant Google Drive Backup, and Argon One active cooling. You can work around that, by creating template sensors for those entities, which you can again customize in HA ;-)
+Also, custom-ui can not customize everything. Entities created in python scripts (you need to set the customization in the script itself) and entities created by several add-ons can't be touched by custom-ui. Eg Home Assistant Google Drive Backup, and Argon One active cooling. You can work around that, by creating template sensors for those entities, which you can again customize in HA ;-)
 
 ## Not all Lovelace cards are equal
 Lastly, not all core HA cards use the same icon handling. Because of that custom-ui doesn't work with [Entity card](https://www.home-assistant.io/lovelace/entity/) and [Picture-glance card](https://www.home-assistant.io/lovelace/picture-glance/).
