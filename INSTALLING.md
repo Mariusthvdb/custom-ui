@@ -1,6 +1,4 @@
----
-title: "Installing Custom-ui"
----
+# Installing Custom-ui
 
 ## Prepare
 
