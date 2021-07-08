@@ -2,14 +2,14 @@
 
 ## Prepare
 
-0. Skip this step if you're new to custom-ui.
+* 0 Skip this step if you're new to custom-ui.
 Delete all existing references to custom-ui in your current config (or, if you don't trust it, comment them out, as I always do before major changes..) Also, you can delete all old custom-ui files.
 
 ## Installing is super easy:
 
-1. Create a new folder under your resources folder. Suggestion: custom-ui.
+* 1 Create a new folder under your resources folder. Suggestion: custom-ui.
 
--2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to that folder.
+* 2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to that folder.
 
 ### Using Frontend
 -3 This resembles the 'old' way most. You can load the new custom-ui by adding it via [extra_module_url:](https://www.home-assistant.io/integrations/frontend/#extra_module_url) in the [`frontend:`](https://www.home-assistant.io/integrations/frontend/) section in your configuration.yaml as follows (previously we used `/config/www/custom_ui` but, you can use any folder you like. So why not start using the 'resources' folder we use in Home Assistant nowadays):
@@ -20,22 +20,22 @@ Delete all existing references to custom-ui in your current config (or, if you d
        - /local/lovelace/resources/custom-ui/custom-ui.js
    ```
 
--4 Restart Home Assistant.
+* 4 Restart Home Assistant.
 
--5 Refresh cache...
+* 5 Refresh cache...
 You might have to refresh your cache a few times. In my personal experience, especially Safari on the Mac and the iPhone app can be a bit obnoxious....
 
 ### Using Resources
--3 Add the following to your [resources.yaml](https://www.home-assistant.io/lovelace/dashboards-and-views/#resources) (adapt to your personal file hierarchy):
+* 3 Add the following to your [resources.yaml](https://www.home-assistant.io/lovelace/dashboards-and-views/#resources) (adapt to your personal file hierarchy):
 
   ```yaml
    - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200918 #change this v-number on each update
      type: module
   ```
--4 Reload the Lovelace resources.
+* 4 Reload the Lovelace resources.
 Click the top right Lovelace menu triple dots and Reload resources, or call service `lovelace.reload_resources` in `/developer-tools/service/`.
 
--5 Refresh Lovelace. 
+* 5 Refresh Lovelace. 
 
 ### Or, use The Modern way: UI
 For the official docs on this see [Registering Resources](https://developers.home-assistant.io/docs/frontend/custom-ui/registering-resources)
@@ -74,8 +74,8 @@ In Resources:
 
 ![listed](https://github.com/Mariusthvdb/custom-ui/blob/master/listed-resources.png)
 
--6 If you don't see the above: repeat 5 until you do. Eventually it will show up (unless there's an error somewhere, which you will see in inspector most likely).
+* 6 If you don't see the above: repeat 5 until you do. Eventually it will show up (unless there's an error somewhere, which you will see in inspector most likely).
 
 ## Finally...drumroll
--7 Happy customizing!
+* 7 Happy customizing!
 
