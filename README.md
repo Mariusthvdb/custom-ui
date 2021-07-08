@@ -59,7 +59,7 @@ Heavy templating might impact the performance of the system and will depend on p
 Some examples, including the newly added option for `hide_attributes` can be found [here](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md).
 
 ## Just to be sure....
-Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui or using Customizer. All of that info now is obsolete. Follow 1 - 6 above and you're set.
+Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui or using Customizer. All of that info now is obsolete. Follow 1 - 6 in [installation instructions](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md) and you're set.
 
 ## Caveats
 As always, there are caveats. I've stressed before, custom-ui was designed for HA States. Current HA is in very active development, and the Lovelace Frontend team constantly updates. Meaning this custom-ui can suddenly break completely. Nothing I can do about that, other than warn you here. And, of course, try to fix it in custom-ui. But, no promises made.
