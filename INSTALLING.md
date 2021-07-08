@@ -39,7 +39,7 @@ Click the top right Lovelace menu triple dots and Reload resources, or call serv
 -5 Refresh Lovelace. 
 
 ### Or, use The Modern way: UI
-For the official docs on this see [Registering Resourses](https://developers.home-assistant.io/docs/frontend/custom-ui/registering-resources)
+For the official docs on this see [Registering Resources](https://developers.home-assistant.io/docs/frontend/custom-ui/registering-resources)
 
 Register these resources with the Lovelace interface. This is done by navigating to the Lovelace resources page by following below link:
 
