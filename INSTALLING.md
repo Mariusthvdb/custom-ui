@@ -68,7 +68,7 @@ In `/config/info`:
 
 In Inspector:
 
-![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/Module-in-Inspector.png)
+![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/module-in-inspector.png)
 
 In Resources:
 
