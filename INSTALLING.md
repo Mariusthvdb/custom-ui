@@ -35,6 +35,19 @@ Click the top right Lovelace menu triple dots and Reload resources, or call serv
 -5 Refresh Lovelace. 
 
 ### Or, use The Modern way: UI
+For the official docs on this see [Registering Resourses](https://developers.home-assistant.io/docs/frontend/custom-ui/registering-resources)
+
+Register these resources with the Lovelace interface. This is done by navigating to the Lovelace resources page by following below link:
+
+[![Open your Home Assistant instance and show your Lovelace resources.](https://my.home-assistant.io/badges/lovelace_resources.svg)](https://my.home-assistant.io/redirect/lovelace_resources/)
+
+:::note
+
+This tab is only available when the active user's profile has "advanced mode" enabled.
+
+:::
+
+### Step by step
 - Click Configuration at `/config/dashboard`, click Lovelace Dashboards, click Resources.
 - Click
 ![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/add.png)
