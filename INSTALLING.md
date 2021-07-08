@@ -64,7 +64,7 @@ Having finished the above procedure, you should check if everything went well, a
 
 In `/config/info`:
 
-![info](https://github.com/Mariusthvdb/custom-ui/blob/master/info.png)
+![info](https://github.com/Mariusthvdb/custom-ui/blob/master/info.png =50%)
 
 In Inspector:
 
