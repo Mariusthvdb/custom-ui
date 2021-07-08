@@ -2,12 +2,12 @@
 
 ## Prepare
 
--0 Skip this step if you're new to custom-ui.
+0. Skip this step if you're new to custom-ui.
 Delete all existing references to custom-ui in your current config (or, if you don't trust it, comment them out, as I always do before major changes..) Also, you can delete all old custom-ui files.
 
 ## Installing is super easy:
 
--1 Create a new folder under your resources folder. Suggestion: custom-ui.
+1. Create a new folder under your resources folder. Suggestion: custom-ui.
 
 -2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to that folder.
 
