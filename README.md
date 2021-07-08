@@ -41,7 +41,7 @@ Customizer companion is no longer needed. Please delete `/custom_components/cust
 
 This is confirmed to work for HA 0.112+ and can look like:
 
-![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-in-more-info.png)
+![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-more-info.png)
 
 Ha 2021.6 changed Frontend representation of more-info attributes once again, and custom-ui updated to follow that. Thank you @spacegaier and Bram for helping out!
 
