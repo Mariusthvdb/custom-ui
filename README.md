@@ -2,8 +2,12 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
-## Why use Custom-ui?
-We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are **Templates** and support for the **icon_color** attribute. We can use these features globally in our Home Assistant configuration and thus create extremely powerful yet very compact customizations.
+## Main features Custom-ui
+We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are **Templates** and support for the **icon_color** attribute. We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet very compact customizations.
+
+## Credits
+I've been a longtime and heavy user of custom-ui, and this is the place to applaud Andrey for his amazing plugin. Home Assisant wouldn't be the same without the global customizing it enables us to do. Couldn't live without it!
+All credits go to @andrey-git.
 
 ## History
 Since Home Assistant saw version 110.+, [icon handling in state-badge](https://github.com/home-assistant/frontend/issues/5892#issuecomment-630872617) has changed, causing the [original custom-ui](https://github.com/andrey-git/home-assistant-custom-ui) by @andrey-git to no longer be fully functional. 
@@ -14,11 +18,7 @@ Second to that, it was announced that the `extra_html_url` config option was soo
 
 I rang [the alarmbell](https://github.com/home-assistant/frontend/issues/5892) on this, and the core Dev team (thanks Bram and Thomas) helped me transform the 'old' state-card-custom-ui.html import into a modern JS version. 
 
-This adapted version makes it compatible again with HA 110+. And allows us to use icon_color like before! Globally.
-
-## Credits
-I've been a longtime and heavy user of custom-ui, and this is the place to applaud Andrey for his amazing plugin. Home Assisant wouldn't be the same without the global customizing it enables us to do. Couldn't live without it!
-All credits go to @andrey-git.
+This adapted version makes it compatible again with HA 110+.
 
 ## Installing
 
