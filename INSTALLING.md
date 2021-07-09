@@ -3,7 +3,7 @@
 ## Prepare
 
 * 0 Skip this step if you're new to custom-ui.
-Delete all existing references to custom-ui in your current config (or, if you don't trust it, comment them out, as I always do before major changes..) Also, you can delete all old custom-ui files.
+Delete all existing references to custom-ui in your current config and delete all old custom-ui files. If you used it before, also delete all customizer companion files and references.
 
 ## Installing is super easy:
 
