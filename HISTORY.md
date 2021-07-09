@@ -20,8 +20,6 @@ Coming from the original custom-ui, you may have used the [Customizer companion]
 
 @CAB426 has changed custom-ui.js, so it again allows to hide attributes in `more-info`, and even better, we can now do so using custom-ui.js only.
 
-> **Customizer companion is no longer needed. Please delete `/custom_components/customizer/`, and all contents and references to it in your config.**
-
 More-info with `hide_attributes`:
 
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-more-info.png)
