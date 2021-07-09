@@ -14,9 +14,6 @@ You can read up on a bit if [history](https://github.com/Mariusthvdb/custom-ui/b
 
 See: [Installing custom-ui](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
 
-## No more States, Lovelace it is
-Note that this adapted version doesn't hold all options of the original custom-ui. Since that was designed for Home Assistant States, and we now live Lovelace, many of these options are no longer supported or used. These are now 'carved out' of custom-ui too. Per-entity-theming for one was a major feature now defunct.
-As are all other features specifically used in the state-cards. Like `show_last_changed`. We all know how to do that easily in Lovelace now.
 
 For a still valid explanation of the JavaScript templating custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
 
