@@ -16,6 +16,7 @@ See: [Installing custom-ui](https://github.com/Mariusthvdb/custom-ui/blob/master
 
 ## Learn core Home Assistant customization 
 It goes without saying that custom-ui is an extension of core Home Assistant functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject. 
+
 Important to note, is that Home Assistant [core Jinja templating](https://home-assistant.io/docs/configuration/templating/) is calculated in the back-end, server side, (the device Home Assistant is running on). Custom-ui Javascript templating is calculated in the front-end, browser side, (the device Home Assistant is displayed on). 
 
 Heavy templating might impact the performance of the system and will depend on processor power and memory available on either side of your devices.
