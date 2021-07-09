@@ -14,7 +14,7 @@ Note that this adapted version doesn't hold all options of the original custom-u
 As are all other features specifically used in the state-cards. Like `show_last_changed`. We all know how to do that easily in Lovelace now.
 
 ### More-info
-Coming from the original custom-ui, you may have used the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could also hide the templates we set in custom-ui. However, current Lovelace has changed the effect of customizer, which stopped customizer from working, resulting in:
+Coming from the original custom-ui, you may have used the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could also hide the templates we set in custom-ui. However, current Lovelace broke customizer, resulting in:
 
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
 
