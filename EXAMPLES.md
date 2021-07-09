@@ -37,8 +37,12 @@ attributes.friendly_name, etc.
 In order for a template to return "nothing", return `null` from your template. Note that `null` can only be returned using code format,
 as template literal format always returns a string.
 
+# Hide attributes
+To hide attributes in the `more-info` popup, you need to add the `hide_attributes` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
 
-If you dont need the 2 above, don't use custom-ui. Since you came here looking for examples, I take it you do, so read on ;-)
+Single attributes can be hidden by listing them under the corresponding entity (or global definition) or you can choose to hide all attributes by adding the new `all` entry.
+
+If you dont need the functionality above, don't use custom-ui. Since you came here looking for examples, I take it you do, so read on ;-)
 
 **Note that all JavaScript templates are evaluated in your browser, unlike Jinja2 templates, which are evaluated server-side and use a different syntax.**
 
