@@ -66,7 +66,7 @@ You can provide the template in two different formats.
 *   If the template contains the word `return` it will be treated as raw JavaScript code.
 *   Otherwise it will be treated as JavaScript template literal that returns a string.
 
-> [Original custom-ui doc on Templates](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
+> Source: [Original custom-ui doc on Templates](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
 
 ```yaml
 ##########################################################################################
