@@ -14,9 +14,6 @@ You can read up on a bit if [history](https://github.com/Mariusthvdb/custom-ui/b
 
 See: [Installing custom-ui](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
 
-
-For a still valid explanation of the JavaScript templating custom-ui uses, I best simply point you to the [original docs on the subject](https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/templates.md).
-
 ### More-info
  While you are there, you may have found the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could also hide the templates we set in custom-ui. However, current Lovelace has changed the effect of customizer, which stopped customizer from working, resulting in:
 
