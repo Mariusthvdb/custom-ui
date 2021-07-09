@@ -3,7 +3,7 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
 ## Main features Custom-ui
-We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are **Templates** and support for the **icon_color** attribute. We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet very compact [customizations](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md).
+We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are **Templates** and support for the **icon_color** attribute. We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet very compact customizations. Added to that, custom-ui allows one to **hide attributes** from the more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) how.
 
 ## Credits
 I've been a longtime and heavy user of custom-ui, and this is the place to applaud Andrey for his amazing plugin. Home Assisant wouldn't be the same without the global customizing it enables us to do. Couldn't live without it!
@@ -13,24 +13,6 @@ You can read up on a bit if [history](https://github.com/Mariusthvdb/custom-ui/b
 ## Installing
 
 See: [Installing custom-ui](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
-
-### More-info
- While you are there, you may have found the [Customizer companion](https://github.com/andrey-git/home-assistant-customizer) too. We used that to hide stuff from the `more-info` windows. This was useful, because we could also hide the templates we set in custom-ui. However, current Lovelace has changed the effect of customizer, which stopped customizer from working, resulting in:
-
-![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
-
-@CAB426 has changed custom-ui.js, so it again allows to hide attributes in `more-info`, and even better, we can now do so using custom-ui.js only.
-Customizer companion is no longer needed. Please delete `/custom_components/customizer/`, and all contents and references to it in your config.
-
-This is confirmed to work for HA 0.112+ and can look like:
-
-![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-more-info.png)
-
-Ha 2021.6 changed Frontend representation of more-info attributes once again, and custom-ui updated to follow that. Thank you @spacegaier and Bram for helping out!
-
-#### Hide attributes
-To hide attributes in the `more-info` popup, you need to add the `hide_attributes` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
-Single attributes can be hidden by listing them under the corresponding entity (or global definition) or you can choose to hide all attributes by adding the new `all` entry.
 
 ## Learn core Home Assistant customization 
 It goes without saying that custom-ui is an extension of core Home Assistant functionality. As such, you should understand what is documented on [Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the subject. 
