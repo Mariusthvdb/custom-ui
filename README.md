@@ -28,7 +28,7 @@ Some examples, including the newly added option for `hide_attributes` can be fou
 Don't, let me repeat, Don't use the guidelines from the original repo (I won't provide a link, as you'd probably click it ;-) ) anymore on downloading, installing and activating custom-ui or using Customizer. All of that info now is obsolete. Follow 1 - 6 in [installation instructions](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md) and you're set.
 
 ## Caveats
-As always, there are caveats. I've stressed before, custom-ui was designed for HA States. Current HA is in very active development, and the Lovelace Frontend team constantly updates. Meaning this custom-ui can suddenly break completely. Nothing I can do about that, other than warn you here. And, of course, try to fix it in custom-ui. But, no promises made.
+As always, there are caveats. Current HA is in very active development, and the Lovelace Frontend team constantly updates. Meaning this custom-ui can suddenly break completely. Nothing I can do about that, other than warn you here. And, of course, try to fix it in custom-ui. But, no promises made.
 
 Also, custom-ui can not customize everything. Entities created in python scripts (you need to set the customization in the script itself) and entities created by several add-ons can't be touched by custom-ui. Eg Home Assistant Google Drive Backup, and Argon One active cooling. You can work around that, by creating template sensors for those entities, which you can again customize in HA ;-)
 
