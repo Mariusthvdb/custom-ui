@@ -22,7 +22,7 @@ Coming from the original custom-ui, you may have used the [Customizer companion]
 
 > **Customizer companion is no longer needed. Please delete `/custom_components/customizer/`, and all contents and references to it in your config.**
 
-More-info with hide_attributes:
+More-info with `hide_attributes`:
 
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-more-info.png)
 
