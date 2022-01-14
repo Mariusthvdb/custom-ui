@@ -5,8 +5,7 @@ directly if you copy it to your own homeassistant structure and activate package
 course other methods work also, like pointing to a dedicated customize file, and
 referencing that in your configuration.yaml
 
-Note that the triple `===` which is used throughout the community and examples on the
-original repo are not necessary. `==` suffices. Secondly, always use a guard for unexpected states.
+# Always use a guard (for unexpected states).
 Of course this holds for Jinja templates in HA too...
 The guard is used by setting the `else` clause, which in the examples below are on the
 last lines, starting with 'return'. Dont need to use the word `else` itself, though it
