@@ -87,14 +87,14 @@ homeassistant:
     automation:
       templates: &state_color  # <-- define a yaml anchor here
         icon_color: >
-          if (state == 'on') return 'gold';
+          if (state === 'on') return 'gold';
           return 'steelblue';
 
 # or use a theme variable:
 
       templates: &state_color
         icon_color: >
-          if (state == 'on') return 'var(--primary-color)';
+          if (state === 'on') return 'var(--primary-color)';
           return 'steelblue';
 
     binary_sensor:
@@ -107,7 +107,7 @@ homeassistant:
     switch:
       templates:
         icon: >
-          if (state == 'on') return 'mdi:toggle-switch';
+          if (state === 'on') return 'mdi:toggle-switch';
           return 'mdi:toggle-switch-off';
         <<: *state_color
 
@@ -131,16 +131,16 @@ homeassistant:
     device_tracker.*_bt:
       templates:
         icon: >
-          if (state == 'home') return 'mdi:bluetooth';
+          if (state === 'home') return 'mdi:bluetooth';
           return 'mdi:bluetooth-off';
         icon_color: >
-          if (state == 'home') return 'blue';
+          if (state === 'home') return 'blue';
           return 'grey';
     
     device_tracker.*laptop*:
       templates: &device_color
         icon_color: >
-          if (state == 'home') return 'gold';
+          if (state === 'home') return 'gold';
           return 'steelblue';
     
     device_tracker.ipad*:
@@ -150,7 +150,7 @@ homeassistant:
     device_tracker.googlehome_*:
       templates:
         icon_color: >
-          if (state == 'home') return 'rgb(0,128,0)';
+          if (state === 'home') return 'rgb(0,128,0)';
           return 'rgb(255,0,0)';
 
 # as stated in the readme, any valid Css color code is allowed.
@@ -159,12 +159,12 @@ homeassistant:
     input_number.*_volume:
       templates: # state is a string
         icon: >
-          if (state == '0.0') return 'mdi:volume-off';
+          if (state === '0.0') return 'mdi:volume-off';
           if (state <= '0.3') return 'mdi:volume-low';
           if (state <= '0.6') return 'mdi:volume-medium';
           return 'mdi:volume-high';
         icon_color: >
-          if (state == '0.0') return 'darkblue';
+          if (state === '0.0') return 'darkblue';
           if (state <= '0.1') return 'mediumblue';
           if (state <= '0.2') return 'blue';
           if (state <= '0.3') return 'dodgerblue';
@@ -213,7 +213,7 @@ homeassistant:
     switch.sw_boiler_bijkeuken*:
       templates:
         icon: >
-          if (state == 'on') return 'mdi:water-boiler';
+          if (state === 'on') return 'mdi:water-boiler';
           return 'mdi:water-boiler-off';
         <<: *state_color # remember this one? defined in the Domain above, also use here.
                          # Yaml anchors are defined per text file. Within that file you
@@ -223,23 +223,23 @@ homeassistant:
     switch.sw_freezer_bijkeuken*:
       templates:
         icon: >
-          if (state == 'on') return 'mdi:fridge';
+          if (state === 'on') return 'mdi:fridge';
           return 'mdi:fridge-outline';
         <<: *state_color
     
     sensor.synology_exceeded_max_bad_sectors_*:
       templates:
         icon: >
-          if (state == 'True') return 'mdi:alert-circle';
+          if (state === 'True') return 'mdi:alert-circle';
           return 'mdi:check-circle';
         icon_color: >
-          if (state == 'True') return 'red';
+          if (state === 'True') return 'red';
           return 'green';
     
     sensor.synology_status_*:
       templates:
         icon_color: >
-          if (state == 'warning') return 'red';
+          if (state === 'warning') return 'red';
           return 'green';
     
     sensor.synology_below_min_remaining_life_*:
@@ -248,7 +248,7 @@ homeassistant:
           if (state == 'True') return 'mdi:alert-circle';
           return 'mdi:check-circle';
         icon_color: >
-          if (state == 'True') return 'red';
+          if (state === 'True') return 'red';
           return 'green';
     
     sensor.*_motion_sensor_sensitivity:
@@ -256,10 +256,10 @@ homeassistant:
         icon: >
           return 'mdi:numeric-' + state + '-box-multiple-outline';
         icon_color: >
-          if (state == '0') return 'grey';
-          if (state == '1') return 'blue';
-          if (state == '2') return 'green';
-          if (state == '3') return 'orange';
+          if (state === '0') return 'grey';
+          if (state === '1') return 'blue';
+          if (state === '2') return 'green';
+          if (state === '3') return 'orange';
           return 'red';
 
 # This is another fine example, and very powerful using entity_picture on state:
@@ -290,13 +290,13 @@ homeassistant:
     sensor.synology_status_volume_1:
       templates:
         icon_color: >
-          if (state == 'warning') return 'red';
+          if (state === 'warning') return 'red';
           return 'green';
     
     device_tracker.tv_auditorium_samsung_8k:
       templates: &green_color
         icon_color: >
-          if (state == 'home') return 'green';
+          if (state === 'home') return 'green';
           return 'steelblue';
     
     device_tracker.tv_library_philips:
@@ -313,11 +313,11 @@ homeassistant:
     sensor.huidig_tarief:
       templates:
         icon: >
-          if (state == '1') return 'mdi:numeric-1-box-multiple-outline';
-          if (state == '2') return 'mdi:numeric-2-box-multiple-outline';
+          if (state === '1') return 'mdi:numeric-1-box-multiple-outline';
+          if (state === '2') return 'mdi:numeric-2-box-multiple-outline';
           return 'mdi:fire';
         icon_color: >
-          if (state == '1') return 'green';
+          if (state === '1') return 'green';
           return 'orange';
 
 ##########################################################################################
@@ -434,10 +434,10 @@ homeassistant:
     input_boolean.flash_color:
       templates:
         icon: >
-          if (state == 'on') return 'mdi:alarm-light';
+          if (state === 'on') return 'mdi:alarm-light';
           return 'mdi:alarm-light-outline';
         icon_color: >
-          if (state == 'on') return entities['input_select.select_flash_color'].state.toLowerCase();
+          if (state === 'on') return entities['input_select.select_flash_color'].state.toLowerCase();
           return 'steelblue';
 
     sensor.*_battery:
@@ -476,16 +476,16 @@ homeassistant:
   customize_domain:
     device_tracker:
       templates:
-        icon_color: if (state == 'home') return 'green';return 'purple';
+        icon_color: if (state === 'home') return 'green';return 'purple';
 
   customize:
     binary_sensor.updater:
       templates:
-        icon_color: if (state == 'on') return 'red';return 'green';
+        icon_color: if (state === 'on') return 'red';return 'green';
 
     device_tracker.hall:
       templates:
-        icon_color: if (state == 'home') return 'green';return 'orange';
+        icon_color: if (state === 'home') return 'green';return 'orange';
         icon: if (state == 'home') return 'mdi:speaker-wireless';return 'mdi:speaker-off';
 
     person.marius:
