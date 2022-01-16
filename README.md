@@ -36,3 +36,6 @@ Also, custom-ui can not customize everything. Entities created in python scripts
 Lastly, not all core HA cards use the same icon handling. Because of that custom-ui doesn't work with [Entity card](https://www.home-assistant.io/lovelace/entity/) and [Picture-glance card](https://www.home-assistant.io/lovelace/picture-glance/).
 
 Thomas Loven's [Card-mod](https://github.com/thomasloven/lovelace-card-mod), which is an amazing plugin for Lovelace with many features, to the rescue.
+
+## Interaction with Card-mod
+Be aware that Custom-ui is very impactful. As a matter of fact, it is 'stronger' than card-mod. Meaning, if you have eg a customize_glob on icon_color set using Custom-ui, any Card-mod config won't work.
