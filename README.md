@@ -2,6 +2,14 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
+## HEADS-UP!
+As of Home Assistant 2022.4, the frontend will change and has [another way](https://github.com/home-assistant/frontend/pull/12016) of handling [Websockets](https://github.com/home-assistant/core/pull/67891). This seems to impact Custom-ui heavily. As of then State changes are no longer followed, but entities are subsribed to.
+For Custom-ui this means the templates we use are no longer immediately executed, but need a view reload. Which obviously makes many templates useless, especially the ones that set an icon an state change (on/off...) or where a signla color was used as the indication of an alert color.
+
+I did file an [issue](https://github.com/home-assistant/frontend/issues/12115) but fear that won't help a lot, as using Custom-ui os on our own, and not a core HA project. Ive reached out for help, and repeat that here:
+
+### Please chime in if you would know how to adapt Custom-ui to use the new Websocket handling!
+
 ## Main features Custom-ui
 We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are **Templates** and support for the **icon_color** attribute. We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet very compact customizations. Added to that, custom-ui allows one to **hide attributes** from the more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) how.
 
