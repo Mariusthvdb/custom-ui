@@ -2,7 +2,7 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
-## HEADS-UP!
+## HEADS-UP/BREAKING!
 As of Home Assistant [2022.4](https://www.home-assistant.io/blog/2022/04/06/release-20224/#frontend-ui-performance), the frontend will change and has [another way](https://github.com/home-assistant/frontend/pull/12016) of handling [Websockets](https://github.com/home-assistant/core/pull/67891). This heavily impacts Custom-ui. As of then State changes are no longer followed, but entities are subscribed to. Checkout [Paulus's explanation](https://youtu.be/wOrJUWYYWdY?t=4862) in the 2022.4 release party on the matter.
 
 For Custom-ui this means the templates we use are no longer immediately executed, but need a View reload. Which obviously makes many templates useless, especially the ones that set an icon on state change (on/off...) or where a signal color was used as the indication of an alert color.
