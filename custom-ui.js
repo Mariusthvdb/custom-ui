@@ -1,8 +1,8 @@
 "use strict";
 
 var Name = "Custom-ui";
-var Version = "20210528";
-var Description = "adapted for HA 2021.6 + ";
+var Version = "20220416";
+var Description = "adapted for HA 2022.4 + ";
 var Url = "https://github.com/Mariusthvdb/custom-ui";
 console.info(
   `%c  ${Name}  \n%c  Version ${Version} ${Description}`,
@@ -21,17 +21,17 @@ console.info(
     return t[i].call(n.exports, n, n.exports, s), n.l = !0, n.exports;
   }
 
-    s.o = function (t, e) {
+  s.o = function (t, e) {
     return Object.prototype.hasOwnProperty.call(t, e);
   },
-  s.p = "", s(s.s = 0);
+    s.p = "", s(s.s = 0);
 }
- ([function (t, e, s) {
-    function i(t, e, s, i = !1) {
-      o.setAttribute("content", t);
-    }
+([function (t, e, s) {
+  function i(t, e, s, i = !1) {
+    o.setAttribute("content", t);
+  }
 
-    window.customUI = window.customUI || {
+  window.customUI = window.customUI || {
 
     lightOrShadow: (t, e) => t.shadowRoot ? t.shadowRoot.querySelector(e) : t.querySelector(e),
 
@@ -43,11 +43,11 @@ console.info(
       if (!i.templates) return window.customUI._setKeep(s, !0), s;
       const n = {};
       let a = !1,
-          o = !1;
+        o = !1;
       if (Object.keys(i.templates).forEach(r => {
         const l = i.templates[r];
         l.match(/\b(entities|hass)\b/) && (a = !0);
-        const c = window.customUI.computeTemplate(l, t, e, s, i, s.untemplated_attributes && s.untemplated_attributes[r] || i[r], s.untemplated_state || s.state);
+        const c = window.customUI.computeTemplate(l, t, e, s, i, i[r], s.state);
         null !== c && (n[r] = c, "state" === r ? c !== s.state && (o = !0) : c !== i[r] && (o = !0));
       }), window.customUI._setKeep(s, !a), !o) return s;
       if (s.attributes === i) {
@@ -82,11 +82,11 @@ console.info(
 //       if (s) return e;
 //       return n = (n = window.customUI.maybeApplyTemplateAttributes(t.hass, t.hass.states, n, n.attributes)) !== e && i ? null : n;
 //     },
-      
+
 //  New for HA 2021.6: the logic only gets triggered when the ha attributes panel is expanded, but not when it gets closed.
     updateMoreInfo(ev) {
       if (!ev.detail.expanded)
-          return;
+        return;
 
       s = 0, i = setInterval(function () {
         ++s >= 2 && clearInterval(i);
@@ -154,7 +154,6 @@ console.info(
           } = this;
           t.states && Object.keys(t.states).forEach(e => {
             const i = t.states[e];
-            if (i._cui_keep) return;
             const n = window.customUI.maybeApplyTemplates(s, t.states, i);
             s.states && i !== s.states[e] ? t.states[e] = n : i !== n && (t.states[e] = n);
           }), e.call(this, t);
@@ -199,14 +198,14 @@ console.info(
       t.hass && t.hass.states
         ? (window.customUI.initDone = !0,
 //            window.addEventListener("location-changed", window.setTimeout.bind(null, 100)),
-           window.addEventListener("expanded-changed", window.customUI.updateMoreInfo),
+          window.addEventListener("expanded-changed", window.customUI.updateMoreInfo),
 //            window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []),
-           window.CUSTOM_UI_LIST = [],
-           window.CUSTOM_UI_LIST.push({
-             name: `${Name}`,
-             version: `${Version} ${Description}`,
-             url: `${Url}`
-           }))
+          window.CUSTOM_UI_LIST = [],
+          window.CUSTOM_UI_LIST.push({
+            name: `${Name}`,
+            version: `${Version} ${Description}`,
+            url: `${Url}`
+          }))
         : window.setTimeout(window.customUI.init, 1e3);
     },
 
@@ -216,7 +215,7 @@ console.info(
         return new Function("hass", "entities", "entity", "attributes", "attribute", "state", r)(e, s, i, n, a, o);
       } catch (t) {
         if (t instanceof SyntaxError || t instanceof ReferenceError) return
-          console.warn(`${t.name}: ${t.message} in template ${r}`), null;
+        console.warn(`${t.name}: ${t.message} in template ${r}`), null;
         throw t;
       }
     }
