@@ -12,7 +12,7 @@ I did file an [issue](https://github.com/home-assistant/frontend/issues/12115) b
 ### Please chime in if you would know how to adapt Custom-ui to use the new Websocket handling!
 
 ## Please test
-this [https://github.com/Mariusthvdb/custom-ui/releases/tag/20220417-beta](Beta version for 2022.4) @bratanon made, with more readbable code than the minimized version we are using up to now.
+this [Beta version for 2022.4](https://github.com/Mariusthvdb/custom-ui/releases/tag/20220417-beta) @bratanon made, with more readbable code than the minimized version we are using up to now.
 
 ## Main features Custom-ui
 We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are **Templates** and support for the **icon_color** attribute. We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet very compact customizations. Added to that, custom-ui allows one to **hide attributes** from the more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) how.
