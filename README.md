@@ -1,7 +1,7 @@
 # Custom-ui adapted for Home Assistant 2022.4
 
 ## NEWS
-@bratanon joined and please welcome him as new co-maintainer of this repo. Thanks to Brat we can again enjoy the full options of Custom-ui, and do so with more readbable code than the minimized version we were using up to now.
+@bratanon joined and please welcome him as new co-maintainer of this repo. Thanks to Emil we can again enjoy the full options of Custom-ui, and do so with more readbable code than the minimized version we were using up to now.
 
 ## Main features Custom-ui
 We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are **Templates** and support for the **icon_color** attribute. We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet very compact customizations. Added to that, custom-ui allows one to **hide attributes** from the more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) how.
