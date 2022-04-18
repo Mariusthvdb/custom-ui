@@ -18,6 +18,10 @@ window.customUI = window.customUI || {
     // Create a new object with computed values for each template where the computed value is not null.
     const newAttributes = {};
     Object.keys(entity.attributes.templates).forEach((key) => {
+      if (key === "state") {
+        console.warn(`State templating is not supported anymore, please check you customization for ${entity.entity_id}`);
+        return;
+      }
       const template = entity.attributes.templates[key];
 
       const value = window.customUI.computeTemplate(
@@ -35,13 +39,6 @@ window.customUI = window.customUI || {
       attributes: Object.assign({}, entity.attributes, newAttributes),
       untemplated_attributes: entity.untemplated_attributes ?? entity.attributes,
     });
-
-    if (Object.prototype.hasOwnProperty.call(newAttributes, 'state')) {
-      if (newAttributes.state !== null) {
-        newEntity.state = String(newAttributes.state);
-        newEntity.untemplated_state = newEntity.untemplated_state || entity.state;
-      }
-    }
 
     return newEntity;
   },
