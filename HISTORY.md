@@ -31,7 +31,5 @@ As of Home Assistant [2022.4](https://www.home-assistant.io/blog/2022/04/06/rele
 
 For Custom-ui this means the templates we use are no longer immediately executed, but need a View reload. Which obviously makes many templates useless, especially the ones that set an icon on state change (on/off...) or where a signal color was used as the indication of an alert color.
 
-I did file an [issue](https://github.com/home-assistant/frontend/issues/12115) but fear that won't help a lot, as using Custom-ui is on our own, and not a core HA project. I've reached out for help, and repeat that here:
-
-### Please chime in if you would know how to adapt Custom-ui to use the new Websocket handling!
-We have released a new and 2022.4 ready version.
+I did file an [issue](https://github.com/home-assistant/frontend/issues/12115) but fear that won't help a lot, as using Custom-ui is on our own, and not a core HA project. 
+@bratanon joined and he made the original minimized code more readable, and we have released a new and 2022.4 ready version.
