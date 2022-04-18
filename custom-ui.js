@@ -14,58 +14,37 @@ window.customUI = window.customUI || {
 
   lightOrShadow: (elem, selector) => elem.shadowRoot ? elem.shadowRoot.querySelector(selector) : elem.querySelector(selector),
 
-  maybeApplyTemplateAttributes(hass, states, stateObj, attributes) {
-    if (!attributes.templates) {
-      return stateObj;
-    }
-
+  maybeApplyTemplateAttributes(hass, states, entity) {
+    // Create a new object with computed values for each template where the computed value is not null.
     const newAttributes = {};
-    Object.keys(attributes.templates).forEach((key) => {
-      const template = attributes.templates[key];
+    Object.keys(entity.attributes.templates).forEach((key) => {
+      const template = entity.attributes.templates[key];
 
       const value = window.customUI.computeTemplate(
-        template, hass, states, stateObj, attributes, attributes[key],stateObj.state);
+        template, hass, states, entity, entity.attributes,
+        (entity.untemplated_attributes?.[key]) || entity.attributes[key],
+        entity.untemplated_state || entity.state);
 
-      if (value === null) return;
+      if (value === null)
+        return;
+
       newAttributes[key] = value;
     });
 
-    if (stateObj.attributes === attributes) {
-      const result = window.customUI.applyAttributes(stateObj, newAttributes);
+    const newEntity = Object.assign({}, entity, {
+      attributes: Object.assign({}, entity.attributes, newAttributes),
+      untemplated_attributes: entity.untemplated_attributes ?? entity.attributes,
+    });
 
-      if (Object.prototype.hasOwnProperty.call(newAttributes, 'state')) {
-        if (newAttributes.state !== null) {
-          result.state = String(newAttributes.state);
-          result.untemplated_state = stateObj.state;
-        }
+    if (Object.prototype.hasOwnProperty.call(newAttributes, 'state')) {
+      if (newAttributes.state !== null) {
+        newEntity.state = String(newAttributes.state);
+        newEntity.untemplated_state = newEntity.untemplated_state || entity.state;
       }
-
-      return result;
     }
 
-    return Object.assign({}, stateObj);
+    return newEntity;
   },
-
-  maybeApplyTemplates(hass, states, stateObj) {
-    const newResult = window.customUI.maybeApplyTemplateAttributes(
-      hass, states, stateObj, stateObj.attributes);
-    let hasChanges = (newResult !== stateObj);
-
-    if (newResult !== stateObj) return newResult;
-    if (hasChanges) {
-      return Object.assign({}, stateObj);
-    }
-    return stateObj;
-  },
-
-  applyAttributes: (stateObj, attributes) => ({
-    entity_id: stateObj.entity_id,
-    state: stateObj.state,
-    attributes: Object.assign({}, stateObj.attributes, attributes),
-    untemplated_attributes: stateObj.attributes,
-    last_changed: stateObj.last_changed,
-    last_updated: stateObj.last_updated
-  }),
 
   updateMoreInfo(ev) {
     if (!ev.detail.expanded)
@@ -128,19 +107,27 @@ window.customUI = window.customUI || {
   installStatesHook() {
     customElements.whenDefined("home-assistant").then(() => {
       const homeAssistant = customElements.get('home-assistant');
-      if (!homeAssistant || !homeAssistant.prototype._updateHass) return;
+      if (!homeAssistant?.prototype?._updateHass)
+        return;
+
       const originalUpdate = homeAssistant.prototype._updateHass;
       homeAssistant.prototype._updateHass = function update(obj) {
         const { hass } = this;
+
         if (obj.states) {
           Object.keys(obj.states).forEach((key) => {
             const entity = obj.states[key];
-            const newEntity = window.customUI.maybeApplyTemplates(hass, obj.states, entity);
-            if (hass.states && entity !== hass.states[key]) {
-              obj.states[key] = newEntity;
-            } else if (entity !== newEntity) {
-              obj.states[key] = newEntity;
+
+            if (!entity.attributes.templates) {
+              return;
             }
+
+            const newEntity = window.customUI.maybeApplyTemplateAttributes(hass, obj.states, entity);
+
+            if (hass.states && (entity !== hass.states[key]))
+              obj.states[key] = newEntity;
+            else if (entity !== newEntity)
+              obj.states[key] = newEntity;
           });
         }
 
@@ -153,41 +140,46 @@ window.customUI = window.customUI || {
   installStateBadge() {
     customElements.whenDefined("state-badge").then(() => {
       const stateBadge = customElements.get('state-badge');
-      if (!stateBadge) return;
+      if (!stateBadge)
+        return;
 
       if (stateBadge.prototype.updated) {
         const originalUpdated = stateBadge.prototype.updated;
         stateBadge.prototype.updated = function customUpdated(changedProps) {
-          if (!changedProps.has('stateObj')) return;
+          if (!changedProps.has('stateObj'))
+            return;
+
           const { stateObj } = this;
+
           if (stateObj.attributes.icon_color && !stateObj.attributes.entity_picture) {
             this.style.backgroundImage = '';
             this._showIcon = true;
-            this._iconStyle= {
-              color: stateObj.attributes.icon_color,
-              filter: '',
-            };
-            originalUpdated.call(this, changedProps);
-          } else {
-            originalUpdated.call(this, changedProps);
+            this._iconStyle= { color: stateObj.attributes.icon_color };
           }
+
+          originalUpdated.call(this, changedProps);
         };
       }
     });
   },
 
   installClassHooks() {
-    if (window.customUI.classInitDone) return;
+    if (window.customUI.classInitDone)
+      return;
+
     window.customUI.classInitDone = true;
     window.customUI.installStatesHook();
     window.customUI.installStateBadge();
   },
 
   init() {
-    if (window.customUI.initDone) return;
+    if (window.customUI.initDone)
+      return;
+
     window.customUI.installClassHooks();
+
     const main = window.customUI.lightOrShadow(document, "home-assistant");
-    if (!main.hass || !main.hass.states) {
+    if (!main.hass?.states) {
       window.setTimeout(window.customUI.init, 1000);
       return;
     }
@@ -200,7 +192,8 @@ window.customUI = window.customUI || {
     const functionBody = (template.indexOf('return') >= 0) ? template : `return \`${template}\`;`;
 
     try {
-      return new Function('hass', 'entities', 'entity', 'attributes', 'attribute', 'state', functionBody)(hass, entities, entity, attributes, attribute, state);
+      return new Function('hass', 'entities', 'entity', 'attributes', 'attribute', 'state', functionBody)
+      (hass, entities, entity, attributes, attribute, state);
     } catch (e) {
       if ((e instanceof SyntaxError) || e instanceof ReferenceError) {
         console.warn(`${e.name}: ${e.message} in template ${functionBody}`);
