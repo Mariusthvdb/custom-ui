@@ -25,3 +25,13 @@ More-info with `hide_attributes`:
 ![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-more-info.png)
 
 Ha 2021.6 changed Frontend representation of more-info attributes once again, and custom-ui updated to follow that. Thank you @spacegaier and Bram for helping out!
+
+## HEADS-UP/BREAKING!
+As of Home Assistant [2022.4](https://www.home-assistant.io/blog/2022/04/06/release-20224/#frontend-ui-performance), the frontend will change and has [another way](https://github.com/home-assistant/frontend/pull/12016) of handling [Websockets](https://github.com/home-assistant/core/pull/67891). This heavily impacts Custom-ui. As of then State changes are no longer followed, but entities are subscribed to. Checkout [Paulus's explanation](https://youtu.be/wOrJUWYYWdY?t=4862) in the 2022.4 release party on the matter.
+
+For Custom-ui this means the templates we use are no longer immediately executed, but need a View reload. Which obviously makes many templates useless, especially the ones that set an icon on state change (on/off...) or where a signal color was used as the indication of an alert color.
+
+I did file an [issue](https://github.com/home-assistant/frontend/issues/12115) but fear that won't help a lot, as using Custom-ui is on our own, and not a core HA project. I've reached out for help, and repeat that here:
+
+### Please chime in if you would know how to adapt Custom-ui to use the new Websocket handling!
+We have released a new and 2022.4 ready version.
