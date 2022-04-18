@@ -1,228 +1,207 @@
 "use strict";
 
-var Name = "Custom-ui";
-var Version = "20210528";
-var Description = "adapted for HA 2021.6 + ";
-var Url = "https://github.com/Mariusthvdb/custom-ui";
+const Name = "Custom-ui";
+const Version = "20220416";
+const Description = "adapted for HA 2022.4 + ";
+const Url = "https://github.com/Mariusthvdb/custom-ui";
 console.info(
   `%c  ${Name}  \n%c  Version ${Version} ${Description}`,
   "color: gold; font-weight: bold; background: black",
   "color: white; font-weight: bold; background: steelblue"
 );
-!function (t) {
-  var e = {};
-  function s(i) {
-    if (e[i]) return e[i].exports;
-    var n = e[i] = {
-      i: i,
-      l: !1,
-      exports: {}
-    };
-    return t[i].call(n.exports, n, n.exports, s), n.l = !0, n.exports;
-  }
 
-    s.o = function (t, e) {
-    return Object.prototype.hasOwnProperty.call(t, e);
+window.customUI = window.customUI || {
+
+  lightOrShadow: (elem, selector) => elem.shadowRoot ? elem.shadowRoot.querySelector(selector) : elem.querySelector(selector),
+
+  maybeApplyTemplateAttributes(hass, states, entity) {
+    // Create a new object with computed values for each template where the computed value is not null.
+    const newAttributes = {};
+    Object.keys(entity.attributes.templates).forEach((key) => {
+      const template = entity.attributes.templates[key];
+
+      const value = window.customUI.computeTemplate(
+        template, hass, states, entity, entity.attributes,
+        (entity.untemplated_attributes?.[key]) || entity.attributes[key],
+        entity.untemplated_state || entity.state);
+
+      if (value === null)
+        return;
+
+      newAttributes[key] = value;
+    });
+
+    const newEntity = Object.assign({}, entity, {
+      attributes: Object.assign({}, entity.attributes, newAttributes),
+      untemplated_attributes: entity.untemplated_attributes ?? entity.attributes,
+    });
+
+    if (Object.prototype.hasOwnProperty.call(newAttributes, 'state')) {
+      if (newAttributes.state !== null) {
+        newEntity.state = String(newAttributes.state);
+        newEntity.untemplated_state = newEntity.untemplated_state || entity.state;
+      }
+    }
+
+    return newEntity;
   },
-  s.p = "", s(s.s = 0);
-}
- ([function (t, e, s) {
-    function i(t, e, s, i = !1) {
-      o.setAttribute("content", t);
-    }
 
-    window.customUI = window.customUI || {
+  updateMoreInfo(ev) {
+    if (!ev.detail.expanded)
+      return;
 
-    lightOrShadow: (t, e) => t.shadowRoot ? t.shadowRoot.querySelector(e) : t.querySelector(e),
-
-    _setKeep(t, e) {
-      void 0 === t._cui_keep ? t._cui_keep = e : t._cui_keep = t._cui_keep && e;
-    },
-
-    maybeApplyTemplateAttributes(t, e, s, i) {
-      if (!i.templates) return window.customUI._setKeep(s, !0), s;
-      const n = {};
-      let a = !1,
-          o = !1;
-      if (Object.keys(i.templates).forEach(r => {
-        const l = i.templates[r];
-        l.match(/\b(entities|hass)\b/) && (a = !0);
-        const c = window.customUI.computeTemplate(l, t, e, s, i, s.untemplated_attributes && s.untemplated_attributes[r] || i[r], s.untemplated_state || s.state);
-        null !== c && (n[r] = c, "state" === r ? c !== s.state && (o = !0) : c !== i[r] && (o = !0));
-      }), window.customUI._setKeep(s, !a), !o) return s;
-      if (s.attributes === i) {
-        const t = window.customUI.applyAttributes(s, n);
-        return Object.prototype.hasOwnProperty.call(n, "state") && null !== n.state && (t.state = String(n.state), t.untemplated_state = s.state), window.customUI._setKeep(t, !a), t;
-      }
-      return Object.assign({}, s);
-    },
-
-    maybeApplyTemplates(t, e, s) {
-      const i = window.customUI.maybeApplyTemplateAttributes(t, e, s, s.attributes);
-      let n = i !== s;
-      function a(s) {
-        s && Object.values(s).forEach(s => {
-          const a = window.customUI.maybeApplyTemplateAttributes(t, e, i, s);
-          n |= a !== i;
-        });
-      }
-      return i !== s ? i : n ? Object.assign({}, s) : s;
-    },
-
-    applyAttributes: (t, e) => ({
-      entity_id: t.entity_id,
-      state: t.state,
-      attributes: Object.assign({}, t.attributes, e),
-      untemplated_attributes: t.attributes,
-      last_changed: t.last_changed,
-      last_updated: t.last_updated
-    }),
-
-//     maybeChangeObject(t, e, s, i) {
-//       if (s) return e;
-//       return n = (n = window.customUI.maybeApplyTemplateAttributes(t.hass, t.hass.states, n, n.attributes)) !== e && i ? null : n;
-//     },
-      
-//  New for HA 2021.6: the logic only gets triggered when the ha attributes panel is expanded, but not when it gets closed.
-    updateMoreInfo(ev) {
-      if (!ev.detail.expanded)
-          return;
-
-      s = 0, i = setInterval(function () {
-        ++s >= 2 && clearInterval(i);
-        try {
-          var t;
-          {
-            var moreInfoNodeName;
-            var contentChild;
-            contentChild = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-content").childNodes;
-            for (var c = 0; c < contentChild.length; c++) {
-              var nodeItem = contentChild.item(c);
-              if (nodeItem.nodeName.toLowerCase().startsWith("more-info-")) {
-                moreInfoNodeName = nodeItem.nodeName.toLowerCase();
-              }
-            }
-
-            if (moreInfoNodeName == "more-info-group") {
-              var moreInfoNestedNodeName;
-              var contentChildNested;
-              contentChildNested = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.childNodes;
-              for (var c = 0; c < contentChildNested.length; c++) {
-                var nodeItemNested = contentChildNested.item(c);
-
-                if (nodeItemNested.nodeName.toLowerCase().startsWith("more-info-")) {
-                  moreInfoNestedNodeName = nodeItemNested.nodeName.toLowerCase();
-                }
-              }
-              t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.querySelector(moreInfoNestedNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry");
-            } else {
-              t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector(moreInfoNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry");
-            }
-          }
-
-          if (t.length) {
-            var e;
-            for (var n = 0; n < t.length; n++) {
-              var o = t[n].getElementsByClassName("key")[0];
-
-              if (o.innerText.toLowerCase().trim() == "hide attributes") {
-                e = o.parentNode.getElementsByClassName("value")[0].innerText.split(",").map(function (item) {
-                  return item.replace("_", " ").trim();
-                });
-                e.push("hide attributes");
-              }
-            }
-
-            for (var n = 0; n < t.length; n++) {
-              var o = t[n].getElementsByClassName("key")[0];
-              (e.includes(o.innerText.toLowerCase().trim()) || e.includes("all")) && (o.parentNode.style.display = "none");
-            }
-            clearInterval(i);
-          }
-        } catch (err) {}
-      }, 100);
-    },
-
-    installStatesHook() {
-      customElements.whenDefined("home-assistant").then(() => {
-        const t = customElements.get("home-assistant");
-        if (!t || !t.prototype._updateHass) return;
-        const e = t.prototype._updateHass;
-        t.prototype._updateHass = function (t) {
-          const {
-            hass: s
-          } = this;
-          t.states && Object.keys(t.states).forEach(e => {
-            const i = t.states[e];
-            if (i._cui_keep) return;
-            const n = window.customUI.maybeApplyTemplates(s, t.states, i);
-            s.states && i !== s.states[e] ? t.states[e] = n : i !== n && (t.states[e] = n);
-          }), e.call(this, t);
-        };
-      });
-    },
-
-    installStateBadge() {
-      customElements.whenDefined("state-badge").then(() => {
-        const t = customElements.get("state-badge");
-        if (t) if (t.prototype._updateIconAppearance) {
-          const e = t.prototype._updateIconAppearance;
-          t.prototype._updateIconAppearance = function (t) {
-            t.attributes.icon_color && !t.attributes.entity_picture ? (this.style.backgroundImage = "", Object.assign(this.$.icon.style, {
-              color: t.attributes.icon_color,
-              filter: ""
-            })) : e.call(this, t);
-          };
-        } else if (t.prototype.updated) {
-          const e = t.prototype.updated;
-          t.prototype.updated = function (t) {
-            if (!t.has("stateObj")) return;
-            const {
-              stateObj: s
-            } = this;
-            s.attributes.icon_color && !s.attributes.entity_picture ? (this.style.backgroundImage = "", this._showIcon = true, this._iconStyle = {
-              color: s.attributes.icon_color
-            }) : e.call(this, t);
-          };
-        }
-      });
-    },
-
-    installClassHooks() {
-      window.customUI.classInitDone || (window.customUI.classInitDone = !0, window.customUI.installStatesHook(), window.customUI.installStateBadge());
-    },
-
-    init() {
-      if (window.customUI.initDone) return;
-      window.customUI.installClassHooks();
-      const t = window.customUI.lightOrShadow(document, "home-assistant");
-      t.hass && t.hass.states
-        ? (window.customUI.initDone = !0,
-//            window.addEventListener("location-changed", window.setTimeout.bind(null, 100)),
-           window.addEventListener("expanded-changed", window.customUI.updateMoreInfo),
-//            window.CUSTOM_UI_LIST || (window.CUSTOM_UI_LIST = []),
-           window.CUSTOM_UI_LIST = [],
-           window.CUSTOM_UI_LIST.push({
-             name: `${Name}`,
-             version: `${Version} ${Description}`,
-             url: `${Url}`
-           }))
-        : window.setTimeout(window.customUI.init, 1e3);
-    },
-
-    computeTemplate(t, e, s, i, n, a, o) {
-      const r = t.indexOf("return") >= 0 ? t : `return \`${t}\`;`;
+    var s = 0, i = setInterval(function () {
+      ++s >= 2 && clearInterval(i);
       try {
-        return new Function("hass", "entities", "entity", "attributes", "attribute", "state", r)(e, s, i, n, a, o);
-      } catch (t) {
-        if (t instanceof SyntaxError || t instanceof ReferenceError) return
-          console.warn(`${t.name}: ${t.message} in template ${r}`), null;
-        throw t;
+        var t;
+        {
+          var moreInfoNodeName;
+          var contentChild;
+          contentChild = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-content").childNodes;
+          for (var c = 0; c < contentChild.length; c++) {
+            var nodeItem = contentChild.item(c);
+            if (nodeItem.nodeName.toLowerCase().startsWith("more-info-")) {
+              moreInfoNodeName = nodeItem.nodeName.toLowerCase();
+            }
+          }
+
+          if (moreInfoNodeName == "more-info-group") {
+            var moreInfoNestedNodeName;
+            var contentChildNested;
+            contentChildNested = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.childNodes;
+            for (var c = 0; c < contentChildNested.length; c++) {
+              var nodeItemNested = contentChildNested.item(c);
+
+              if (nodeItemNested.nodeName.toLowerCase().startsWith("more-info-")) {
+                moreInfoNestedNodeName = nodeItemNested.nodeName.toLowerCase();
+              }
+            }
+            t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.querySelector(moreInfoNestedNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry");
+          } else {
+            t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector(moreInfoNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry");
+          }
+        }
+
+        if (t.length) {
+          var e;
+          for (var n = 0; n < t.length; n++) {
+            var o = t[n].getElementsByClassName("key")[0];
+            if (o.innerText.toLowerCase().trim() == "hide attributes") {
+              e = o.parentNode.getElementsByClassName("value")[0].innerText.split(",").map(function (item) {
+                return item.replace("_", " ").trim();
+              });
+              e.push("hide attributes");
+            }
+          }
+
+          for (var n = 0; n < t.length; n++) {
+            var o = t[n].getElementsByClassName("key")[0];
+            (e.includes(o.innerText.toLowerCase().trim()) || e.includes("all")) && (o.parentNode.style.display = "none");
+          }
+          clearInterval(i);
+        }
+      } catch (err) { }
+    }, 100);
+  },
+
+  installStatesHook() {
+    customElements.whenDefined("home-assistant").then(() => {
+      const homeAssistant = customElements.get('home-assistant');
+      if (!homeAssistant?.prototype?._updateHass)
+        return;
+
+      const originalUpdate = homeAssistant.prototype._updateHass;
+      homeAssistant.prototype._updateHass = function update(obj) {
+        const { hass } = this;
+
+        if (obj.states) {
+          Object.keys(obj.states).forEach((key) => {
+            const entity = obj.states[key];
+
+            if (!entity.attributes.templates) {
+              return;
+            }
+
+            const newEntity = window.customUI.maybeApplyTemplateAttributes(hass, obj.states, entity);
+
+            if (hass.states && (entity !== hass.states[key]))
+              obj.states[key] = newEntity;
+            else if (entity !== newEntity)
+              obj.states[key] = newEntity;
+          });
+        }
+
+        originalUpdate.call(this, obj);
+      };
+
+    });
+  },
+
+  installStateBadge() {
+    customElements.whenDefined("state-badge").then(() => {
+      const stateBadge = customElements.get('state-badge');
+      if (!stateBadge)
+        return;
+
+      if (stateBadge.prototype.updated) {
+        const originalUpdated = stateBadge.prototype.updated;
+        stateBadge.prototype.updated = function customUpdated(changedProps) {
+          if (!changedProps.has('stateObj'))
+            return;
+
+          const { stateObj } = this;
+
+          if (stateObj.attributes.icon_color && !stateObj.attributes.entity_picture) {
+            this.style.backgroundImage = '';
+            this._showIcon = true;
+            this._iconStyle= { color: stateObj.attributes.icon_color };
+          }
+
+          originalUpdated.call(this, changedProps);
+        };
       }
+    });
+  },
+
+  installClassHooks() {
+    if (window.customUI.classInitDone)
+      return;
+
+    window.customUI.classInitDone = true;
+    window.customUI.installStatesHook();
+    window.customUI.installStateBadge();
+  },
+
+  init() {
+    if (window.customUI.initDone)
+      return;
+
+    window.customUI.installClassHooks();
+
+    const main = window.customUI.lightOrShadow(document, "home-assistant");
+    if (!main.hass?.states) {
+      window.setTimeout(window.customUI.init, 1000);
+      return;
     }
-  }, window.customUI.init(), s(1);
-}, function (t, e) {
-  window.JSCompiler_renameProperty = function (t) {
-    return t;
-  };
-}]);
+
+    window.customUI.initDone = true;
+    window.addEventListener("expanded-changed", window.customUI.updateMoreInfo);
+  },
+
+  computeTemplate(template, hass, entities, entity, attributes, attribute, state) {
+    const functionBody = (template.indexOf('return') >= 0) ? template : `return \`${template}\`;`;
+
+    try {
+      return new Function('hass', 'entities', 'entity', 'attributes', 'attribute', 'state', functionBody)
+      (hass, entities, entity, attributes, attribute, state);
+    } catch (e) {
+      if ((e instanceof SyntaxError) || e instanceof ReferenceError) {
+        console.warn(`${e.name}: ${e.message} in template ${functionBody}`);
+        return null;
+      }
+      throw e;
+    }
+  }
+};
+
+window.customUI.init();
