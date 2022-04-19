@@ -183,6 +183,13 @@ window.customUI = window.customUI || {
 
     window.customUI.initDone = true;
     window.addEventListener("expanded-changed", window.customUI.updateMoreInfo);
+
+    window.CUSTOM_UI_LIST = window.CUSTOM_UI_LIST || [];
+    window.CUSTOM_UI_LIST.push({
+      name: `${Name}`,
+      version: `${Version} ${Description}`,
+      url: `${Url}`
+    });
   },
 
   computeTemplate(template, hass, entities, entity, attributes, attribute, state) {
