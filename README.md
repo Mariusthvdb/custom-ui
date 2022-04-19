@@ -1,15 +1,7 @@
-# Custom-ui adapted for Home Assistant 110.+ / 2021.6
+# Custom-ui adapted for Home Assistant 2022.4
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-
-## HEADS-UP/BREAKING!
-As of Home Assistant [2022.4](https://www.home-assistant.io/blog/2022/04/06/release-20224/#frontend-ui-performance), the frontend will change and has [another way](https://github.com/home-assistant/frontend/pull/12016) of handling [Websockets](https://github.com/home-assistant/core/pull/67891). This heavily impacts Custom-ui. As of then State changes are no longer followed, but entities are subscribed to. Checkout [Paulus's explanation](https://youtu.be/wOrJUWYYWdY?t=4862) in the 2022.4 release party on the matter.
-
-For Custom-ui this means the templates we use are no longer immediately executed, but need a View reload. Which obviously makes many templates useless, especially the ones that set an icon on state change (on/off...) or where a signal color was used as the indication of an alert color.
-
-I did file an [issue](https://github.com/home-assistant/frontend/issues/12115) but fear that won't help a lot, as using Custom-ui is on our own, and not a core HA project. I've reached out for help, and repeat that here:
-
-### Please chime in if you would know how to adapt Custom-ui to use the new Websocket handling!
+## NEWS
+@bratanon joined and please welcome him as new co-maintainer of this repo. Thanks to Emil we can again enjoy the full options of Custom-ui, and do so with more readable code than the minimized version we were using up to now.
 
 ## Main features Custom-ui
 We can [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). This is however rather limited. Two of the most important features Custom-ui offers on top of the core customization are **Templates** and support for the **icon_color** attribute. We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet very compact customizations. Added to that, custom-ui allows one to **hide attributes** from the more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) how.
