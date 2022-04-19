@@ -31,14 +31,14 @@ Coming from the original custom-ui, you may have used the
 to hide stuff from the `more-info` windows. This was useful, because we could also hide the 
 templates we set in custom-ui. However, current Lovelace broke customizer, resulting in:
 
-![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/templates-in-more-info.png)
+<img width="199" alt="templates-in-more-info" src="https://user-images.githubusercontent.com/812265/163999169-76d5c984-1a1c-4b19-a035-4293a9bb7d50.png">
 
 @CAB426 has changed custom-ui.js, so it again allows us to hide attributes in `more-info`, and even 
 better, we can now do so using custom-ui.js only.
 
 More-info with `hide_attributes`:
 
-![more-info](https://github.com/Mariusthvdb/custom-ui/blob/master/hidden-templates-more-info.png)
+<img width="199" alt="hidden-templates-more-info" src="https://user-images.githubusercontent.com/812265/163999236-e269b90f-92a0-48d6-b3bc-408f4ce35d01.png">
 
 HA 2021.6 changed frontend representation of more-info attributes once again, and custom-ui updated 
 to follow that. Thank you @spacegaier and Bram for helping out!
@@ -61,3 +61,4 @@ I did file an [issue](https://github.com/home-assistant/frontend/issues/12115) b
 help a lot, as using custom-ui is on our own, and not a core HA project.
 [@bratanon](https://github.com/bratanon) joined and he made the original minimized code more 
 readable, and we have released a new and 2022.4 ready version.
+
