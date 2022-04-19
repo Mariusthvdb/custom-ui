@@ -180,17 +180,7 @@ window.customUI = window.customUI || {
       window.setTimeout(window.customUI.init, 1000);
       return;
     }
-* WIP: Docs update
 
-* Update HISTORY.md
-
-* Update INSTALLING.md
-
-* Remove images, use inline images instead
-
-* Remove old custom-up-pre file
-
-* Update README.md
     window.customUI.initDone = true;
     window.addEventListener("expanded-changed", window.customUI.updateMoreInfo);
 
