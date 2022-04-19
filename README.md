@@ -37,7 +37,7 @@ Other templating still works the same.
 ### Manual Installation
 
 1. Download the [custom-ui](http://www.github.com/Mariusthvdb/custom-ui/releases/latest/download/custom-ui.js)
-2. Place the file in your `config/www` folder
+2. Place the file in your `config/www` folder or any subfolders.
 3. Include the card code in your `ui-lovelace-card.yaml`
 
    ```yaml
@@ -46,8 +46,6 @@ Other templating still works the same.
      - url: /local/custom-ui.js
        type: module
    ```
-
-4. Write configuration for the card in your `ui-lovelace.yaml`
 
 ### Installation and tracking with `hacs`
 
