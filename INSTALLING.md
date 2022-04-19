@@ -1,43 +1,11 @@
-# Installing Custom-ui
+# Other Installation
+Thw two main methods for installation is mentioned in the [README](https://github.com/Mariusthvdb/custom-ui/blob/master/README.md).
 
-## Prepare
+## Downloading custom-ui
+1. Create a new folder under your resources folder (`/www`). Suggestion: `custom-ui`.
+2. Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to that folder.
 
-* 0 Skip this step if you're new to custom-ui.
-Delete all existing references to custom-ui in your current config and delete all old custom-ui files. If you used it before, also delete all customizer companion files and references.
-
-## Installing is super easy:
-
-* 1 Create a new folder under your resources folder. Suggestion: custom-ui.
-
-* 2 Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to that folder.
-
-### Using Frontend
-* 3 This resembles the 'old' way most. You can load the new custom-ui by adding it via [extra_module_url:](https://www.home-assistant.io/integrations/frontend/#extra_module_url) in the [`frontend:`](https://www.home-assistant.io/integrations/frontend/) section in your configuration.yaml as follows (previously we used `/config/www/custom_ui` but, you can use any folder you like. So why not start using the 'resources' folder we use in Home Assistant nowadays):
-
-   ```yaml
-   frontend:
-     extra_module_url:
-       - /local/lovelace/resources/custom-ui/custom-ui.js
-   ```
-
-* 4 Restart Home Assistant.
-
-* 5 Refresh cache...
-You might have to refresh your cache a few times. In my personal experience, especially Safari on the Mac and the iPhone app can be a bit obnoxious....
-
-### Using Resources
-* 3 Add the following to your [resources.yaml](https://www.home-assistant.io/lovelace/dashboards-and-views/#resources) (adapt to your personal file hierarchy):
-
-  ```yaml
-   - url: /local/lovelace/resources/custom-ui/custom-ui.js?v=20200918 #change this v-number on each update
-     type: module
-  ```
-* 4 Reload the Lovelace resources.
-Click the top right Lovelace menu triple dots and Reload resources, or call service `lovelace.reload_resources` in `/developer-tools/service/`.
-
-* 5 Refresh Lovelace. 
-
-### Or, use The Modern way: UI
+## UI - The Modern way
 For the official docs on this see [Registering Resources](https://developers.home-assistant.io/docs/frontend/custom-ui/registering-resources)
 
 Register these resources with the Lovelace interface. This is done by navigating to the Lovelace resources page by following below link:
@@ -47,35 +15,45 @@ Register these resources with the Lovelace interface. This is done by navigating
 > Note: This tab is only available when the active user's profile has "advanced mode" enabled.
 
 ### Step by step
-- Click Configuration at `/config/dashboard`, click Lovelace Dashboards, click Resources.
-- Click
-![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/add.png)
-- Fill out the path in your configuration
+- Go to Configuration -> Dashboards -> Resources
+- Click "Add resource" button in the bottom right corner
+- Add the path to the Url field. Usually something like `/local/www/custom-ui/custom-ui.js`
 - Select `JavaScript Module`
-- Create
+- Click Create
 
-![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/configuration-resources.png)
+<img width="1054" alt="configuration-resources" src="https://user-images.githubusercontent.com/812265/163999674-f487f6e0-e216-49ab-ad25-596a338e8002.png">
 
-### HACS
-As I don't use [HACS](https://hacs.xyz) myself, I won't go into the details of a HACS install, but if you do use HACS, this repo can be added to the custom repositories.
+## Using Resources
+- Add the following to your [resources.yaml](https://www.home-assistant.io/dashboards/dashboards/#resources) 
+(adapt to your own file structure):
 
-## Check the correct loading of Custom-ui
-Having finished the above procedure, you should check if everything went well, and the info screens reflect the newly adapted file as it should. See below:
+  ```yaml
+   - url: /local/lovelace/resources/custom-ui/custom-ui.js
+     type: module
+  ```
+
+- Reload the Lovelace resources.
+Click the top right Lovelace menu triple dots and Reload resources, or call service `lovelace.reload_resources` in `/developer-tools/service/`.
+
+- Refresh Lovelace. 
+
+---
+
+## Installation verification 
+Having finished the above procedure, you should check if everything went well, and the info screen
+reflect the newly adapted file as it should. See below:
 
 In `/config/info`:
 
-![info](https://github.com/Mariusthvdb/custom-ui/blob/master/info.png)
+<img width="351" alt="info" src="https://user-images.githubusercontent.com/812265/163999719-e19f0da6-162f-46b1-86c3-ca4e6bfe6ad4.png">
 
 In Inspector:
 
-![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/module-in-inspector.png)
+<img width="622" alt="module-in-inspector" src="https://user-images.githubusercontent.com/812265/163999748-3093774e-12da-40a8-b33b-727ba15eb7a1.png">
 
 In Resources:
 
-![listed](https://github.com/Mariusthvdb/custom-ui/blob/master/listed-resources.png)
+<img width="1012" alt="listed-resources" src="https://user-images.githubusercontent.com/812265/163999777-81e62605-e698-47a2-a8a8-262b3da2f10e.png">
 
-* 6 If you don't see the above: repeat 5 until you do. Eventually it will show up (unless there's an error somewhere, which you will see in inspector most likely).
-
-## Finally...drumroll
-* 7 Happy customizing!
-
+If you don't see the above: repeat clearing your browser cache. Eventually it will show up (unless 
+there's an error somewhere, which you will see in inspector most likely).
