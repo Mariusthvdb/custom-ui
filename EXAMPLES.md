@@ -492,3 +492,19 @@ homeassistant:
       templates:
         entity_picture: return '/local/images/family/marius_bmj_' + state + '.png';
 ```
+
+# Ternary notation
+
+Alternatively, you can use the ternary notation, which makes for neat and short templates
+```yaml
+    switch.tester:
+      <<: &hide # use <<: *hide on all entities below this
+        hide_attributes:
+          - templates
+      templates:
+        icon: >
+          return (state === 'on') ? 'mdi:test-tube' : 'mdi:test-tube-off';
+        <<: &state_color
+          icon_color: >
+            return (state === 'on') ? 'var(--primary-color)' : 'grey';
+```
