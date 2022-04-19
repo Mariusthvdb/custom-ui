@@ -21,7 +21,7 @@ Register these resources with the Lovelace interface. This is done by navigating
 - Select `JavaScript Module`
 - Click Create
 
-![configuration-resources](https://github.com/Mariusthvdb/custom-ui/blob/master/configuration-resources.png)
+<img width="1054" alt="configuration-resources" src="https://user-images.githubusercontent.com/812265/163999674-f487f6e0-e216-49ab-ad25-596a338e8002.png">
 
 ## Using Resources
 - Add the following to your [resources.yaml](https://www.home-assistant.io/dashboards/dashboards/#resources) 
@@ -45,15 +45,15 @@ reflect the newly adapted file as it should. See below:
 
 In `/config/info`:
 
-![info](https://github.com/Mariusthvdb/custom-ui/blob/master/info.png)
+<img width="351" alt="info" src="https://user-images.githubusercontent.com/812265/163999719-e19f0da6-162f-46b1-86c3-ca4e6bfe6ad4.png">
 
 In Inspector:
 
-![inspector](https://github.com/Mariusthvdb/custom-ui/blob/master/module-in-inspector.png)
+<img width="622" alt="module-in-inspector" src="https://user-images.githubusercontent.com/812265/163999748-3093774e-12da-40a8-b33b-727ba15eb7a1.png">
 
 In Resources:
 
-![listed](https://github.com/Mariusthvdb/custom-ui/blob/master/listed-resources.png)
+<img width="1012" alt="listed-resources" src="https://user-images.githubusercontent.com/812265/163999777-81e62605-e698-47a2-a8a8-262b3da2f10e.png">
 
 If you don't see the above: repeat clearing your browser cache. Eventually it will show up (unless 
 there's an error somewhere, which you will see in inspector most likely).
