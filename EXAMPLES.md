@@ -123,7 +123,7 @@ homeassistant:
       hide_attributes:
         - templates
         - icon_color
-        - all # <-- this hides, well, all customizations ;-)
+        - all # <-- this hides, well, all attributes ;-)
     
     light.hue_ambiance_spot_*:
       icon: mdi:spotlight-beam
