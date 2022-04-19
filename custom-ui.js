@@ -1,7 +1,7 @@
 "use strict";
 
 const Name = "Custom-ui";
-const Version = "20220416";
+const Version = "20220419";
 const Description = "adapted for HA 2022.4 + ";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
 console.info(
@@ -180,7 +180,17 @@ window.customUI = window.customUI || {
       window.setTimeout(window.customUI.init, 1000);
       return;
     }
+* WIP: Docs update
 
+* Update HISTORY.md
+
+* Update INSTALLING.md
+
+* Remove images, use inline images instead
+
+* Remove old custom-up-pre file
+
+* Update README.md
     window.customUI.initDone = true;
     window.addEventListener("expanded-changed", window.customUI.updateMoreInfo);
 
