@@ -44,6 +44,7 @@ Other templating still works the same.
 
 ## Installation
 
+
 ### Manual Installation
 
 1. Download the [custom-ui](http://www.github.com/Mariusthvdb/custom-ui/releases/latest/download/custom-ui.js)
@@ -56,6 +57,9 @@ Other templating still works the same.
      - url: /local/custom-ui.js
        type: module
    ```
+or when using the UI, click 
+
+<a href="https://my.home-assistant.io/redirect/lovelace_resources/" target="_blank"><img src="https://my.home-assistant.io/badges/lovelace_resources.svg" alt="Open your Home Assistant instance and show your Lovelace resources." /></a>
 
 ### Installation and tracking with `hacs`
 
