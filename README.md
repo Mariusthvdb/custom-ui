@@ -14,7 +14,7 @@ very compact customizations. Added to that, custom-ui allows one to **hide attri
 more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) 
 how.
 
-![icon-color](https://user-images.githubusercontent.com/33354141/168234088-ee5a5b11-0e68-49fd-b664-6e5a13c79fb0.png)
+<img width="492" alt="icon-color" src="https://user-images.githubusercontent.com/33354141/168234088-ee5a5b11-0e68-49fd-b664-6e5a13c79fb0.png">
 
 ## NEWS
 [@bratanon](https://github.com/bratanon) joined and please welcome him as new co-maintainer of this 
