@@ -1,7 +1,7 @@
 "use strict";
 
 const Name = "Custom-ui";
-const Version = "20220419.1";
+const Version = "20221115";
 const Description = "adapted for HA 2022.4 + ";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
 console.info(
