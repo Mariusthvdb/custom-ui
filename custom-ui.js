@@ -54,7 +54,7 @@ window.customUI = window.customUI || {
         {
           var moreInfoNodeName;
           var contentChild;
-          contentChild = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-content").childNodes;
+          contentChild = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("ha-more-info-info").shadowRoot.querySelector("more-info-content").childNodes;
           for (var c = 0; c < contentChild.length; c++) {
             var nodeItem = contentChild.item(c);
             if (nodeItem.nodeName.toLowerCase().startsWith("more-info-")) {
@@ -65,7 +65,7 @@ window.customUI = window.customUI || {
           if (moreInfoNodeName == "more-info-group") {
             var moreInfoNestedNodeName;
             var contentChildNested;
-            contentChildNested = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.childNodes;
+            contentChildNested = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("ha-more-info-info").shadowRoot.querySelector("more-info-group").shadowRoot.childNodes;
             for (var c = 0; c < contentChildNested.length; c++) {
               var nodeItemNested = contentChildNested.item(c);
 
@@ -73,9 +73,9 @@ window.customUI = window.customUI || {
                 moreInfoNestedNodeName = nodeItemNested.nodeName.toLowerCase();
               }
             }
-            t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("more-info-group").shadowRoot.querySelector(moreInfoNestedNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry");
+            t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("ha-more-info-info").shadowRoot.querySelector("more-info-group").shadowRoot.querySelector(moreInfoNestedNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry");
           } else {
-            t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector(moreInfoNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry");
+            t = document.querySelector("home-assistant").shadowRoot.querySelector("ha-more-info-dialog").shadowRoot.querySelector("ha-dialog").getElementsByClassName("content")[0].querySelector("ha-more-info-info").shadowRoot.querySelector(moreInfoNodeName).shadowRoot.querySelector("ha-attributes").shadowRoot.querySelectorAll(".data-entry");
           }
         }
 
