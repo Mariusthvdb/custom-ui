@@ -38,6 +38,36 @@ as template literal format always returns a string.
 
 > **Note that all JavaScript templates are evaluated in your browser, unlike Jinja2 templates, which are evaluated server-side and use a different syntax.**
 
+# However. Experimental. Recently discovered....
+
+Several integrations in core Home Assistant allow to set additional attributes. Like (Template)[https://www.home-assistant.io/integrations/template/#attributes].
+For the sake of experiment I tried to add an icon_color attribute, and used a regular Jinja template (it was after all in a <template> entity. To my surprise this works perfectly. And even better than before, because we can use the <this> variable.
+ 
+This hasnt been tested thoroughly yet, but nothing seems to be causing trouble, and the templates are rendered completely in sync with state changes.
+ 
+Example:
+
+```
+template:
+
+  - sensor:
+
+    - unique_id: doors
+      name: Doors
+      state: >
+        {%- set count = expand(state_attr('binary_sensor.inside_doors','entity_id'),
+                               state_attr('binary_sensor.outside_doors','entity_id'))
+                               |selectattr('state','==','on')
+                               |list|count %}
+        {{count}}
+      icon: >
+        {{'mdi:door-open' if this.state|int(default=0) > 0 else 'mdi:door-closed'}}
+      attributes:
+        icon_color: >
+          {{'var(--alert-color)' if this.state|int(default=0) > 0 else 'var(--primary-color)'}}
+```
+
+
 # Hide attributes
 To hide attributes in the `more-info` popup, you need to add the `hide_attributes` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
 
