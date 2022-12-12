@@ -62,3 +62,22 @@ help a lot, as using custom-ui is on our own, and not a core HA project.
 [@bratanon](https://github.com/bratanon) joined and he made the original minimized code more 
 readable, and we have released a new and 2022.4 ready version.
 
+## Templating `state` no longer supported
+As of HA 2022.4, templating `state:` is no longer supported in custom-ui. We now show users a warning 
+in the console if using the none supported `state:` templating. This means the actual entity state itself can no longer be customized.
+
+```yaml
+# !!! THIS DOES NOT WORK ANYMORE AND WILL SHOW A WARNING !!!
+templates:
+   state: if (state === 'home') return 'Online'; return 'Offline';
+```
+
+Using `state` **IN** the condition **WILL WORK** as that is core custom-ui functionality. 
+```yaml
+# This is STILL VALID
+templates:
+   icon_color: if (state === 'home') return 'blue'; return 'red';
+```
+**Note the "keys" (state, icon_color) differs.**
+
+Other templating still works the same.
