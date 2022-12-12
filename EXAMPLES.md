@@ -40,8 +40,8 @@ as template literal format always returns a string.
 
 # However. Experimental. Recently discovered....
 
-Several integrations in core Home Assistant allow to set additional attributes. Like (Template)[https://www.home-assistant.io/integrations/template/#attributes].
-For the sake of experiment I tried to add an icon_color attribute, and used a regular Jinja template (it was after all in a <template> entity. To my surprise this works perfectly. And even better than before, because we can use the <this> variable.
+Several integrations in core Home Assistant allow to set additional attributes. Like [Template](https://www.home-assistant.io/integrations/template/#attributes).
+For the sake of experiment I tried to add an icon_color attribute, and used a regular Jinja template (it was after all in a <template> entity). To my surprise this works perfectly. And even better than before, because we can use the <this> variable.
  
 This hasnt been tested thoroughly yet, but nothing seems to be causing trouble, and the templates are rendered completely in sync with state changes.
  
@@ -66,7 +66,7 @@ template:
         icon_color: >
           {{'var(--alert-color)' if this.state|int(default=0) > 0 else 'var(--primary-color)'}}
 ```
-
+Note: this is functionality provided by Custom-ui so yes, that still needs to be correctly installed for the template above to work
 
 # Hide attributes
 To hide attributes in the `more-info` popup, you need to add the `hide_attributes` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
