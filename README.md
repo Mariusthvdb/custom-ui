@@ -17,6 +17,9 @@ how.
 <img width="492" alt="icon-color" src="https://user-images.githubusercontent.com/33354141/168234088-ee5a5b11-0e68-49fd-b664-6e5a13c79fb0.png">
 
 ## NEWS
+
+**Recently discovered....**: custom-ui facilitates setting a [Jinja template on custom attributes](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md#however-experimental-recently-discovered) in core integrations that allow setting a custom attribute.
+
 [@bratanon](https://github.com/bratanon) joined and please welcome him as new co-maintainer of this 
 repo. Thanks to Emil we can again enjoy the full options of Custom-ui, and do so with more readable
 code than the minimized version we were using up to now.
