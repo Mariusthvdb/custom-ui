@@ -20,29 +20,6 @@ how.
 
 **Recently discovered....**: custom-ui facilitates setting a [Jinja template on custom attributes](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md#however-experimental-recently-discovered) in core integrations that allow setting a custom attribute.
 
-[@bratanon](https://github.com/bratanon) joined and please welcome him as new co-maintainer of this 
-repo. Thanks to Emil we can again enjoy the full options of Custom-ui, and do so with more readable
-code than the minimized version we were using up to now.
-
-As of HA 2022.4, state templating (using `state:`) is no longer supported in custom-ui. We now show users a warning 
-in the console if using the none supported state templating. 
-
-```yaml
-# !!! THIS DOES NOT WORK ANYMORE AND WILL SHOW A WARNING !!!
-templates:
-   state: if (state === 'home') return 'Online'; return 'Offline';
-```
-
-To clearify this again. Using `state` **IN** the condition **WILL WORK**.
-```yaml
-# This is STILL VALID
-templates:
-   icon_color: if (state === 'home') return 'blue'; return 'red';
-```
-**Note the "keys" (state, icon_color) differs.**
-
-Other templating still works the same.
-
 --- 
 
 ## Installation
@@ -79,11 +56,10 @@ or when using the UI, click
 4. Refresh home-assistant.
 
 ### Other installation methods
-See [INSTALLING.md](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
+See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
 
 ## Examples
-Examples can be found 
-[here](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md).
+See [EXAMPLES](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md).
 
 ---
 
