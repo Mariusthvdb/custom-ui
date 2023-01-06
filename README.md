@@ -18,6 +18,9 @@ how.
 
 ## NEWS
 
+**GPT has arrived**
+As an experiment several iterations of optimizations by https://chat.openai.com/chat have been made available as pre-releases. Please have a look, and test if you can.
+
 **Recently discovered....**: custom-ui facilitates setting a [Jinja template on custom attributes](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md#however-experimental-recently-discovered) in core integrations that allow setting a custom attribute.
 
 --- 
