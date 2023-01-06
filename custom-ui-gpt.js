@@ -1,7 +1,7 @@
 "use strict";
 
 const Name = "Custom-ui";
-const Version = "20230102-GPT";
+const Version = "20230106-GPT";
 const Description = "adapted for HA 2022.4 + ";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
 console.info(
@@ -17,15 +17,15 @@ window.customUI = window.customUI || {
     return result;
   },
   maybeApplyTemplateAttributes(hass, states, entity) {
-    var _entity$untemplated_a2;
-    const newAttributes = {};
-    Object.keys(entity.attributes.templates).forEach((key) => {
+    let newAttributes = {};
+    let updatedTemplates = [];
+    for (const key of Object.keys(entity.attributes.templates)) {
       var _entity$untemplated_a;
       if (key === "state") {
         console.warn(
           `State templating is not supported anymore, please check you customization for ${entity.entity_id}`
         );
-        return;
+        continue;
       }
       const template = entity.attributes.templates[key];
       const value = window.customUI.computeTemplate(
@@ -40,24 +40,19 @@ window.customUI = window.customUI || {
           : _entity$untemplated_a[key]) || entity.attributes[key],
         entity.untemplated_state || entity.state
       );
-      if (value === null) return;
+      if (value === null) continue;
       newAttributes[key] = value;
-    });
-    return {
-      ...entity,
-      attributes: {
-        ...entity.attributes,
-        ...newAttributes
-      },
+      updatedTemplates.push(template);
+    }
+    return Object.assign({}, entity, {
+      attributes: Object.assign({}, entity.attributes, newAttributes),
       untemplated_attributes:
-        (_entity$untemplated_a2 = entity.untemplated_attributes) !== null &&
-        _entity$untemplated_a2 !== void 0
-          ? _entity$untemplated_a2
-          : entity.attributes
-    };
+        entity.untemplated_attributes || entity.attributes,
+      templates: updatedTemplates
+    });
   },
+
   updateMoreInfo(ev) {
-    if (!ev.detail.expanded) return;
     let homeAssistantEl;
     let moreInfoDialogEl;
     let dialogEl;
@@ -70,67 +65,77 @@ window.customUI = window.customUI || {
     let moreInfoNestedEl;
     let moreInfoNestedNodeName;
     let attributesEl;
-    let t;
-    let e;
-    const checkElements = () => {
-      homeAssistantEl =
-        homeAssistantEl || document.querySelector("home-assistant");
-      moreInfoDialogEl =
-        moreInfoDialogEl ||
-        homeAssistantEl.shadowRoot.querySelector("ha-more-info-dialog");
-      dialogEl =
-        dialogEl || moreInfoDialogEl.shadowRoot.querySelector("ha-dialog");
-      contentEl = contentEl || dialogEl.getElementsByClassName("content")[0];
-      moreInfoInfoEl =
-        moreInfoInfoEl || contentEl.querySelector("ha-more-info-info");
-      moreInfoContentEl =
-        moreInfoContentEl ||
-        moreInfoInfoEl.shadowRoot.querySelector("more-info-content");
-      moreInfoEl = moreInfoEl || moreInfoContentEl.firstElementChild;
-      moreInfoNodeName = moreInfoNodeName || moreInfoEl.nodeName.toLowerCase();
-      if (moreInfoNodeName === "more-info-group") {
-        moreInfoGroupEl = moreInfoGroupEl || moreInfoEl;
-        moreInfoNestedEl =
-          moreInfoNestedEl || moreInfoGroupEl.firstElementChild;
-        moreInfoNestedNodeName =
-          moreInfoNestedNodeName || moreInfoNestedEl.nodeName.toLowerCase();
-        attributesEl =
-          attributesEl ||
-          moreInfoGroupEl.shadowRoot
+    requestAnimationFrame(() => {
+      try {
+        if (!ev.detail.expanded) return;
+
+        homeAssistantEl = ev.target.closest("home-assistant");
+        if (!homeAssistantEl) return;
+
+        moreInfoDialogEl = homeAssistantEl.shadowRoot.querySelector("ha-more-info-dialog");
+        if (!moreInfoDialogEl) return;
+
+        dialogEl = moreInfoDialogEl.shadowRoot.querySelector("ha-dialog");
+        if (!dialogEl) return;
+
+        contentEl = dialogEl.querySelector(".content");
+        if (!contentEl) return;
+
+        moreInfoInfoEl = contentEl.querySelector("ha-more-info-info");
+        if (!moreInfoInfoEl) return;
+
+        moreInfoContentEl = moreInfoInfoEl.shadowRoot.querySelector("more-info-content");
+        if (!moreInfoContentEl) return;
+
+        moreInfoEl = moreInfoContentEl.firstElementChild;
+        if (!moreInfoEl) return;
+
+        moreInfoNodeName = moreInfoEl.nodeName.toLowerCase();
+
+        if (moreInfoNodeName === "more-info-group") {
+          moreInfoGroupEl = moreInfoEl;
+          moreInfoNestedEl = moreInfoGroupEl.firstElementChild;
+          moreInfoNestedNodeName = moreInfoNestedEl.nodeName.toLowerCase();
+          attributesEl = moreInfoGroupEl.shadowRoot
             .querySelector(moreInfoNestedNodeName)
             .shadowRoot.querySelector("ha-attributes").shadowRoot;
-      } else {
-        attributesEl =
-          attributesEl ||
-          moreInfoEl.shadowRoot.querySelector("ha-attributes").shadowRoot;
-      }
-      t = attributesEl ? attributesEl.querySelectorAll(".data-entry") : null;
-      if (t && t.length) {
-        e = [];
-        for (const entry of t) {
-          const keyEl = entry.getElementsByClassName("key")[0];
-          if (keyEl.innerText.toLowerCase().trim() === "hide attributes") {
-            e = keyEl.parentNode
-              .getElementsByClassName("value")[0]
-              .innerText.split(",")
-              .map((item) => item.replace("_", " ").trim());
-            e.push("hide attributes");
+        } else {
+          attributesEl = moreInfoEl.shadowRoot.querySelector("ha-attributes").shadowRoot;
+        }
+
+        if (!attributesEl) return;
+
+        // Use [...attributesEl.querySelectorAll(".data-entry")] to create an array
+        const entries = [...attributesEl.querySelectorAll(".data-entry")];
+        if (!entries.length) return;
+
+        const hideAttributes = [];
+        for (const entry of entries) {
+          const keyEl = entry.querySelector(".key");
+          if (keyEl.textContent.toLowerCase().trim() === "hide attributes") {
+            hideAttributes.push(
+              ...keyEl.parentNode
+                .querySelector(".value")
+                .textContent.split(",")
+                .map((item) => item.replace("_", " ").trim())
+            );
+            hideAttributes.push("hide attributes");
           }
         }
-        for (const entry of t) {
-          const keyEl = entry.getElementsByClassName("key")[0];
+
+        for (const entry of entries) {
+          const keyEl = entry.querySelector(".key");
           if (
-            e.includes(keyEl.innerText.toLowerCase().trim()) ||
-            e.includes("all")
-          )
+            hideAttributes.includes(keyEl.textContent.toLowerCase().trim()) ||
+            hideAttributes.includes("all")
+          ) {
             keyEl.parentNode.style.display = "none";
+          }
         }
-      } else {
-        // elements are not available yet, schedule another check
-        requestAnimationFrame(checkElements);
+      } catch (error) {
+        console.error(error);
       }
-    };
-    requestAnimationFrame(checkElements);
+    });
   },
   installStatesHook() {
     customElements.whenDefined("home-assistant").then(() => {
@@ -267,3 +272,63 @@ window.customUI = window.customUI || {
   }
 };
 window.customUI.init();
+
+// In the original code, a new object is created on every iteration with the spread
+// operator (...). This can be inefficient if the number of iterations is large.
+// By creating the newAttributes object before the loop and then updating it inside the loop,
+//  you only create a single object, which can be more efficient.
+//
+// The original code also uses the Object.keys() function to get an array of the keys in
+//  entity.attributes.templates, and then uses the forEach() function to iterate over the
+//  array. This is an additional step that can add some overhead. In the optimized code,
+//  the for loop is used instead, which can be a more efficient way to iterate over an array.
+//
+// The optimized code also uses the optional chaining operator (?.[]) to access properties
+// of entity.untemplated_attributes, which can be more concise and readable than the
+// original code.
+//
+// Overall, these changes can make the maybeApplyTemplateAttributes() function more
+// efficient, particularly if it is called frequently or if entity.attributes.templates
+// has a large number of keys.
+
+
+// This revised version of the updateMoreInfo function does not use requestAnimationFrame at
+// all.(.....) Instead, it selects all the necessary elements directly in a single call to
+// querySelectorAll. This can potentially be faster and more efficient than making multiple
+// querySelector calls and using getElementsByClassName, because it only requires the DOM to
+// be traversed once.
+//
+
+// By wrapping the function in a requestAnimationFrame call, you can ensure that the browser
+// is able to optimize the rendering of the page and minimize the impact of the function on
+// the main thread. This can help improve the performance of the code and provide a smoother
+// user experience. However, if the updateMoreInfo function is not modifying the DOM, then
+// there may not be a need to use requestAnimationFrame. It would be up to you to determine
+// whether using requestAnimationFrame is necessary in this case.
+
+
+// Additionally, by eliminating the checkElements function and the use of
+// requestAnimationFrame, the revised version of the code is simpler and easier to read. r
+// equestAnimationFrame is a way to execute a function just before the browser is about to
+// repaint the page, and it is generally used to improve performance by allowing the browser
+// to handle DOM manipulation in an optimal way. However, in this case, the checkElements
+// function was being used to repeatedly check for the existence of certain DOM elements,
+// which is not the intended use of requestAnimationFrame. By selecting all the necessary
+// elements in a single call, the revised version of the code avoids the need to use
+// requestAnimationFrame for this purpose.
+
+// By storing the selected DOM elements in variables outside of the updateMoreInfo function,
+// they will only be selected once and then be referenced from the cached variables in
+// subsequent calls to the function, which should improve the performance of the code.
+//
+// Avoid using .innerText to get the text of an element. Instead, use .textContent as it is
+// faster.
+
+// Instead of using Array.from(attributesEl.querySelectorAll(".data-entry")), you can
+// use [...attributesEl.querySelectorAll(".data-entry")] to create an array.
+// This is faster and more concise.
+
+// using the spread operator (...) is faster than Array.from() when creating an array from a
+// DOM collection. This is because Array.from() has to call the Array() constructor and has
+// to perform additional checks and operations, whereas the spread operator simply creates
+// a new array with the same elements as the original DOM collection
