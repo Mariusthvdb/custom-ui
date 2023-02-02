@@ -307,10 +307,10 @@ homeassistant:
 ##########################################################################################
 
   customize:
-# Single Entity - Hide Editable
+# Single Entity - Icon color
     input_boolean.development:
       hide_attributes:
-        - editable
+        - icon_color
 
 # or simply hide all attributes
     input_boolean.development:
