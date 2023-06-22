@@ -11,6 +11,7 @@ This is however rather limited. Two of the most important features Custom-ui off
 core customization are support for:
 * **Templates** 
 * **icon_color** attribute.
+
 We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet 
 very compact customizations. Added to that, custom-ui allows one to **hide attributes** from the 
 more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) 
