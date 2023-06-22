@@ -8,8 +8,10 @@
 We can 
 [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). 
 This is however rather limited. Two of the most important features Custom-ui offers on top of the 
-core customization are **Templates** and support for the **icon_color** attribute. We can use these 
-features **globally** in our Home Assistant configuration and thus create extremely powerful yet 
+core customization are support for:
+* **Templates** 
+* **icon_color** attribute.
+We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet 
 very compact customizations. Added to that, custom-ui allows one to **hide attributes** from the 
 more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) 
 how.
