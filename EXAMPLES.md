@@ -55,8 +55,7 @@ template:
     - unique_id: doors
       name: Doors
       state: >
-        {%- set count = expand(state_attr('binary_sensor.inside_doors','entity_id'),
-                               state_attr('binary_sensor.outside_doors','entity_id'))
+        {%- set count = expand('binary_sensor.deuren')
                                |selectattr('state','==','on')
                                |list|count %}
         {{count}}
