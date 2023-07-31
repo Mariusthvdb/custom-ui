@@ -532,8 +532,8 @@ Alternatively, you can use the ternary notation, which makes for neat and short 
           - templates
       templates:
         icon: >
-          return (state === 'on') ? 'mdi:test-tube' : 'mdi:test-tube-off';
+          return state === 'on' ? 'mdi:test-tube' : 'mdi:test-tube-off';
         <<: &state_color
           icon_color: >
-            return (state === 'on') ? 'var(--primary-color)' : 'grey';
+            return state === 'on' ? 'var(--primary-color)' : 'grey';
 ```
