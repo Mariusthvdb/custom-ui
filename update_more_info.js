@@ -64,17 +64,17 @@ function updateMoreInfo(ev) {
       for (const node of t) {
         const o = node.getElementsByClassName("key")[0];
         // make compatible for both 2023.8 and 2023.9
-          if (o.innerText.toLowerCase().trim() == "hide attributes") {
-              const valueContainer = o.parentNode.getElementsByClassName("value")[0];
-              const haAttributeValue = valueContainer.querySelector('ha-attribute-value');
-              const text = haAttributeValue
-                  ? haAttributeValue.shadowRoot.textContent
-                  : valueContainer.innerText;
-              e = text
-                  .split(",")
-                  .map((item) => item.replace("_", " ").trim());
-              e.push("hide attributes");
-          }
+        if (o.innerText.toLowerCase().trim() == "hide attributes") {
+          const valueContainer = o.parentNode.getElementsByClassName("value")[0];
+          const haAttributeValue = valueContainer.querySelector('ha-attribute-value');
+          const text = haAttributeValue
+            ? haAttributeValue.shadowRoot.textContent
+            : valueContainer.innerText;
+          e = text
+            .split(",")
+            .map((item) => item.replace("_", " ").trim());
+          e.push("hide attributes");
+        }
       }
       for (const node of t) {
         const o = node.getElementsByClassName("key")[0];
