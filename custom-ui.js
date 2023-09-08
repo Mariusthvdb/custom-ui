@@ -1,6 +1,6 @@
 const Name = "Custom-ui";
-const Version = "20230619";
-const Description = "adapted for HA 2022.4 + ";
+const Version = "20230908";
+const Description = "add templates and icon_color to UI";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
 console.info(
   `%c  ${Name}  \n%c  Version ${Version} ${Description}`,
@@ -53,73 +53,74 @@ window.customUI = {
       .shadowRoot.querySelector("ha-dialog")
       .getElementsByClassName("content")[0]
       .querySelector("ha-more-info-info");
-    let s = 0;
-    const i = setInterval(async () => {
-      ++s >= 2 && clearInterval(i);
-      try {
-        let t;
-        {
-          let moreInfoNodeName;
-          const contentChild =
-            moreInfoInfo.shadowRoot.querySelector(
-              "more-info-content"
-            ).childNodes;
-          for (const nodeItem of contentChild) {
-            if (nodeItem.nodeName.toLowerCase().startsWith("more-info-")) {
-              moreInfoNodeName = nodeItem.nodeName.toLowerCase();
+
+    try {
+      let t;
+      {
+        let moreInfoNodeName;
+        const contentChild = moreInfoInfo.shadowRoot.querySelector(
+          "more-info-content"
+        ).childNodes;
+        for (const nodeItem of contentChild) {
+          if (nodeItem.nodeName.toLowerCase().startsWith("more-info-")) {
+            moreInfoNodeName = nodeItem.nodeName.toLowerCase();
+            break;
+          }
+        }
+        if (moreInfoNodeName == "more-info-group") {
+          let moreInfoNestedNodeName;
+          const contentChildNested =
+            moreInfoInfo.shadowRoot
+              .querySelector("more-info-group")
+              .shadowRoot.childNodes;
+          for (const nodeItemNested of contentChildNested) {
+            if (
+              nodeItemNested.nodeName.toLowerCase().startsWith("more-info-")
+            ) {
+              moreInfoNestedNodeName = nodeItemNested.nodeName.toLowerCase();
               break;
             }
           }
-          if (moreInfoNodeName == "more-info-group") {
-            let moreInfoNestedNodeName;
-            const contentChildNested =
-              moreInfoInfo.shadowRoot.querySelector("more-info-group")
-                .shadowRoot.childNodes;
-            for (const nodeItemNested of contentChildNested) {
-              if (
-                nodeItemNested.nodeName.toLowerCase().startsWith("more-info-")
-              ) {
-                moreInfoNestedNodeName = nodeItemNested.nodeName.toLowerCase();
-                break;
-              }
-            }
-            t = moreInfoInfo.shadowRoot
-              .querySelector("more-info-group")
-              .shadowRoot.querySelector(moreInfoNestedNodeName)
-              .shadowRoot.querySelector("ha-attributes")
-              .shadowRoot.querySelectorAll(".data-entry");
-          } else {
-            t = moreInfoInfo.shadowRoot
-              .querySelector(moreInfoNodeName)
-              .shadowRoot.querySelector("ha-attributes")
-              .shadowRoot.querySelectorAll(".data-entry");
+          t = moreInfoInfo.shadowRoot
+            .querySelector("more-info-group")
+            .shadowRoot.querySelector(moreInfoNestedNodeName)
+            .shadowRoot.querySelector("ha-attributes")
+            .shadowRoot.querySelectorAll(".data-entry");
+        } else {
+          t = moreInfoInfo.shadowRoot
+            .querySelector(moreInfoNodeName)
+            .shadowRoot.querySelector("ha-attributes")
+            .shadowRoot.querySelectorAll(".data-entry");
+        }
+      }
+      if (t.length) {
+        let e;
+        for (const node of t) {
+          const o = node.getElementsByClassName("key")[0];
+  // make compatible for both 2023.8 and 2023.9
+          if (o.innerText.toLowerCase().trim() == "hide attributes") {
+            const valueContainer = o.parentNode.getElementsByClassName("value")[0];
+            const haAttributeValue = valueContainer.querySelector('ha-attribute-value');
+            const text = haAttributeValue
+              ? haAttributeValue.shadowRoot.textContent
+              : valueContainer.innerText;
+            e = text
+              .split(",")
+              .map((item) => item.replace("_", " ").trim());
+            e.push("hide attributes");
           }
         }
-        if (t.length) {
-          let e;
-          for (const node of t) {
-            const o = node.getElementsByClassName("key")[0];
-            if (o.innerText.toLowerCase().trim() == "hide attributes") {
-              e = o.parentNode
-                .getElementsByClassName("value")[0]
-                .innerText.split(",")
-                .map((item) => item.replace("_", " ").trim());
-              e.push("hide attributes");
-            }
+        for (const node of t) {
+          const o = node.getElementsByClassName("key")[0];
+          if (
+            e.includes(o.innerText.toLowerCase().trim()) ||
+            e.includes("all")
+          ) {
+            o.parentNode.style.display = "none";
           }
-          for (const node of t) {
-            const o = node.getElementsByClassName("key")[0];
-            if (
-              e.includes(o.innerText.toLowerCase().trim()) ||
-              e.includes("all")
-            ) {
-              o.parentNode.style.display = "none";
-            }
-          }
-          clearInterval(i);
         }
-      } catch (err) {}
-    }, 100);
+      }
+    } catch (err) {}
   },
   installStatesHook() {
     customElements.whenDefined("home-assistant").then(() => {
