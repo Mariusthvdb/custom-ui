@@ -22,7 +22,7 @@ how.
 ## NEWS
 
 **UpdateMoreInfo() ready for HA 2023.9**
-HA 2023.9 made changes to several internal settingfs pertianing to the custom-ui functionality, so we had a small but important fix.
+HA 2023.9 made changes to several internal settings pertaining to the custom-ui functionality, so we had to do a small but important fix.
 Preparing for future changes, we also added 2 new files which contain the exact same functionality as the custom-ui.js resource, but allow us to change either of them individually in a later stage.
 
 
