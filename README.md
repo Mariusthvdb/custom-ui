@@ -21,9 +21,10 @@ how.
 
 ## NEWS
 
-**GPT has arrived**
-As an experiment several iterations of optimizations by https://chat.openai.com/chat have been made available as pre-releases. Please have a look, and test if you can.
-Note: if you download the 'beta' and get an error on `Faled to load resource` check this [issue tracker](https://github.com/Mariusthvdb/custom-ui/issues/87).
+**UpdateMoreInfo() ready for HA 2023.9**
+HA 2023.9 made changes to several internal settingfs pertianing to the custom-ui functionality, so we had a small but important fix.
+Preparing for future changes, we also added 2 new files which contain the exact same functionality as the custom-ui.js resource, but allow us to change either of them individually in a later stage.
+
 
 **Recently discovered....**: custom-ui facilitates setting a [Jinja template on custom attributes](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md#however-experimental-recently-discovered) in core integrations that allow setting a custom attribute.
 
