@@ -22,9 +22,9 @@ how.
 ## NEWS
 
 **New minimized version for custom attribute icon_color only**
-A new custom-ui sibling was released, which can be used only for adding an  [icon_color](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) attribute in `customize:` and the attributes configuration options of [template:](https://www.home-assistant.io/integrations/template/#attributes) entities.
+A new custom-ui sibling was released, [custom-ui-icon-color](https://github.com/Mariusthvdb/custom-ui-icon-color), which can be used *only* for adding an attribute in `customize:` and the attributes configuration options of [template:](https://www.home-assistant.io/integrations/template/#attributes) entities.
 
-No more templates possible with this version, which minimizes impact on the HA system and Frontend if you wish to do so. There was never a huge impact, but this brings it down even further, if you don't need the template options and still want the icon_color attribute in your options.
+*No more templates possible* with this version, which minimizes impact on the HA system and Frontend if you wish to do so. There was never a huge impact, but this brings it down even further, if you don't need the template options and still want the icon_color attribute in your options.
 Configuration is identical to what is already explained in the example section
 
 **UpdateMoreInfo() ready for HA 2023.9**
