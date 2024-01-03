@@ -141,9 +141,9 @@ window.customUI = {
                 obj.states,
                 entity
               );
-            if (hass.states && entity !== hass.states[key]) {
+            if (hass.states && JSON.stringify(entity) !== JSON.stringify(hass.states[key])) {
               obj.states[key] = newEntity;
-            } else if (entity !== newEntity) {
+            } else if (JSON.stringify(entity) !== JSON.stringify(newEntity)) {
               obj.states[key] = newEntity;
             }
           });
