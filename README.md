@@ -25,7 +25,7 @@ how.
 [Custom attributes](https://github.com/Mariusthvdb/custom-attributes) is a new resource for Home Assistant to customize which entity attributes are displayed in the Dashboard on more-info cards. Moreover, if configured so that no more attributes are left to display (all attributes are filtered), the attributes dropdown box is not rendered at all. Custom attributes gives the user ultimate control over the More-info panel. This is taking over that specific functionality from Custom-ui.
 
 **New minimized version for custom attribute icon_color only**
-A new custom-ui sibling was released, [custom-ui-icon-color](https://github.com/Mariusthvdb/custom-ui-icon-color), which can be used *only* for adding an attribute in `customize:` and the attributes configuration options of [template:](https://www.home-assistant.io/integrations/template/#attributes) entities.
+A new custom-ui sibling was released, [custom-icon-color](https://github.com/Mariusthvdb/custom-icon-color), which can be used *only* for adding an attribute in `customize:` and the attributes configuration options of [template:](https://www.home-assistant.io/integrations/template/#attributes) entities.
 
 *No more templates possible* with this version, which minimizes impact on the HA system and Frontend if you wish to do so. There was never a huge impact, but this brings it down even further, if you don't need the template options and still want the icon_color attribute in your options.
 Configuration is identical to what is already explained in the example section
