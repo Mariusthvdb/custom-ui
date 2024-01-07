@@ -38,7 +38,7 @@ as template literal format always returns a string.
 
 > **Note that all JavaScript templates are evaluated in your browser, unlike Jinja2 templates, which are evaluated server-side and use a different syntax.**
 
-# However. Experimental. Recently discovered....
+# Did you know....
 
 Several integrations in core Home Assistant allow to set additional attributes. Like [Template](https://www.home-assistant.io/integrations/template/#attributes).
 For the sake of experiment I tried to add an `icon_color` attribute, and used a regular Jinja template (it was after all in a <template> entity) on that attribute. To my surprise this works perfectly. And even better than before, because we can use the `this` variable.
