@@ -44,7 +44,7 @@ A new custom-ui sibling was released, [custom-icon-color](https://github.com/Mar
 Configuration is identical to what is already explained in the example section
 
 ___
-**Did you know....**: custom-ui facilitates setting a [Jinja template on custom attributes](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md#however-experimental-recently-discovered) in core integrations that allow setting a custom attribute.
+**Did you know....**: custom-ui facilitates setting a [Jinja template on custom attributes](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md#did-you-know) in core integrations that allow setting a custom attribute.
 
 --- 
 
