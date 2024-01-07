@@ -19,7 +19,7 @@ Why use custom-ui? 2 huge reasons:
 
 Setting a color for an icon is not possible in core HA. There is no attribute `icon_color` out of the box.
 
-Personally, I can't live without the `icon_color` attribute. Fully aware of the modern days custom card-mod, with which you can set a style on any card and entity, this still doesn't come close to the ease of custom-ui. Keeping as many styling issues out of the Lovelace cards makes for much better readable configs (imho) and, last but not least: using custom-ui we can set colors and color templates globally. 
+Personally, I can't live without the `icon_color` attribute. Fully aware of the great and modern custom card-mod, with which you can set a style on any card and entity, (see some [examples here](https://github.com/Mariusthvdb/custom-icon-color/blob/main/CARD-MOD-EXAMPLES.md)) this still doesn't come close to the ease of custom-ui. Keeping as many styling issues out of the Lovelace cards makes for much better readable configs (imho) and, last but not least: using custom-ui we can set colors and color templates globally. 
 
 Declare once, use everywhere. 
 
@@ -41,10 +41,8 @@ as template literal format always returns a string.
 # Did you know....
 
 Several integrations in core Home Assistant allow to set additional attributes. Like [Template](https://www.home-assistant.io/integrations/template/#attributes).
-For the sake of experiment I tried to add an `icon_color` attribute, and used a regular Jinja template (it was after all in a <template> entity) on that attribute. To my surprise this works perfectly. And even better than before, because we can use the `this` variable.
- 
-This hasnt been tested thoroughly yet, but nothing seems to be causing trouble, and the templates are rendered completely in sync with state changes.
- 
+Using custom-ui, or preferably the newer [custom-icon-color](https://github.com/Mariusthvdb/custom-icon-color/), the user can add an `icon_color` attribute, and set a regular Jinja template on that attribute. We can even use the `this` variable.
+
 Example:
 
 ```
@@ -65,7 +63,7 @@ template:
         icon_color: >
           {{'var(--alert-color)' if this.state|int(default=0) > 0 else 'var(--primary-color)'}}
 ```
-Note: this is functionality provided by Custom-ui so yes, that still needs to be correctly installed for the template above to work
+Note: this is functionality provided by Custom-ui/custom-icon-color so that still needs to be installed for the template above to work.
 
 # Hide attributes
 To hide attributes in the `more-info` popup, you need to add the `hide_attributes` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
