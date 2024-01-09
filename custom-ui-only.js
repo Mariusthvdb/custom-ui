@@ -5,11 +5,12 @@ const Description = "add icon_color and templates";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
 
 // Log information about the custom-ui component
-console.info(
-  `%c  ${Name}  \n%c  Version ${Version} ${Description}`,
+console.groupCollapsed(
+  `%c ${Name} ${Version} is installed \n%c ${Description} `,
   "color: gold; font-weight: bold; background: black",
-  "color: white; font-weight: bold; background: steelblue"
-);
+  "color: white; font-weight: bold; background: steelblue"),
+console.log("Readme:",Url),
+console.groupEnd()
 
 // Define the custom-ui object and its methods
 window.customUI = {
