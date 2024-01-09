@@ -7,7 +7,7 @@
 
 We can 
 [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). 
-This is however rather limited. Two of the most important features Custom-ui offers on top of the 
+However, this is rather limited. Two of the most important features Custom-ui offers on top of the 
 core customization are support for:
 * **Templates** 
 * **icon_color** attribute.
