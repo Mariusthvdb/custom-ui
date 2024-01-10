@@ -1,6 +1,6 @@
 // Define constants for the custom-ui component
 const Name = "Custom-ui only";
-const Version = "20240109";
+const Version = "20240110";
 const Description = "add attributes icon_color and templates";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
 
