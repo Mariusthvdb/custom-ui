@@ -87,6 +87,27 @@ window.customUI = {
     });
   },
 
+// Install a hook to update the button card with custom styling
+  installButtonCardStylingHook() {
+    customElements.whenDefined("hui-button-card").then(() => {
+        const buttonCard = customElements.get("hui-button-card");
+        if (!buttonCard) return;
+        if (buttonCard.prototype?.updated) {
+            const originalUpdated = buttonCard.prototype.updated;
+            buttonCard.prototype.updated = function customUpdated(changedProps) {
+                if (!changedProps.has('_stateObj')) {
+                    return;
+                }
+                const { _stateObj } = this;
+                if (_stateObj.attributes?.icon_color) {
+                    this.style?.setProperty('--icon-primary-color', _stateObj.attributes.icon_color);
+                }
+                originalUpdated.call(this, changedProps);
+            }
+        }
+    });
+  },
+
 // Install a hook to update the entity card with custom styling
   installEntityCardStylingHook() {
     customElements.whenDefined("hui-entity-card").then(() => {
@@ -143,6 +164,7 @@ window.customUI = {
 // Install the hooks for updating states, entity cards, and state badges
   installCustomHooks() {
     window.customUI.installTemplateAttributesHook();
+    window.customUI.installButtonCardStylingHook();
     window.customUI.installEntityCardStylingHook();
     window.customUI.installStateBadgeStylingHook();
   },
