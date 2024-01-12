@@ -19,6 +19,16 @@ how.
 
 <img width="492" alt="icon-color" src="https://user-images.githubusercontent.com/33354141/168234088-ee5a5b11-0e68-49fd-b664-6e5a13c79fb0.png">
 
+## Development of this plugin, strategy forward
+
+Please see the pinned [discussion](https://github.com/Mariusthvdb/custom-ui/discussions/128) on development of this plugin.
+
+In short:
+- If you want a tool to customize icon_color: Use either custom-ui-only (with template support) or custom-icon-color.
+- If you want a tool to customize more-info dialogs: Use custom-more-info
+
+Current custom-ui (with legacy more-info manipulation) will be archived, and renamed, so we can keep the custom-ui name for the current custom-ui-only.
+
 ## NEWS
 
 **New Custom More-info**
