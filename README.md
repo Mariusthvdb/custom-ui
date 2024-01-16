@@ -45,6 +45,7 @@ ___
 
 [Custom attributes](https://github.com/Mariusthvdb/custom-attributes) is a new resource for Home Assistant to customize which entity attributes are displayed in the Dashboard on more-info cards. Moreover, if configured so that no more attributes are left to display (all attributes are filtered), the attributes dropdown box is not rendered at all. This is replacing that specific functionality from Custom-ui.
 
+### DON'T INSTALL BOTH CUSTOM-ATTRIBUTES AND CUSTOM-MORE-INFO SIMULTANEOUSLY. USE ONLY 1 OF THESE 2 NEW PLUGINS
 ___
 **New Custom icon_color**
 
