@@ -1,6 +1,6 @@
 // Define constants for the custom-ui component
-const Name = "Custom-ui only";
-const Version = "20240110";
+const Name = "Custom-ui";
+const Version = "20240116";
 const Description = "add attributes icon_color and templates";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
 
@@ -135,6 +135,36 @@ window.customUI = {
     });
   },
 
+// Install a hook to update the Tile card with custom styling
+  installTileCardStylingHook() {
+    customElements.whenDefined("hui-tile-card").then(() => {
+        const tileCard = customElements.get("hui-tile-card");
+        if (!tileCard) return;
+        if (tileCard.prototype?.updated) {
+            const originalUpdated = tileCard.prototype.updated;
+            tileCard.prototype.updated = function customUpdated(changedProps) {
+
+                if (
+                    !changedProps.has('_config') ||
+                    !changedProps.has('hass')
+                ) {
+                    return;
+                }
+                const { _config, hass } = this;
+                const entityId = _config?.entity;
+                const states = hass?.states;
+                const iconColor = states?.[entityId]?.attributes?.icon_color;
+
+                if (iconColor) {
+                    this.style?.setProperty('--icon-primary-color', iconColor);
+                    console.log(iconColor, ' applied to: ', states?.[entityId]?.entity_id);
+                }
+                originalUpdated.call(this, changedProps);
+            }
+        }
+    });
+  },
+
 // Install a hook to update the state badge with custom styling
   installStateBadgeStylingHook() {
     customElements.whenDefined("state-badge").then(() => {
@@ -166,6 +196,7 @@ window.customUI = {
     window.customUI.installTemplateAttributesHook();
     window.customUI.installButtonCardStylingHook();
     window.customUI.installEntityCardStylingHook();
+    window.customUI.installTileCardStylingHook();
     window.customUI.installStateBadgeStylingHook();
   },
 
