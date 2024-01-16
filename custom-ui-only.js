@@ -157,7 +157,6 @@ window.customUI = {
 
                 if (iconColor) {
                     this.style?.setProperty('--icon-primary-color', iconColor);
-                    console.log(iconColor, ' applied to: ', states?.[entityId]?.entity_id);
                 }
                 originalUpdated.call(this, changedProps);
             }
