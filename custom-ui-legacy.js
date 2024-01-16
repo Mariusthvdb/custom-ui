@@ -1,4 +1,4 @@
-const Name = "Custom-ui";
+const Name = "Custom-ui-legacy";
 const Version = "20240111";
 const Description = "add templates and icon_color to UI";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
