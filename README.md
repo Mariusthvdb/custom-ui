@@ -126,7 +126,6 @@ around that by creating template sensors for those entities, which you can again
 ### Not all Lovelace cards are equal
 Not all core HA cards use the same icon handling. Because of that, cards like
 * [Picture-glance card](https://www.home-assistant.io/dashboards/picture-glance/)
-* [Tile card](https://www.home-assistant.io/dashboards/tile/)
 * [Statistic card](https://www.home-assistant.io/dashboards/statistic/)
 
 are not customized by `custom-ui`.
