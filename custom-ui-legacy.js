@@ -1,26 +1,17 @@
-// Define constants for the custom-ui component
-const Name = "Custom-ui only";
-const Version = "20240116";
-const Description = "add attributes icon_color and templates";
+const Name = "Custom-ui-legacy";
+const Version = "20240118";
+const Description = "add templates and icon_color to UI";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
-
-// Log information about the custom-ui component
-console.groupCollapsed(
-  `%c ${Name} ${Version} is installed \n%c ${Description} `,
+console.info(
+  `%c  ${Name}  \n%c  Version ${Version} ${Description}`,
   "color: gold; font-weight: bold; background: black",
-  "color: white; font-weight: bold; background: steelblue"),
-console.log("Readme:",Url),
-console.groupEnd()
-
-// Define the custom-ui object and its methods
+  "color: white; font-weight: bold; background: steelblue"
+);
 window.customUI = {
-// Helper function to find an element either in shadowRoot or regular DOM
   lightOrShadow: (elem, selector) =>
     elem.shadowRoot
       ? elem.shadowRoot.querySelector(selector)
       : elem.querySelector(selector),
-
-// Apply template attributes to an entity's attributes
   async maybeApplyTemplateAttributes(hass, states, entity) {
     const newAttributes = {};
     const templateKeys = Object.keys(entity.attributes.templates);
@@ -54,9 +45,84 @@ window.customUI = {
     };
     return newEntity;
   },
+  updateMoreInfo(ev) {
+    if (!ev.detail.expanded) return;
+    const moreInfoInfo = document
+      .querySelector("home-assistant")
+      .shadowRoot.querySelector("ha-more-info-dialog")
+      .shadowRoot.querySelector("ha-dialog")
+      .getElementsByClassName("content")[0]
+      .querySelector("ha-more-info-info");
 
-// Install a hook to update the states with template attributes
-  installTemplateAttributesHook() {
+    try {
+      let t;
+      {
+        let moreInfoNodeName;
+        const contentChild = moreInfoInfo.shadowRoot.querySelector(
+          "more-info-content"
+        ).childNodes;
+        for (const nodeItem of contentChild) {
+          if (nodeItem.nodeName.toLowerCase().startsWith("more-info-")) {
+            moreInfoNodeName = nodeItem.nodeName.toLowerCase();
+            break;
+          }
+        }
+        if (moreInfoNodeName == "more-info-group") {
+          let moreInfoNestedNodeName;
+          const contentChildNested =
+            moreInfoInfo.shadowRoot
+              .querySelector("more-info-group")
+              .shadowRoot.childNodes;
+          for (const nodeItemNested of contentChildNested) {
+            if (
+              nodeItemNested.nodeName.toLowerCase().startsWith("more-info-")
+            ) {
+              moreInfoNestedNodeName = nodeItemNested.nodeName.toLowerCase();
+              break;
+            }
+          }
+          t = moreInfoInfo.shadowRoot
+            .querySelector("more-info-group")
+            .shadowRoot.querySelector(moreInfoNestedNodeName)
+            .shadowRoot.querySelector("ha-attributes")
+            .shadowRoot.querySelectorAll(".data-entry");
+        } else {
+          t = moreInfoInfo.shadowRoot
+            .querySelector(moreInfoNodeName)
+            .shadowRoot.querySelector("ha-attributes")
+            .shadowRoot.querySelectorAll(".data-entry");
+        }
+      }
+      if (t.length) {
+        let e;
+        for (const node of t) {
+          const o = node.getElementsByClassName("key")[0];
+  // make compatible for both 2023.8 and 2023.9
+          if (o.innerText.toLowerCase().trim() == "hide attributes") {
+            const valueContainer = o.parentNode.getElementsByClassName("value")[0];
+            const haAttributeValue = valueContainer.querySelector('ha-attribute-value');
+            const text = haAttributeValue
+              ? haAttributeValue.shadowRoot.textContent
+              : valueContainer.innerText;
+            e = text
+              .split(",")
+              .map((item) => item.replace("_", " ").trim());
+            e.push("hide attributes");
+          }
+        }
+        for (const node of t) {
+          const o = node.getElementsByClassName("key")[0];
+          if (
+            e.includes(o.innerText.toLowerCase().trim()) ||
+            e.includes("all")
+          ) {
+            o.parentNode.style.display = "none";
+          }
+        }
+      }
+    } catch (err) {}
+  },
+  installStatesHook() {
     customElements.whenDefined("home-assistant").then(() => {
       const homeAssistant = customElements.get("home-assistant");
       if (!homeAssistant?.prototype?._updateHass) return;
@@ -86,29 +152,8 @@ window.customUI = {
       };
     });
   },
-
-// Install a hook to update the button card with custom styling
-  installButtonCardStylingHook() {
-    customElements.whenDefined("hui-button-card").then(() => {
-        const buttonCard = customElements.get("hui-button-card");
-        if (!buttonCard) return;
-        if (buttonCard.prototype?.updated) {
-            const originalUpdated = buttonCard.prototype.updated;
-            buttonCard.prototype.updated = function customUpdated(changedProps) {
-                if (!changedProps.has('_stateObj')) {
-                    return;
-                }
-                const { _stateObj } = this;
-                if (_stateObj.attributes?.icon_color) {
-                    this.style?.setProperty('--icon-primary-color', _stateObj.attributes.icon_color);
-                }
-                originalUpdated.call(this, changedProps);
-            }
-        }
-    });
-  },
-
-// Install a hook to update the entity card with custom styling
+  
+  // Install a hook to update the entity card with custom styling
   installEntityCardStylingHook() {
     customElements.whenDefined("hui-entity-card").then(() => {
       const entityCard = customElements.get("hui-entity-card");
@@ -135,37 +180,28 @@ window.customUI = {
     });
   },
 
-// Install a hook to update the Tile card with custom styling
-  installTileCardStylingHook() {
-    customElements.whenDefined("hui-tile-card").then(() => {
-        const tileCard = customElements.get("hui-tile-card");
-        if (!tileCard) return;
-        if (tileCard.prototype?.updated) {
-            const originalUpdated = tileCard.prototype.updated;
-            tileCard.prototype.updated = function customUpdated(changedProps) {
-
-                if (
-                    !changedProps.has('_config') ||
-                    !changedProps.has('hass')
-                ) {
+// Install a hook to update the button card with custom styling
+  installButtonCardStylingHook() {
+    customElements.whenDefined("hui-button-card").then(() => {
+        const buttonCard = customElements.get("hui-button-card");
+        if (!buttonCard) return;
+        if (buttonCard.prototype?.updated) {
+            const originalUpdated = buttonCard.prototype.updated;
+            buttonCard.prototype.updated = function customUpdated(changedProps) {
+                if (!changedProps.has('_stateObj')) {
                     return;
                 }
-                const { _config, hass } = this;
-                const entityId = _config?.entity;
-                const states = hass?.states;
-                const iconColor = states?.[entityId]?.attributes?.icon_color;
-
-                if (iconColor) {
-                    this.style?.setProperty('--icon-primary-color', iconColor);
+                const { _stateObj } = this;
+                if (_stateObj.attributes?.icon_color) {
+                    this.style?.setProperty('--icon-primary-color', _stateObj.attributes.icon_color);
                 }
                 originalUpdated.call(this, changedProps);
             }
         }
     });
   },
-
-// Install a hook to update the state badge with custom styling
-  installStateBadgeStylingHook() {
+  
+  installStateBadge() {
     customElements.whenDefined("state-badge").then(() => {
       const stateBadge = customElements.get("state-badge");
       if (!stateBadge) return;
@@ -189,36 +225,24 @@ window.customUI = {
       }
     });
   },
-
-// Install the hooks for updating states, entity cards, and state badges
-  installCustomHooks() {
-    window.customUI.installTemplateAttributesHook();
-    window.customUI.installButtonCardStylingHook();
+  installClassHooks() {
+    if (window.customUI.classInitDone) return;
+    window.customUI.classInitDone = true;
+    window.customUI.installStatesHook();
     window.customUI.installEntityCardStylingHook();
-    window.customUI.installTileCardStylingHook();
-    window.customUI.installStateBadgeStylingHook();
+    window.customUI.installButtonCardStylingHook();
+    window.customUI.installStateBadge();
   },
-
-  async init() {
-// Check if initialization has already been done
+  init() {
     if (window.customUI.initDone) return;
-
-// Wait for the hass.states to be populated
+    window.customUI.installClassHooks();
     const main = window.customUI.lightOrShadow(document, "home-assistant");
-    await new Promise((resolve) => {
-      const intervalId = setInterval(() => {
-        if (main?.hass?.states) {
-          clearInterval(intervalId);
-          resolve();
-        }
-      }, 100);
-    });
-
-// Install the hooks and mark initialization as done
-    window.customUI.installCustomHooks();
+    if (!main?.hass?.states) {
+      window.setTimeout(window.customUI.init, 1000);
+      return;
+    }
     window.customUI.initDone = true;
-
-// Push custom-ui information to a global list
+    window.addEventListener("expanded-changed", window.customUI.updateMoreInfo);
     window.CUSTOM_UI_LIST = window.CUSTOM_UI_LIST || [];
     window.CUSTOM_UI_LIST.push({
       name: Name,
@@ -226,8 +250,6 @@ window.customUI = {
       url: Url
     });
   },
-
-// Evaluate a template expression
   computeTemplate(
     template,
     hass,
@@ -250,11 +272,12 @@ window.customUI = {
         functionBody
       )(hass, entities, entity, attributes, attribute, state);
     } catch (e) {
-      console.warn(`${e.name}: ${e.message} in custom-ui template ${functionBody}`);
-      return null;
+      if (e instanceof SyntaxError || e instanceof ReferenceError) {
+        console.warn(`${e.name}: ${e.message} in template ${functionBody}`);
+        return null;
+      }
+      throw e;
     }
   }
 };
-
-// Initialize the custom-ui component
 window.customUI.init();
