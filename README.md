@@ -123,6 +123,11 @@ customization in the script itself) and entities created by several add-ons can'
 custom-ui. E.g. Home Assistant Google Drive Backup. You can work 
 around that by creating template sensors for those entities, which you can again customize in HA.
 
+Also, do notice that changes to configuration used by this plugin will only apply on the state
+change of the related entity. Thus, if you have already reloaded your new YAML config via Developer
+Tools > YAML > Location & Customizations, but it didn't "kick in", try to force a state change in
+the entity you're testing
+
 ### Not all Lovelace cards are equal
 Not all core HA cards use the same icon handling. Because of that, cards like
 * [Picture-glance card](https://www.home-assistant.io/dashboards/picture-glance/)
