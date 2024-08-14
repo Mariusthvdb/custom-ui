@@ -5,6 +5,24 @@
 [![GH-last-commit](https://img.shields.io/github/last-commit/Mariusthvdb/custom-ui.svg?style=flat-square)](https://github.com/Mariusthvdb/custom-ui/commits/master)
 [![GH-code-size](https://img.shields.io/github/languages/code-size/Mariusthvdb/custom-ui.svg?color=red&style=flat-square)](https://github.com/Mariusthvdb/custom-ui)
 
+## Please read this before using custom-ui
+
+Custom-ui was developed a long time ago, before Home Assistant introduced the modern Dashboard (Lovelace). Home Assistant has evolved significantly since then, so most users no longer need custom-ui.
+
+[Theming](https://www.home-assistant.io/integrations/frontend/#defining-themes) and the use of [state-colors](https://www.home-assistant.io/integrations/frontend/#supported-theme-variables) in the Frontend have become very powerful and should be your first choice for customizing colors based on states.
+
+If you need more, especially if you want to use templates, consider using the custom [Card-mod](https://github.com/thomasloven/lovelace-card-mod), which allows the user to modify almost anything in the Dashboard views (the Frontend).
+
+Only as a last resort should you consider using custom-ui, and only in those cases where you need more power and control.
+
+The use of the templating feature on all attributes (yes, custom-ui is that powerful) should be discouraged because it interferes with entities in the Home Assistant state machine (the back-end).
+
+The Core development team consistently emphasizes the importance of maintaining as clean a state machine as possible and warns against overloading it with (custom) attributes, especially templating those attributes.
+
+**So, again, only use custom-ui if you know what you are doing and if no other option is available.**
+
+______
+
 We can 
 [customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). 
 However, this is rather limited. Two of the most important features Custom-ui offers on top of the 
