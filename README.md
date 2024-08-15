@@ -51,18 +51,19 @@ Current custom-ui (with legacy more-info manipulation) will be archived, and ren
 
 **New Custom template attributes**
 
-All modifications in my entire config are now implemented using [Card-mod](https://github.com/thomasloven/lovelace-card-mod). I am aware this only works in the actual cards in the View, and not on the more-info of entities. It is a choice I made to accept that as a trade-off between optimal desktop customization, and optimal core handling of the state machine. 
+All modifications in my entire config are now implemented using [Card-mod](https://github.com/thomasloven/lovelace-card-mod). I am aware this only works in the actual cards in the View, and not on the more-info dialog of entities.
+It is an acceptable trade-off between optimal desktop customization, and optimal core handling of the state machine. 
 
-I don't want to overload the state machine with anything custom anymore. In the end, it is the best way forward.
+In the end, the best way forward is to not overload the state machine with anything custom. Well, as little as possible anayway...
 
-However, there is 1 modification I 'need', that can't be done with card-mod.
+Because, there is 1 modification I 'need', that can't be done with card-mod.
 
-My persons entity_picture need to grayscale when `not_home`, specifically in the [`type: map`](https://www.home-assistant.io/dashboards/map/) cards. 
+My person's entity_picture need to grayscale when `not_home`, specifically in the [`type: map`](https://www.home-assistant.io/dashboards/map/) cards. 
 Currently we can succesfully set a css filter in most other regular cards with card-mod, but those modifications do not affect the Map card.
-For that purpose only, the new `custom-attributes-templates` now sees the light.
+For that purpose, and that purpose alone, this new `custom-attributes-templates` now sees the light.
 
-I all honesty, I hope this can be deleted as soon as core Home Assistant would provide other means to do so. 
-There is not a single hint entity_picture will ever be leveraged (we can not even set an [entity_picture in the UI](https://www.home-assistant.io/docs/configuration/customizing-devices/#customizing-an-entity-in-yaml) and need [`customize:` in Yaml](https://www.home-assistant.io/integrations/homeassistant/#manual-customization) for that), eg. like we can now do with [state-colors](https://www.home-assistant.io/integrations/frontend/#supported-theme-variables).
+In all honesty, I hope this can be deleted as soon as core Home Assistant would provide other means to do so. 
+There is however not a single hint entity_picture will ever be leveraged (we can not even set an [entity_picture in the UI](https://www.home-assistant.io/docs/configuration/customizing-devices/#customizing-an-entity-in-yaml) and need [`customize:` in Yaml](https://www.home-assistant.io/integrations/homeassistant/#manual-customization) for that), eg. like we can now do with [state-colors](https://www.home-assistant.io/integrations/frontend/#supported-theme-variables).
 
 Until that moment, this will have to do:
 
@@ -79,7 +80,7 @@ homeassistant:
           ? '/local/family/' + id + '_not_home.png' : '/local/family/' + id + '.jpg';
 ```
 
-I purposely dont provide an easy way to download it via HACS, or plan a release. the file can bw downloaded from the list above, and insgtalled like any other resource:
+I purposely do NOT provide an easy way to download it via HACS, or plan a release. The file can be downloaded from the list above, and installed like any other resource:
 
 ```
 - url: /local/resources/custom-attributes-templates/custom-attributes-templates.js?v=202400815
