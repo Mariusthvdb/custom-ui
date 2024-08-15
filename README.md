@@ -54,9 +54,9 @@ Current custom-ui (with legacy more-info manipulation) will be archived, and ren
 All modifications in my entire config are now implemented using [Card-mod](https://github.com/thomasloven/lovelace-card-mod). I am aware this only works in the actual cards in the View, and not on the more-info dialog of entities.
 It is an acceptable trade-off between optimal desktop customization, and optimal core handling of the state machine. 
 
-In the end, the best way forward is to not overload the state machine with anything custom. Well, as little as possible anayway...
+In the end, the best way forward is to avoid overloading the state machine with custom elements as much as possible..
 
-Because, there is 1 modification I 'need', that can't be done with card-mod.
+There is only 1 modification I 'need', that can't be done with card-mod.
 
 My person's entity_picture need to grayscale when `not_home`, specifically in the [`type: map`](https://www.home-assistant.io/dashboards/map/) cards. 
 Currently we can succesfully set a css filter in most other regular cards with card-mod, but those modifications do not affect the Map card.
