@@ -1,5 +1,5 @@
 # WARNING-WARNING-WARNING-WARNING-WARNING
-As of 2024.10 Custom-ui is broken.
+As of Home Assistant 2024.10 Custom-ui is broken.
 You should Not install Custom-ui, and if you already had it, de-install.
 
 Unless you are willing to help out fix the broken resource, in which case we would welcome your support and efforts very much.
