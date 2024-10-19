@@ -1,3 +1,18 @@
+# WARNING-WARNING-WARNING-WARNING-WARNING
+As of 2024.10 Custom-ui is broken.
+You should Not install Custom-ui, and if you already had it, de-install.
+
+Unless you are willing to help out fix the broken resource, in which case we would welcome your support and efforts very much.
+
+For now it is safe to use the
+```
+- url: /local/resources/custom-ui/custom-attributes-templates.js?v=20240914
+  type: module
+```
+
+plugin that allows you to set a template on attributes, like the entity_picture based on state of a device_tracker or person entity. See below
+
+
 # What is Custom-ui
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
 [![GH-release](https://img.shields.io/github/v/release/Mariusthvdb/custom-ui.svg?style=flat-square)](https://github.com/Mariusthvdb/custom-ui/releases)
