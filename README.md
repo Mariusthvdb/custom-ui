@@ -22,7 +22,7 @@ The Core development team consistently emphasizes keeping the state machine clea
 ______
 
 We can 
-[customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-devices/). 
+[customize entities in core Home Assistant](https://www.home-assistant.io/docs/configuration/customizing-entities/). 
 However, this is rather limited. Two of the most important features Custom-ui offers on top of the 
 core customization are support for:
 * **Templates** 
@@ -44,14 +44,14 @@ how.
 
 ### Manual Installation
 
-1. Download the [custom-ui](http://www.github.com/Mariusthvdb/custom-ui/releases/latest/download/custom-ui.js)
+1. Download [custom-ui-2026.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui-2026.js) (for HA 2026.11+; use `custom-ui.js` on older versions)
 2. Place the file in your `config/www` folder or any subfolders.
 3. Include the card code in your `ui-lovelace-card.yaml`
 
    ```yaml
    title: Home
    resources:
-     - url: /local/custom-ui.js
+     - url: /local/custom-ui-2026.js
        type: module
    ```
 or when using the UI, click 
@@ -90,7 +90,7 @@ For examples, see [EXAMPLES.md](https://github.com/Mariusthvdb/custom-ui/blob/ma
 ## Learn core Home Assistant customization 
 It goes without saying that custom-ui is an extension of core Home Assistant functionality. As 
 such, you should understand what is documented on 
-[Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-devices/) about the 
+[Homeassisant.io](https://www.home-assistant.io/docs/configuration/customizing-entities/) about the 
 subject. 
 
 Important to note, is that Home Assistant 
