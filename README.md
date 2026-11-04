@@ -77,6 +77,12 @@ Since Home Assistant 2026.11, HACS is built in as the Marketplace (Settings > Ma
 For Home Assistant 2026.11 and newer, use `custom-ui-2026.js` instead of `custom-ui.js`.
 Note: the Marketplace/HACS resource path (`/hacsfiles/custom-ui/...`) always serves `custom-ui.js`, so install `custom-ui-2026.js` manually: download it and add `- url: /local/custom-ui-2026.js\n  type: module` to your dashboard resources.
 
+### Debug logging
+
+`custom-ui-2026.js` is silent by default. To see its console logs in a specific browser, enable the HA frontend debug toggle there: open your Home Assistant instance and go to **Settings → Tools → Debug** (URL path `/config/tools/debug`) and turn on the request/response observation toggle. That sets `localStorage.debugConnection` in that browser only, which the resource reads on every update — no reload needed.
+
+With debug on you get the startup banner, one `hook installed` line per hook, `[custom-ui] hass: N | templates considered: X | evaluated: Y (...)` lines only when templates actually re-evaluate, and `icon_color` application lines. Turn the toggle off to go silent again. (`_debugDefault: true` in the file forces logging on in every browser — only for development.)
+
 ### Other installation methods
 See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
 
