@@ -19,7 +19,7 @@ Why use custom-ui? 2 huge reasons:
 
 Setting a color for an icon is not possible in core HA. There is no attribute `icon_color` out of the box.
 
-Personally, I can't live without the `icon_color` attribute. Fully aware of the great and modern custom card-mod, with which you can set a style on any card and entity, (see some [examples here](https://github.com/Mariusthvdb/custom-icon-color/blob/main/CARD-MOD-EXAMPLES.md)) this still doesn't come close to the ease of custom-ui. Keeping as many styling issues out of the Lovelace cards makes for much better readable configs (imho) and, last but not least: using custom-ui we can set colors and color templates globally. 
+Personally, I can't live without the `icon_color` attribute. Fully aware of the great and modern [UIX](https://uix.lf.technology) by @dcapslock, with which you can set a style on any card and entity, this still doesn't come close to the ease of custom-ui. Keeping as many styling issues out of the Lovelace cards makes for much better readable configs (imho) and, last but not least: using custom-ui we can set colors and color templates globally. 
 
 Declare once, use everywhere. 
 

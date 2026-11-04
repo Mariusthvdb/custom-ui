@@ -11,13 +11,11 @@ Custom-ui was developed a long time ago, before Home Assistant introduced the mo
 
 [Theming](https://www.home-assistant.io/integrations/frontend/#defining-themes) and the use of [state-colors](https://www.home-assistant.io/integrations/frontend/#supported-theme-variables) in the Frontend have become very powerful and should be your first choice for customizing colors based on states.
 
-If you need more, especially if you want to use templates, consider using the custom [Card-mod](https://github.com/thomasloven/lovelace-card-mod), which allows the user to modify almost anything in the Dashboard views (the Frontend).
+If you need more, especially if you want to use templates, consider using [UIX](https://uix.lf.technology) by @dcapslock, which allows the user to modify almost anything in the Dashboard views (the Frontend).
 
 Only as a last resort should you consider using custom-ui, and only in those cases where you need more power and control.
 
-The use of the templating feature on all attributes (yes, custom-ui is that powerful) should be discouraged because it interferes with entities in the Home Assistant state machine (the back-end).
-
-The Core development team consistently emphasizes the importance of maintaining as clean a state machine as possible and warns against overloading it with (custom) attributes, especially templating those attributes.
+The Core development team consistently emphasizes keeping the state machine clean and warns against overloading it with (custom) attributes, especially templating those attributes. **The Home Assistant developers actively discourage frontend plugins like custom-ui**; if you want dashboard customization, prefer core features and [UIX](https://uix.lf.technology) by @dcapslock where possible. Use custom-ui only when nothing else covers your case.
 
 **So, again, only use custom-ui if you know what you are doing and if no other option is available.**
 
@@ -37,80 +35,6 @@ how.
 
 <img width="492" alt="icon-color" src="https://user-images.githubusercontent.com/33354141/168234088-ee5a5b11-0e68-49fd-b664-6e5a13c79fb0.png">
 
-## Development of this plugin, strategy forward
-
-Please see the pinned [discussion](https://github.com/Mariusthvdb/custom-ui/discussions/128) on development of this plugin.
-
-In short:
-- If you want a tool to customize icon_color: Use either custom-ui (with template support) or custom-icon-color.
-- If you want a tool to customize more-info dialogs: Use custom-more-info
-
-Current custom-ui (with legacy more-info manipulation) will be archived, and renamed, so we can keep the custom-ui name for the current custom-ui-only.
-
-## NEWS
-
-**New Custom template attributes**
-
-All modifications in my entire config are now implemented using [Card-mod](https://github.com/thomasloven/lovelace-card-mod). I am aware this only works in the actual cards in the View, and not on the more-info dialog of entities.
-It is an acceptable trade-off between optimal desktop customization, and optimal core handling of the state machine. 
-
-In the end, the best way forward is to avoid overloading the state machine with custom elements as much as possible..
-
-There is only 1 modification I 'need', that can't be done with card-mod.
-
-My person's entity_picture need to grayscale when `not_home`, specifically in the [`type: map`](https://www.home-assistant.io/dashboards/map/) cards. 
-Currently we can succesfully set a css filter in most other regular cards with card-mod, but those modifications do not affect the Map card.
-For that purpose, and that purpose alone, this new `custom-attributes-templates` now sees the light.
-
-In all honesty, I hope this can be deleted as soon as core Home Assistant would provide other means to do so. 
-There is however not a single hint entity_picture will ever be leveraged (we can not even set an [entity_picture in the UI](https://www.home-assistant.io/docs/configuration/customizing-devices/#customizing-an-entity-in-yaml) and need [`customize:` in Yaml](https://www.home-assistant.io/integrations/homeassistant/#manual-customization) for that), eg. like we can now do with [state-colors](https://www.home-assistant.io/integrations/frontend/#supported-theme-variables).
-
-Until that moment, this will have to do:
-
-```
-homeassistant:
-
-  customize_domain:
-
-    person:
-      templates:
-        entity_picture: >
-          var id = entity.entity_id.split('.')[1];
-          return state === 'not_home'
-          ? '/local/family/' + id + '_not_home.png' : '/local/family/' + id + '.jpg';
-```
-
-I purposely do NOT provide an easy way to download it via the Marketplace, or plan a release. The file can be downloaded from the list above, and installed like any other resource:
-
-```
-- url: /local/resources/custom-attributes-templates/custom-attributes-templates.js?v=202400815
-  type: module
-```
-
-**New Custom More-info**
-
-[Custom More-info](https://github.com/Mariusthvdb/custom-more-info) is a new custom Plugin for Home Assistant and superseeds the plugin `custom-attributes` announced below. 
-
-Next to the functionality of `custom-attributes`, with `custom-more-info` users can customize when and when not to display the History and Logbook sections in the More-info card. Even hide the History icon in the Header completely. Automatically, or based on manual settings.
-
-From now on you are in control of the More-info attributes and all other sections. Filter all, unfilter all, or select which to see/hide by glob, domain, device_class, or entity_id. Any combination is possible!
-
-Custom More-info gives the user ultimate control over the More-info panel.
-___
-**New Custom Attributes**
-
-[Custom attributes](https://github.com/Mariusthvdb/custom-attributes) is a new resource for Home Assistant to customize which entity attributes are displayed in the Dashboard on more-info cards. Moreover, if configured so that no more attributes are left to display (all attributes are filtered), the attributes dropdown box is not rendered at all. This is replacing that specific functionality from Custom-ui.
-
-### DON'T INSTALL BOTH CUSTOM-ATTRIBUTES AND CUSTOM-MORE-INFO SIMULTANEOUSLY. USE ONLY 1 OF THESE 2 NEW PLUGINS
-___
-**New Custom icon_color**
-
-A new custom-ui sibling was released, [custom-icon-color](https://github.com/Mariusthvdb/custom-icon-color), which can be used *only* for adding an attribute in `customize:` and the attributes configuration options of [template:](https://www.home-assistant.io/integrations/template/#attributes) entities.
-
-*No more templates possible* with this version, which minimizes impact on the HA system and Frontend if you wish to do so. There was never a huge impact, but this brings it down even further, if you don't need the template options and still want the icon_color attribute in your options.
-Configuration is identical to what is already explained in the example section
-
-___
 **Did you know....**: custom-ui facilitates setting a [Jinja template on custom attributes](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md#did-you-know) in core integrations that allow setting a custom attribute.
 
 --- 
@@ -159,7 +83,7 @@ See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING
 ## Examples
 See [EXAMPLES](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md).
 
-For card-mod replacement mods, see [CARD-MOD-EXAMPLES](https://github.com/Mariusthvdb/custom-ui-icon-color/blob/main/CARD-MOD-EXAMPLES.md)
+For examples, see [EXAMPLES.md](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) in this repo.
 
 ---
 
@@ -196,12 +120,12 @@ Not all core HA cards use the same icon handling. Because of that, cards like
 
 are not customized by `custom-ui`.
 
-Thomas Loven's [Card-mod](https://github.com/thomasloven/lovelace-card-mod), which is an amazing 
-plugin for Lovelace with many features, to the rescue.
+[UIX](https://uix.lf.technology) by @dcapslock, an amazing 
+plugin for the Dashboard with many features, to the rescue.
 
-### Interaction with Card-mod
-Be aware that custom-ui is very impactful. As a matter of fact, it is 'stronger' than card-mod. 
-Meaning if you have e.g. a `customize_glob` on `icon_color` set using custom-ui, any card-mod 
+### Interaction with UIX
+Be aware that custom-ui is very impactful. As a matter of fact, it is 'stronger' than UIX. 
+Meaning if you have e.g. a `customize_glob` on `icon_color` set using custom-ui, any UIX 
 config won't work.
 
 ### Credits
