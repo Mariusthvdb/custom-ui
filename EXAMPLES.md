@@ -65,13 +65,6 @@ template:
 ```
 Note: this is functionality provided by Custom-ui/custom-icon-color so that still needs to be installed for the template above to work.
 
-# Hide attributes
-To hide attributes in the `more-info` popup, you need to add the `hide_attributes` customization option under the entity in `customize.yaml` or in the global customize configuration `customize_glob.yaml`. 
-
-Single attributes can be hidden by listing them under the corresponding entity (or global definition) or you can choose to hide all attributes by adding the new `all` entry.
-
-If you dont need the functionality above, don't use custom-ui. Since you came here looking for examples, I take it you do, so read on ;-)
-
 ### Available variables
 #### Global variables
 Those variables allow one entity to set state / attribute based on another entity or some other "external" thing. Using those hurts UI performance,
