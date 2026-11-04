@@ -15,9 +15,7 @@ If you need more, especially if you want to use templates, consider using [UIX](
 
 Only as a last resort should you consider using custom-ui, and only in those cases where you need more power and control.
 
-The use of the templating feature on all attributes (yes, custom-ui is that powerful) should be discouraged because it interferes with entities in the Home Assistant state machine (the back-end).
-
-The Core development team consistently emphasizes the importance of maintaining as clean a state machine as possible and warns against overloading it with (custom) attributes, especially templating those attributes. **The Home Assistant developers actively discourage frontend plugins like custom-ui**; if you want dashboard customization, prefer core features and [UIX](https://uix.home-assistant.io/) where possible. Use custom-ui only when nothing else covers your case.
+The Core development team consistently emphasizes keeping the state machine clean and warns against overloading it with (custom) attributes, especially templating those attributes. **The Home Assistant developers actively discourage frontend plugins like custom-ui**; if you want dashboard customization, prefer core features and [UIX](https://uix.lf.technology) by @dcapslock where possible. Use custom-ui only when nothing else covers your case.
 
 **So, again, only use custom-ui if you know what you are doing and if no other option is available.**
 
@@ -85,7 +83,7 @@ See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING
 ## Examples
 See [EXAMPLES](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md).
 
-For UIX replacement examples, see [UIX](https://uix.lf.technology) by @dcapslock
+For examples, see [EXAMPLES.md](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) in this repo.
 
 ---
 
