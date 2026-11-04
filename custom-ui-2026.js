@@ -124,7 +124,7 @@ window.customUI = {
         hass,
         states,
         entity,
-        untemplated,
+        entity.attributes,
         untemplated[key],
         entity.untemplated_state || entity.state
       );
@@ -189,7 +189,17 @@ window.customUI = {
               let totalSkipped = 0;
               let evaluatedList = [];
 
-              // Order: templated producers before consumers that depend on them
+              // Refresh deps first (templates object may have been replaced),
+              // then order: templated producers before consumers; wildcard
+              // consumers (Object.values(entities) etc.) last, cycle-safe.
+              for (const k of customUI._templated.keys()) {
+                const e0 = obj.states[k];
+                const entry = customUI._templated.get(k);
+                if (e0?.attributes?.templates && entry.templates !== e0.attributes.templates) {
+                  entry.templates = e0.attributes.templates;
+                  entry.deps = customUI.parseDeps(e0.attributes.templates);
+                }
+              }
               const order = [];
               const seen = new Set();
               const visit = (k) => {
@@ -201,18 +211,21 @@ window.customUI = {
                 }
                 order.push(k);
               };
-              for (const k of customUI._templated.keys()) visit(k);
+              for (const k of customUI._templated.keys()) {
+                const e = customUI._templated.get(k);
+                if (e?.deps.includes("*")) continue;   // wildcard consumers last
+                visit(k);
+              }
+              for (const k of customUI._templated.keys()) {
+                const e = customUI._templated.get(k);
+                if (e?.deps.includes("*")) visit(k);
+              }
 
               for (const key of order) {
                 const entity = obj.states[key];
                 if (!entity?.attributes?.templates) continue;
 
-                // Refresh deps if the templates object was replaced
                 const entry = customUI._templated.get(key);
-                if (entry.templates !== entity.attributes.templates) {
-                  entry.templates = entity.attributes.templates;
-                  entry.deps = customUI.parseDeps(entity.attributes.templates);
-                }
 
                 // === Only process entities that are dirty (or never evaluated) ===
                 if (entity._customUiHash &&
@@ -472,10 +485,11 @@ window.customUI = {
 
   // Evaluate a template expression
   async computeTemplate(template, hass, entities, entity, attributes, attribute, state) {
-    const functionBody =
-      template.indexOf("return") >= 0 ? template : `return \`${template}\`;`;
-
     try {
+      if (typeof template !== "string") return null;   // YAML null/number/etc.
+      const functionBody =
+        template.indexOf("return") >= 0 ? template : `return \`${template}\`;`;
+
       // await so a rejected promise returned by the template is caught here
       return await new Function(
         "hass",
