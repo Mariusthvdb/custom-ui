@@ -79,9 +79,9 @@ Note: the Marketplace/HACS resource path (`/hacsfiles/custom-ui/...`) always ser
 
 ### Debug logging
 
-`custom-ui-2026.js` is silent by default. To see its console logs in a specific browser, enable the HA frontend debug toggle there: open your Home Assistant instance and go to **Settings → Tools → Debug** (URL path `/config/tools/debug`; see the [HA Tools docs](https://www.home-assistant.io/docs/tools/dev-tools/)) and turn on the request/response observation toggle. That sets `localStorage.debugConnection` in that browser only, which the resource reads on every update — no reload needed.
+`custom-ui-2026.js` disables debug logs by default; the startup banner and warnings are still emitted. To see debug logs in a specific browser, enable the HA frontend debug toggle there: open your Home Assistant instance and go to **Settings → Tools → Debug** (URL path `/config/tools/debug`; see the [HA Tools docs](https://www.home-assistant.io/docs/tools/dev-tools/)) and turn on the request/response observation toggle. That sets `localStorage.debugConnection` in that browser only, which the resource reads on every update — no reload needed for subsequent update logs.
 
-With debug on you get the startup banner, one `hook installed` line per hook, `[custom-ui] hass: N | templates considered: X | evaluated: Y (...)` lines only when templates actually re-evaluate, and `icon_color` application lines. Turn the toggle off to go silent again. (`_debugDefault: true` in the file forces logging on in every browser — only for development.)
+With debug on you get `[custom-ui] hass: N | templates considered: X | evaluated: Y (...)` lines only when templates actually re-evaluate, and `icon_color` application lines. Each hook also emits a `hook installed` line if debug is enabled when it is installed; reload with debug already enabled to capture messages for previously installed hooks. Turn the toggle off to stop debug logs. (`_debugDefault: true` in the file forces debug logging on in every browser — only for development.)
 
 ### Other installation methods
 See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
