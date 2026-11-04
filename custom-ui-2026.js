@@ -1,8 +1,7 @@
 // === Meta ===
-// Copilot
 const Name = "Custom-ui only";
-const Version = "20261103-deps-tracking";
-const Description = "add attributes icon_color and templates (dependency-aware evaluation)";
+const Version = "20261104";
+const Description = "add attributes icon_color and templates";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
 
 console.groupCollapsed(
