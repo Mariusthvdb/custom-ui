@@ -44,7 +44,7 @@ how.
 
 ### Manual Installation
 
-1. Download [custom-ui-2026.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui-2026.js) (for HA 2026.11+; use `custom-ui.js` on older versions)
+1. Download [custom-ui-2026.js](https://raw.githubusercontent.com/Mariusthvdb/custom-ui/master/custom-ui-2026.js) (raw file; for HA 2026.11+ — use `custom-ui.js` on older versions)
 2. Place the file in your `config/www` folder or any subfolders.
 3. Include the card code in your `ui-lovelace-card.yaml`
 
