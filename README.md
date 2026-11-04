@@ -83,6 +83,7 @@ Note: the Marketplace/HACS resource path (`/hacsfiles/custom-ui/...`) always ser
 
 With debug on you get `[custom-ui] hass: N | templates considered: X | evaluated: Y (...)` lines only when templates actually re-evaluate, and `icon_color` application lines. Each hook also emits a `hook installed` line if debug is enabled when it is installed; reload with debug already enabled to capture messages for previously installed hooks. Turn the toggle off to stop debug logs. (`_debugDefault: true` in the file forces debug logging on in every browser — only for development.)
 
+
 ### Other installation methods
 See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
 
