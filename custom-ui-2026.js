@@ -501,7 +501,7 @@ window.customUI = {
         functionBody
       )(hass, entities, entity, attributes, attribute, state);
     } catch (e) {
-      console.warn(`${e.name}: ${e.message} in custom-ui template ${functionBody}`);
+      console.warn(`${e.name}: ${e.message} in custom-ui template ${template}`);
       return null;
     }
   }
