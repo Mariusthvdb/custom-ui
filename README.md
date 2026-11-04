@@ -85,7 +85,7 @@ See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING
 ## Examples
 See [EXAMPLES](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md).
 
-For card-mod replacement mods, see [CARD-MOD-EXAMPLES](https://github.com/Mariusthvdb/custom-ui-icon-color/blob/main/CARD-MOD-EXAMPLES.md)
+For UIX replacement examples, see [UIX](https://uix.lf.technology) by @dcapslock
 
 ---
 
@@ -122,12 +122,12 @@ Not all core HA cards use the same icon handling. Because of that, cards like
 
 are not customized by `custom-ui`.
 
-Thomas Loven's [Card-mod](https://github.com/thomasloven/lovelace-card-mod), which is an amazing 
-plugin for Lovelace with many features, to the rescue.
+[UIX](https://uix.lf.technology) by @dcapslock, an amazing 
+plugin for the Dashboard with many features, to the rescue.
 
-### Interaction with Card-mod
-Be aware that custom-ui is very impactful. As a matter of fact, it is 'stronger' than card-mod. 
-Meaning if you have e.g. a `customize_glob` on `icon_color` set using custom-ui, any card-mod 
+### Interaction with UIX
+Be aware that custom-ui is very impactful. As a matter of fact, it is 'stronger' than UIX. 
+Meaning if you have e.g. a `customize_glob` on `icon_color` set using custom-ui, any UIX 
 config won't work.
 
 ### Credits
