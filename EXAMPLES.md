@@ -290,12 +290,6 @@ homeassistant:
 ##########################################################################################
 
   customize:
-# Single Entity - Icon color
-    input_boolean.development:
-
-# or simply hide all attributes
-    input_boolean.development:
-
     sensor.synology_status_volume_1:
       templates:
         icon_color: >
