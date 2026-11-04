@@ -79,7 +79,7 @@ Note: the Marketplace/HACS resource path (`/hacsfiles/custom-ui/...`) always ser
 
 ### Debug logging
 
-`custom-ui-2026.js` is silent by default. To see its console logs in a specific browser, enable the HA frontend debug toggle there: open your Home Assistant instance and go to **Settings → Tools → Debug** (URL path `/config/tools/debug`) and turn on the request/response observation toggle. That sets `localStorage.debugConnection` in that browser only, which the resource reads on every update — no reload needed.
+`custom-ui-2026.js` is silent by default. To see its console logs in a specific browser, enable the HA frontend debug toggle there: open your Home Assistant instance and go to **Settings → Tools → Debug** (URL path `/config/tools/debug`; see the [HA Tools docs](https://www.home-assistant.io/docs/tools/dev-tools/)) and turn on the request/response observation toggle. That sets `localStorage.debugConnection` in that browser only, which the resource reads on every update — no reload needed.
 
 With debug on you get the startup banner, one `hook installed` line per hook, `[custom-ui] hass: N | templates considered: X | evaluated: Y (...)` lines only when templates actually re-evaluate, and `icon_color` application lines. Turn the toggle off to go silent again. (`_debugDefault: true` in the file forces logging on in every browser — only for development.)
 
