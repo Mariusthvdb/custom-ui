@@ -46,15 +46,17 @@ window.customUI = {
   // hass/states/entities as a whole and no literal entity id is found.
   extractDependencies(template) {
     const deps = new Set();
-    const re = /(?:states|entities|hass\.states)\s*(?:\(\s*['"]([^'"]+)['"]\s*\)|\[\s*['"]?([a-z_]+\.[a-z0-9_]+)['"]?\s*\]|\.([a-z_]+\.[a-z0-9_]+))/g;
+    const re = /(?:states|entities|hass\.states)\s*(?:\(\s*['"]([^'"]+)['"]\s*\)|\[\s*['"]([^'"]+)['"]\s*\]|\.([a-z_]+\.[a-z0-9_]+))/g;
     let m;
     while ((m = re.exec(template)) !== null) {
       const id = m[1] || m[2] || m[3];
       if (id && id.includes(".")) deps.add(id);
     }
-    if (!deps.size && /(hass|states|entities)\s*[.|]/.test(template)) {
-      deps.add("*");
-    }
+    // After stripping recognized literal accesses, any remaining reference to
+    // the collections (Object.values(entities), entities[variable], ...) is a
+    // whole-map/dynamic read: conservatively treat it as a wildcard dependency.
+    const rest = template.replace(re, " ");
+    if (/\b(hass|states|entities)\b/.test(rest)) deps.add("*");
     return deps;
   },
 
@@ -88,6 +90,7 @@ window.customUI = {
     const changedRef = (id) => {
       const curr = states[id];
       const prev = prevStates[id];
+      if (!curr) return true;            // entity removed: treat as changed
       if (curr === prev) return false;   // HA reuses state objects when unchanged
       return !prev || prev.state !== curr.state ||
         prev.last_updated !== curr.last_updated;
@@ -138,7 +141,7 @@ window.customUI = {
   },
 
   // Install a hook to update the states with template attributes.
-  // Per update, only registered templated entities and their deps are inspected.
+  // Only entities whose own state or template dependencies changed are re-evaluated.
   installTemplateAttributesHook() {
     customElements.whenDefined("home-assistant").then(() => {
       const homeAssistant = customElements.get("home-assistant");
@@ -154,6 +157,10 @@ window.customUI = {
 
       homeAssistant.prototype._updateHass = new Proxy(originalUpdate, {
         async apply(target, thisArg, args) {
+          // Serialize updates: each one's async template work finishes before the
+          // next update is forwarded, so stale states can never overwrite newer ones.
+          const prev = customUI._updateChain || Promise.resolve();
+          const run = prev.then(async () => {
           customUI.hassUpdates++;
 
           const obj = args[0];
@@ -188,31 +195,11 @@ window.customUI = {
                   entry.deps = customUI.parseDeps(entity.attributes.templates);
                 }
 
-                // === Only process entities that are dirty ===
-                if (!customUI.isDirty(key, obj.states, prevStates ?? {})) continue;
+                // === Only process entities that are dirty (or never evaluated) ===
+                if (entity._customUiHash &&
+                    !customUI.isDirty(key, obj.states, prevStates ?? {})) continue;
 
                 totalConsidered++;
-
-                // === Build ultra-light content hash ===
-                const templateKeys = Object.keys(entity.attributes.templates);
-
-                const attrHash = templateKeys
-                  .map(k => `${k}:${entity.attributes[k]}`)
-                  .join("|");
-
-                const untHash = templateKeys
-                  .map(k => `${k}:${entity.untemplated_attributes?.[k]}`)
-                  .join("|");
-
-                const currHash = `${entity.state}|${attrHash}|${untHash}`;
-                const prevHash = entity._customUiHash;
-
-                // === Skip if content identical ===
-                if (prevHash === currHash) {
-                  totalSkipped++;
-                  obj.states[key] = entity;
-                  continue;
-                }
 
                 // === Evaluate templates ===
                 const newEntity =
@@ -222,7 +209,7 @@ window.customUI = {
                     entity
                   );
 
-                newEntity._customUiHash = currHash;
+                newEntity._customUiHash = `${entity.state}|${Date.now()}`;
 
                 obj.states[key] = newEntity;
                 totalEvaluated++;
@@ -241,6 +228,9 @@ window.customUI = {
           const result = Reflect.apply(target, thisArg, args);
           if (obj?.states) customUI._prevStates = obj.states;
           return result;
+          });
+          customUI._updateChain = run.catch(() => {});
+          return run;
         }
       });
 
@@ -259,7 +249,7 @@ window.customUI = {
       const originalUpdated = entityCard.prototype.updated;
 
       entityCard.prototype.updated = function customUpdated(changedProps) {
-        if (!changedProps.has("_config") || !changedProps.has("hass")) {
+        if (!changedProps.has("_config") && !changedProps.has("hass")) {
           return originalUpdated.call(this, changedProps);
         }
 
@@ -271,6 +261,8 @@ window.customUI = {
           if (customUI.debug) {
             console.log(`[custom-ui] icon_color: ${entityId} → ${iconColor} [entity-card]`);
           }
+        } else {
+          this.style?.removeProperty("--state-icon-color");
         }
 
         return originalUpdated.call(this, changedProps);
@@ -302,6 +294,8 @@ window.customUI = {
           if (customUI.debug) {
             console.log(`[custom-ui] icon_color: ${entityId} → ${color} [button-card]`);
           }
+        } else {
+          this.style?.removeProperty("--icon-primary-color");
         }
 
         return originalUpdated.call(this, changedProps);
@@ -335,6 +329,9 @@ window.customUI = {
           if (customUI.debug) {
             console.log(`[custom-ui] icon_color: ${entityId} → ${iconColor} [tile-card]`);
           }
+        } else {
+          const haCard = this.renderRoot?.querySelector("ha-card");
+          haCard?.style?.removeProperty("--tile-color");
         }
 
         return originalUpdated.call(this, changedProps);
@@ -370,6 +367,8 @@ window.customUI = {
           if (customUI.debug) {
             console.log(`[custom-ui] icon_color: ${entityId} → ${color} [state-badge]`);
           }
+        } else if (this._iconStyle) {
+          this._iconStyle = null;
         }
 
         return originalUpdated.call(this, changedProps);
@@ -403,6 +402,9 @@ window.customUI = {
           if (customUI.debug) {
             console.log(`[custom-ui] icon_color: ${entityId} → ${color} [entity-badge]`);
           }
+        } else {
+          const icon = this.renderRoot?.querySelector("ha-state-icon");
+          icon?.style?.removeProperty("color");
         }
 
         return originalUpdated.call(this, changedProps);
