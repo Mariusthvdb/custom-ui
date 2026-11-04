@@ -1,5 +1,5 @@
 # What is Custom-ui
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
+[![Marketplace](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=Mariusthvdb&repository=custom-ui&category=plugin)
 [![GH-release](https://img.shields.io/github/v/release/Mariusthvdb/custom-ui.svg?style=flat-square)](https://github.com/Mariusthvdb/custom-ui/releases)
 [![GH-downloads](https://img.shields.io/github/downloads/Mariusthvdb/custom-ui/total?style=flat-square)](https://github.com/Mariusthvdb/custom-ui/releases)
 [![GH-last-commit](https://img.shields.io/github/last-commit/Mariusthvdb/custom-ui.svg?style=flat-square)](https://github.com/Mariusthvdb/custom-ui/commits/master)
@@ -80,7 +80,7 @@ homeassistant:
           ? '/local/family/' + id + '_not_home.png' : '/local/family/' + id + '.jpg';
 ```
 
-I purposely do NOT provide an easy way to download it via HACS, or plan a release. The file can be downloaded from the list above, and installed like any other resource:
+I purposely do NOT provide an easy way to download it via the Marketplace, or plan a release. The file can be downloaded from the list above, and installed like any other resource:
 
 ```
 - url: /local/resources/custom-attributes-templates/custom-attributes-templates.js?v=202400815
@@ -134,10 +134,12 @@ or when using the UI, click
 
 <a href="https://my.home-assistant.io/redirect/lovelace_resources/" target="_blank"><img src="https://my.home-assistant.io/badges/lovelace_resources.svg" alt="Open your Home Assistant instance and show your Lovelace resources." /></a>
 
-### Installation and tracking with `hacs`
+### Installation and tracking with the Marketplace
 
-1. Make sure the [HACS](https://github.com/custom-components/hacs) component is installed and working.
-2. Search for `custom-ui` and add it through HACS
+Since Home Assistant 2026.11, HACS is built in as the Marketplace (Settings > Marketplace); on older versions, install HACS first.
+
+1. Add this repository as a custom repository in the Marketplace (menu > Custom repositories).
+2. Search for `custom-ui` and add it.
 3. Add the configuration to your `ui-lovelace.yaml`
 
    ```yaml
@@ -147,6 +149,9 @@ or when using the UI, click
    ```
 
 4. Refresh home-assistant.
+
+For Home Assistant 2026.11 and newer, use `custom-ui-2026.js` instead of `custom-ui.js`.
+Note: the Marketplace/HACS resource path (`/hacsfiles/custom-ui/...`) always serves `custom-ui.js`, so install `custom-ui-2026.js` manually: download it and add `- url: /local/custom-ui-2026.js\n  type: module` to your dashboard resources.
 
 ### Other installation methods
 See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
@@ -181,7 +186,7 @@ around that by creating template sensors for those entities, which you can again
 
 Also, do notice that changes to configuration used by this plugin will only apply on the state
 change of the related entity. Thus, if you have already reloaded your new YAML config via Developer
-Tools > YAML > Location & Customizations, but it didn't "kick in", try to force a state change in
+Tools > YAML > Location & Customizations, but it didn't "kick in", try to force a state change in 
 the entity you're testing
 
 ### Not all Lovelace cards are equal
@@ -201,8 +206,7 @@ config won't work.
 
 ### Credits
 I've been a longtime and heavy user of custom-ui, and this is the place to applaud Andrey for his 
-amazing plugin. Home Assistant wouldn't be the same without the global customizing it enables us 
-to do. Couldn't live without it! All credits go to @andrey-git.
+amazing plugin. Home Assistant wouldn't be the same without the global customizing it enables us to do. Couldn't live without it! All credits go to @andrey-git.
 You can read up on a bit if 
 [history](https://github.com/Mariusthvdb/custom-ui/blob/master/HISTORY.md) how it came to this 
 adapted version.

@@ -10,8 +10,11 @@ jobs:
   validate:
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "actions/checkout@v2"
+      - uses: "actions/checkout@v4"
       - name: HACS validation
         uses: "hacs/action@main"
         with:
           category: "plugin"
+          # LICENSE is added on this branch; the checker reads the license
+          # from the default branch, so skip until it is merged to master
+          ignore: "license"
