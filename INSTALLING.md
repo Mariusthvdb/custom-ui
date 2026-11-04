@@ -3,7 +3,7 @@ Thw two main methods for installation is mentioned in the [README](https://githu
 
 ## Downloading custom-ui
 1. Create a new folder under your resources folder (`/www`). Suggestion: `custom-ui`.
-2. Copy the [custom-ui.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui.js) file to that folder.
+2. Copy the [custom-ui-2026.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui-2026.js) file to that folder (HA 2026.11+; use `custom-ui.js` on older versions).
 
 ## UI - The Modern way
 For the official docs on this see [Registering Resources](https://developers.home-assistant.io/docs/frontend/custom-ui/registering-resources)
@@ -17,7 +17,7 @@ Register these resources with the Lovelace interface. This is done by navigating
 ### Step by step
 - Go to Configuration -> Dashboards -> Resources
 - Click "Add resource" button in the bottom right corner
-- Add the path to the Url field. Usually something like `/local/www/custom-ui/custom-ui.js`
+- Add the path to the Url field. Usually something like `/local/www/custom-ui/custom-ui-2026.js`
 - Select `JavaScript Module`
 - Click Create
 
@@ -28,7 +28,7 @@ Register these resources with the Lovelace interface. This is done by navigating
 (adapt to your own file structure):
 
   ```yaml
-   - url: /local/lovelace/resources/custom-ui/custom-ui.js
+   - url: /local/lovelace/resources/custom-ui/custom-ui-2026.js
      type: module
   ```
 
