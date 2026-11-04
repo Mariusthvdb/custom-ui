@@ -1,5 +1,5 @@
 // === Meta ===
-const Name = "Custom-ui only";
+const Name = "custom-ui";
 const Version = "20261104";
 const Description = "add attributes icon_color and templates";
 const Url = "https://github.com/Mariusthvdb/custom-ui";
