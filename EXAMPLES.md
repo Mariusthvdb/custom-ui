@@ -137,8 +137,6 @@ homeassistant:
 ##########################################################################################
 
   customize_glob:
-    # Note that yaml keys can't start with an asterisk. Use quotes in that case:
-    "*.*":
     
     light.hue_ambiance_spot_*:
       icon: mdi:spotlight-beam
