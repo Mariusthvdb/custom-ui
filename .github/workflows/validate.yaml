@@ -15,3 +15,6 @@ jobs:
         uses: "hacs/action@main"
         with:
           category: "plugin"
+          # LICENSE is added on this branch; the checker reads the license
+          # from the default branch, so skip until it is merged to master
+          ignore: "license"
