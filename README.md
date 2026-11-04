@@ -17,7 +17,7 @@ Only as a last resort should you consider using custom-ui, and only in those cas
 
 The use of the templating feature on all attributes (yes, custom-ui is that powerful) should be discouraged because it interferes with entities in the Home Assistant state machine (the back-end).
 
-The Core development team consistently emphasizes the importance of maintaining as clean a state machine as possible and warns against overloading it with (custom) attributes, especially templating those attributes.
+The Core development team consistently emphasizes the importance of maintaining as clean a state machine as possible and warns against overloading it with (custom) attributes, especially templating those attributes. **The Home Assistant developers actively discourage frontend plugins like custom-ui**; if you want dashboard customization, prefer core features and [UIX](https://uix.home-assistant.io/) where possible. Use custom-ui only when nothing else covers your case.
 
 **So, again, only use custom-ui if you know what you are doing and if no other option is available.**
 
@@ -89,7 +89,7 @@ I purposely do NOT provide an easy way to download it via the Marketplace, or pl
 
 **New Custom More-info**
 
-[Custom More-info](https://github.com/Mariusthvdb/custom-more-info) is a new custom Plugin for Home Assistant and superseeds the plugin `custom-attributes` announced below. 
+[Custom More-info](https://github.com/Mariusthvdb/custom-more-info) is a new custom Plugin for Home Assistant and superseeds the plugin `custom-attributes` announced below. **Status: frozen/archived — no longer maintained.** 
 
 Next to the functionality of `custom-attributes`, with `custom-more-info` users can customize when and when not to display the History and Logbook sections in the More-info card. Even hide the History icon in the Header completely. Automatically, or based on manual settings.
 
@@ -99,7 +99,7 @@ Custom More-info gives the user ultimate control over the More-info panel.
 ___
 **New Custom Attributes**
 
-[Custom attributes](https://github.com/Mariusthvdb/custom-attributes) is a new resource for Home Assistant to customize which entity attributes are displayed in the Dashboard on more-info cards. Moreover, if configured so that no more attributes are left to display (all attributes are filtered), the attributes dropdown box is not rendered at all. This is replacing that specific functionality from Custom-ui.
+[Custom attributes](https://github.com/Mariusthvdb/custom-attributes) is a new resource for Home Assistant to customize which entity attributes are displayed in the Dashboard on more-info cards. **Status: superseded by custom-more-info, and also archived — no longer maintained.** Moreover, if configured so that no more attributes are left to display (all attributes are filtered), the attributes dropdown box is not rendered at all. This is replacing that specific functionality from Custom-ui.
 
 ### DON'T INSTALL BOTH CUSTOM-ATTRIBUTES AND CUSTOM-MORE-INFO SIMULTANEOUSLY. USE ONLY 1 OF THESE 2 NEW PLUGINS
 ___
