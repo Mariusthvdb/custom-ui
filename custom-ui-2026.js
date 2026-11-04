@@ -121,7 +121,7 @@ window.customUI = {
         states,
         entity,
         entity.attributes,
-        entity.untemplated_attributes?.[key] || entity.attributes[key],
+        entity.untemplated_attributes?.[key] ?? entity.attributes[key],
         entity.untemplated_state || entity.state
       );
 
