@@ -137,13 +137,8 @@ homeassistant:
 ##########################################################################################
 
   customize_glob:
-    # All Entities - Hide Templates & Icon Color
     # Note that yaml keys can't start with an asterisk. Use quotes in that case:
     "*.*":
-      hide_attributes:
-        - templates
-        - icon_color
-        - all # <-- this hides, well, all attributes ;-)
     
     light.hue_ambiance_spot_*:
       icon: mdi:spotlight-beam
@@ -299,13 +294,9 @@ homeassistant:
   customize:
 # Single Entity - Icon color
     input_boolean.development:
-      hide_attributes:
-        - icon_color
 
 # or simply hide all attributes
     input_boolean.development:
-      hide_attributes:
-        - all
 
     sensor.synology_status_volume_1:
       templates:
@@ -519,8 +510,6 @@ Alternatively, you can use the ternary notation, which makes for neat and short 
 ```yaml
     switch.tester:
       <<: &hide # use <<: *hide on all entities below this
-        hide_attributes:
-          - templates
       templates:
         icon: >
           return state === 'on' ? 'mdi:test-tube' : 'mdi:test-tube-off';
