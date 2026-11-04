@@ -11,7 +11,7 @@ Custom-ui was developed a long time ago, before Home Assistant introduced the mo
 
 [Theming](https://www.home-assistant.io/integrations/frontend/#defining-themes) and the use of [state-colors](https://www.home-assistant.io/integrations/frontend/#supported-theme-variables) in the Frontend have become very powerful and should be your first choice for customizing colors based on states.
 
-If you need more, especially if you want to use templates, consider using the custom [Card-mod](https://github.com/thomasloven/lovelace-card-mod), which allows the user to modify almost anything in the Dashboard views (the Frontend).
+If you need more, especially if you want to use templates, consider using [UIX](https://uix.lf.technology) by @Dcapslock, which allows the user to modify almost anything in the Dashboard views (the Frontend).
 
 Only as a last resort should you consider using custom-ui, and only in those cases where you need more power and control.
 
