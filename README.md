@@ -151,6 +151,7 @@ Since Home Assistant 2026.11, HACS is built in as the Marketplace (Settings > Ma
 4. Refresh home-assistant.
 
 For Home Assistant 2026.11 and newer, use `custom-ui-2026.js` instead of `custom-ui.js`.
+Note: the Marketplace/HACS resource path (`/hacsfiles/custom-ui/...`) always serves `custom-ui.js`, so install `custom-ui-2026.js` manually: download it and add `- url: /local/custom-ui-2026.js\n  type: module` to your dashboard resources.
 
 ### Other installation methods
 See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)

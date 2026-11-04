@@ -90,10 +90,10 @@ window.customUI = {
     const changedRef = (id) => {
       const curr = states[id];
       const prev = prevStates[id];
-      if (!curr) return true;            // entity removed: treat as changed
-      if (curr === prev) return false;   // HA reuses state objects when unchanged
-      return !prev || prev.state !== curr.state ||
-        prev.last_updated !== curr.last_updated;
+      if (curr === prev) return false;   // same reference: unchanged (covers absent-in-both)
+      if (!curr) return !!prev;          // present -> absent: changed
+      if (!prev) return true;            // absent -> present: changed
+      return true;                       // different reference: changed (covers templated rewrites)
     };
     return changedRef(key) || entry.deps.some(changedRef);
   },
@@ -103,8 +103,12 @@ window.customUI = {
     const templates = entity.attributes?.templates;
     if (!templates) return entity;
 
-    const newAttributes = {};
+    // Start from the untemplated originals for every templated key, so a null
+    // template result clears a previously templated value instead of keeping it.
+    const untemplated = entity.untemplated_attributes ?? entity.attributes;
     const templateKeys = Object.keys(templates);
+    const newAttributes = {};
+    for (const key of templateKeys) newAttributes[key] = untemplated[key];
 
     for (const key of templateKeys) {
       if (key === "state") {
@@ -120,15 +124,13 @@ window.customUI = {
         hass,
         states,
         entity,
-        entity.attributes,
-        entity.untemplated_attributes?.[key] ?? entity.attributes[key],
+        untemplated,
+        untemplated[key],
         entity.untemplated_state || entity.state
       );
 
-      if (value !== null) newAttributes[key] = value;
+      if (value !== null && value !== undefined) newAttributes[key] = value;
     }
-
-    if (!Object.keys(newAttributes).length) return entity;
 
     return {
       ...entity,
@@ -136,7 +138,7 @@ window.customUI = {
         ...entity.attributes,
         ...newAttributes
       },
-      untemplated_attributes: entity.untemplated_attributes ?? entity.attributes
+      untemplated_attributes: untemplated
     };
   },
 
@@ -164,8 +166,11 @@ window.customUI = {
           customUI.hassUpdates++;
 
           const obj = args[0];
-          // Use the incoming hass object for template evaluation
-          const hass = obj ?? thisArg.hass;
+          // _updateHass can receive partial patches ({ states }); merge with the
+          // current hass so template context (user, config, methods) is preserved.
+          const hass = (obj && thisArg.hass && typeof obj === "object")
+            ? Object.assign({}, thisArg.hass, obj)
+            : (obj ?? thisArg.hass);
           // Keep our own snapshot of the previous states: thisArg.hass may already
           // hold the NEW hass (the hass setter stores it before _updateHass runs)
           const prevStates = customUI._prevStates ?? null;
@@ -184,7 +189,21 @@ window.customUI = {
               let totalSkipped = 0;
               let evaluatedList = [];
 
-              for (const key of customUI._templated.keys()) {
+              // Order: templated producers before consumers that depend on them
+              const order = [];
+              const seen = new Set();
+              const visit = (k) => {
+                if (seen.has(k)) return;
+                seen.add(k);
+                const e = customUI._templated.get(k);
+                if (e) for (const d of e.deps) {
+                  if (d !== "*" && customUI._templated.has(d)) visit(d);
+                }
+                order.push(k);
+              };
+              for (const k of customUI._templated.keys()) visit(k);
+
+              for (const key of order) {
                 const entity = obj.states[key];
                 if (!entity?.attributes?.templates) continue;
 
@@ -452,12 +471,13 @@ window.customUI = {
   },
 
   // Evaluate a template expression
-  computeTemplate(template, hass, entities, entity, attributes, attribute, state) {
+  async computeTemplate(template, hass, entities, entity, attributes, attribute, state) {
     const functionBody =
       template.indexOf("return") >= 0 ? template : `return \`${template}\`;`;
 
     try {
-      return new Function(
+      // await so a rejected promise returned by the template is caught here
+      return await new Function(
         "hass",
         "entities",
         "entity",
