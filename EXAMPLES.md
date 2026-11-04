@@ -507,7 +507,6 @@ homeassistant:
 Alternatively, you can use the ternary notation, which makes for neat and short templates
 ```yaml
     switch.tester:
-      <<: &hide # use <<: *hide on all entities below this
       templates:
         icon: >
           return state === 'on' ? 'mdi:test-tube' : 'mdi:test-tube-off';
