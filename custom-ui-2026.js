@@ -157,11 +157,10 @@ window.customUI = {
       }
 
       homeAssistant.prototype._updateHass = new Proxy(originalUpdate, {
-        async apply(target, thisArg, args) {
-          // Serialize updates: each one's async template work finishes before the
-          // next update is forwarded, so stale states can never overwrite newer ones.
-          const prev = customUI._updateChain || Promise.resolve();
-          const run = prev.then(async () => {
+        apply(target, thisArg, args) {
+          // Forward to HA synchronously — never queue the frontend update itself,
+          // or a busy system backlogs and the UI stalls. Only the async template
+          // mutations are serialized among themselves (chain below).
           customUI.hassUpdates++;
 
           const obj = args[0];
@@ -175,6 +174,9 @@ window.customUI = {
           const prevStates = customUI._prevStates ?? null;
 
           if (obj.states && hass?.states) {
+
+          const prev = customUI._updateChain || Promise.resolve();
+          const run = prev.then(async () => {
 
             // === (Re)scan for templated entities on first run and periodically ===
             if (!prevStates || ++customUI._rescanCounter % 600 === 0) {
@@ -254,14 +256,13 @@ window.customUI = {
                 );
               }
             }
+          });
+          customUI._updateChain = run.catch(() => {});
           }
 
           const result = Reflect.apply(target, thisArg, args);
           if (obj?.states) customUI._prevStates = obj.states;
           return result;
-          });
-          customUI._updateChain = run.catch(() => {});
-          return run;
         }
       });
 
