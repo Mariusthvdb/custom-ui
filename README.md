@@ -29,9 +29,7 @@ core customization are support for:
 * **icon_color** attribute.
 
 We can use these features **globally** in our Home Assistant configuration and thus create extremely powerful yet 
-very compact customizations. Added to that, custom-ui allows one to **hide attributes** from the 
-more-info pane. Check the [examples](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) 
-how.
+very compact customizations. Check the [examples](EXAMPLES.md) how.
 
 <img width="492" alt="icon-color" src="https://user-images.githubusercontent.com/33354141/168234088-ee5a5b11-0e68-49fd-b664-6e5a13c79fb0.png">
 
