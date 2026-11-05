@@ -13,25 +13,27 @@ will be valid if you do.
 
 Lastly, remember to delimit the lines with a `;` .
 
-Why use custom-ui? 2 huge reasons:
+Why use custom-ui? 2 main drivers:
 
 # Icon color
 
-Setting a color for an icon is not possible in core HA. There is no attribute `icon_color` out of the box.
+Setting a color for an icon is not possible in stock HA Frontend. There is no attribute `icon_color` out of the box. We can only use
+the config option any card might offer, or use state-colors in themes.
 
-Personally, I can't live without the `icon_color` attribute. Fully aware of the great and modern [UIX](https://uix.lf.technology) by @dcapslock, with which you can set a style on any card and entity, this still doesn't come close to the ease of custom-ui. Keeping as many styling issues out of the Lovelace cards makes for much better readable configs (imho) and, last but not least: using custom-ui we can set colors and color templates globally. 
+Fully aware of the great and modern [UIX](https://uix.lf.technology) by @dcapslock, with which you can customize and style most Dashboard properties, this still doesn't come close to the ease of custom-ui. Keeping as many styling issues out of the Dashboard cards makes for much better readable configs (imho) and even styles the icons in the more-info dialog.
+
+Last but certainly not least: with custom-ui colors and color templates can be set *globally*. 
 
 Declare once, use everywhere. 
 
-The color in the JS custom-ui syntax can take any CSS color value. For example: #FFACAC, red, rgba(10, 20, 30, 0.5) etc.
-Note that the color will be applied as-is and it won't be affected by the brightness attribute
+The color in the JS custom-ui syntax takes any valid CSS color value. For example: #FFACAC, red, rgba(10, 20, 30, 0.5) etc.
+Note that the color will be applied as-is and it won't be affected by the brightness attribute.
 
 # Templates
-Core HA customizing is straightforward and can't use templates based on states or attributes. Thats where custom-ui enters.
+Core HA customizing is straightforward and can't use templates based on states or attributes. That's where custom-ui enters.
 
-The `templates` attributes allow you to inject your own expressions and code using JavaScript code or template literals in order to override entity attributes and state.
-Within the code / template literals, you have full access to the entity's state object, which allows you to access other properties such as last_changed,
-attributes.friendly_name, etc.
+The `templates` attributes allow you to inject your own expressions and code using JavaScript code or template literals in order to override entity attributes.
+Within the code / template literals, you have full access to the entity's state object, which allows you to access other properties such as last_changed, attributes.friendly_name, etc.
 
 In order for a template to return "nothing", return `null` from your template. Note that `null` can only be returned using code format,
 as template literal format always returns a string.
@@ -63,12 +65,10 @@ template:
         icon_color: >
           {{'var(--alert-color)' if this.state|int(default=0) > 0 else 'var(--primary-color)'}}
 ```
-Note: this requires custom-ui to be installed as a resource for the template above to work.
 
 ### Available variables
 #### Global variables
-Those variables allow one entity to set state / attribute based on another entity or some other "external" thing. Using those hurts UI performance,
-so use them only if you indeed want an entity to depend on something external.
+Those variables allow one entity to set an attribute based on another entity or some other "external" thing. Using those hurts UI performance, so use them only if you indeed want an entity to depend on something external.
 
 `hass` - the hass object
 
@@ -95,7 +95,7 @@ You can provide the template in two different formats.
 ##########################################################################################
 # Domain
 # this is by far the most powerful option. Set and forget, and never have to set any Style
-# in a Lovelace card. Do remember that customizing an individual entity overrides domain
+# in a Dashboard card. Do remember that customizing an individual entity overrides domain
 # or global customizations.
 # If customizing an entity belonging to one these domains, you have to customize it
 # completely
@@ -133,7 +133,7 @@ homeassistant:
 
 ##########################################################################################
 # Glob
-# second powerful option used in Homeassistant, profits enormously of custom-ui.
+# second powerful option used in Home Assistant, profits enormously of custom-ui.
 ##########################################################################################
 
   customize_glob:
@@ -166,7 +166,7 @@ homeassistant:
           if (state === 'home') return 'rgb(0,128,0)';
           return 'rgb(255,0,0)';
 
-# as stated in the readme, any valid Css color code is allowed.
+# any valid Css color code is allowed.
 # above 'rgb(1,2,3)' is identical to using the color names 'green' and 'red'
 
     input_number.*_volume:
@@ -469,33 +469,6 @@ homeassistant:
  # custom button-card, where a syntax with `states[].state` is used
 ```
 
-# Single line notation
-Though above templates all use my preferred syntax of the multiline notation, they can
-also be written on single lines, as discussed in issue 29
-https://github.com/Mariusthvdb/custom-ui/issues/29#issuecomment-757144431:
-
-```yaml
-homeassistant:
-  customize_domain:
-    device_tracker:
-      templates:
-        icon_color: if (state === 'home') return 'green';return 'purple';
-
-  customize:
-    binary_sensor.updater:
-      templates:
-        icon_color: if (state === 'on') return 'red';return 'green';
-
-    device_tracker.hall:
-      templates:
-        icon_color: if (state === 'home') return 'green';return 'orange';
-        icon: if (state == 'home') return 'mdi:speaker-wireless';return 'mdi:speaker-off';
-
-    person.marius:
-      templates:
-        entity_picture: return '/local/images/family/marius_bmj_' + state + '.png';
-```
-
 # Ternary notation
 
 Alternatively, you can use the ternary notation, which makes for neat and short templates
@@ -507,4 +480,30 @@ Alternatively, you can use the ternary notation, which makes for neat and short 
         <<: &state_color
           icon_color: >
             return state === 'on' ? 'var(--primary-color)' : 'grey';
+```
+
+# Single line notation
+Though above templates all use my preferred syntax of the multiline notation, they can
+also be written on single lines.
+
+```yaml
+homeassistant:
+  customize_domain:
+    device_tracker:
+      templates:
+        icon_color: if (state === 'home') return 'green'; return 'purple';
+
+  customize:
+    binary_sensor.updater:
+      templates:
+        icon_color: if (state === 'on') return 'red'; return 'green';
+
+    device_tracker.hall:
+      templates:
+        icon_color: if (state === 'home') return 'green'; return 'orange';
+        icon: if (state == 'home') return 'mdi:speaker-wireless'; return 'mdi:speaker-off';
+
+    person.marius:
+      templates:
+        entity_picture: return '/local/images/family/marius_bmj_' + state + '.png';
 ```
