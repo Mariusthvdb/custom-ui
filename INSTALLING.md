@@ -1,9 +1,9 @@
 # Other Installation
-Thw two main methods for installation is mentioned in the [README](https://github.com/Mariusthvdb/custom-ui/blob/master/README.md).
+Thw two main methods for installation is mentioned in the [README](README.md).
 
 ## Downloading custom-ui
 1. Create a new folder under your resources folder (`/www`). Suggestion: `custom-ui`.
-2. Copy the [custom-ui-2026.js](https://github.com/Mariusthvdb/custom-ui/blob/master/custom-ui-2026.js) file to that folder (HA 2026.11+; use `custom-ui.js` on older versions).
+2. Copy the [custom-ui-2026.js](custom-ui-2026.js) file to that folder (HA 2026.11+; use `custom-ui.js` on older versions).
 
 ## UI - The Modern way
 For the official docs on this see [Registering Resources](https://developers.home-assistant.io/docs/frontend/custom-ui/registering-resources)

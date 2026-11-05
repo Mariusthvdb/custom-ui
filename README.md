@@ -33,7 +33,7 @@ very compact customizations. Check the [examples](EXAMPLES.md) how.
 
 <img width="492" alt="icon-color" src="https://user-images.githubusercontent.com/33354141/168234088-ee5a5b11-0e68-49fd-b664-6e5a13c79fb0.png">
 
-**Did you know....**: custom-ui facilitates setting a [Jinja template on custom attributes](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md#did-you-know) in core integrations that allow setting a custom attribute.
+**Did you know....**: custom-ui facilitates setting a [Jinja template on custom attributes](EXAMPLES.md#did-you-know) in core integrations that allow setting a custom attribute.
 
 --- 
 
@@ -89,12 +89,12 @@ With debug on you get `[custom-ui] hass: N | templates considered: X | evaluated
 
 
 ### Other installation methods
-See [INSTALLING](https://github.com/Mariusthvdb/custom-ui/blob/master/INSTALLING.md)
+See [INSTALLING](INSTALLING.md)
 
 ## Examples
-See [EXAMPLES](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md).
+See [EXAMPLES](EXAMPLES.md).
 
-For examples, see [EXAMPLES.md](https://github.com/Mariusthvdb/custom-ui/blob/master/EXAMPLES.md) in this repo.
+For examples, see [EXAMPLES.md](EXAMPLES.md) in this repo.
 
 ---
 
@@ -143,5 +143,5 @@ config won't work.
 I've been a longtime and heavy user of custom-ui, and this is the place to applaud Andrey for his 
 amazing plugin. Home Assistant wouldn't be the same without the global customizing it enables us to do. Couldn't live without it! All credits go to @andrey-git.
 You can read up on a bit if 
-[history](https://github.com/Mariusthvdb/custom-ui/blob/master/HISTORY.md) how it came to this 
+[history](HISTORY.md) how it came to this 
 adapted version.
